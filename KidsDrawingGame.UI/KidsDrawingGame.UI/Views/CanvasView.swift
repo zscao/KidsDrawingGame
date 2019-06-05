@@ -24,7 +24,7 @@ class CanvasView: UIImageView {
         album.addShapes()
         album.addSamples()
         
-        if let square = album["sample"] {
+        if let square = album["butterfly"] {
             _canvas = Canvas(size: frame.size, baseMap: square)
         }
         _strokeColor = UIColor.red.cgColor

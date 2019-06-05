@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2FA1831CBD36DE25903DF23E /* Pods_KidsDrawingGame_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C6586E92B0B1738C3A873B /* Pods_KidsDrawingGame_UI.framework */; };
-		A996059522A7B2EA00C50570 /* KidsDrawingGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */; };
 		A996059922A7C68E00C50570 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996059822A7C68E00C50570 /* Samples.swift */; };
 		A996059B22A7C6D300C50570 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996059A22A7C6D300C50570 /* Album.swift */; };
+		A996059D22A7D6BA00C50570 /* Flower.svg in Resources */ = {isa = PBXBuildFile; fileRef = A996059C22A7D6BA00C50570 /* Flower.svg */; };
+		A99605A822A7DD4B00C50570 /* KidsDrawingGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */; };
+		A99605A922A7DD4B00C50570 /* KidsDrawingGame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A99605AB22A7E19800C50570 /* Bus.svg in Resources */ = {isa = PBXBuildFile; fileRef = A99605AA22A7E19800C50570 /* Bus.svg */; };
+		A99605AF22A7E7B700C50570 /* butterfly.svg in Resources */ = {isa = PBXBuildFile; fileRef = A99605AE22A7E7B700C50570 /* butterfly.svg */; };
 		A9A0FDE922A6957800BC80CD /* Freesample.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9A0FDE822A6957800BC80CD /* Freesample.svg */; };
 		A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0FDEA22A6971900BC80CD /* Shapes.swift */; };
 		A9E5B89922A65A0300ADD793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B89822A65A0300ADD793 /* AppDelegate.swift */; };
@@ -45,6 +48,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A99605A722A7DD4200C50570 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A99605A922A7DD4B00C50570 /* KidsDrawingGame.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0B2E8F2B08533249D8ABE543 /* Pods-KidsDrawingGame.UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsDrawingGame.UI.release.xcconfig"; path = "Target Support Files/Pods-KidsDrawingGame.UI/Pods-KidsDrawingGame.UI.release.xcconfig"; sourceTree = "<group>"; };
 		4F287B3D86D21FFB1BDB142C /* Pods-KidsDrawingGame.UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsDrawingGame.UI.debug.xcconfig"; path = "Target Support Files/Pods-KidsDrawingGame.UI/Pods-KidsDrawingGame.UI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -53,6 +70,10 @@
 		A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KidsDrawingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A996059822A7C68E00C50570 /* Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
 		A996059A22A7C6D300C50570 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		A996059C22A7D6BA00C50570 /* Flower.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flower.svg; sourceTree = "<group>"; };
+		A996059E22A7D95A00C50570 /* PocketSVG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PocketSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A99605AA22A7E19800C50570 /* Bus.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Bus.svg; sourceTree = "<group>"; };
+		A99605AE22A7E7B700C50570 /* butterfly.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = butterfly.svg; sourceTree = "<group>"; };
 		A9A0FDE822A6957800BC80CD /* Freesample.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Freesample.svg; sourceTree = "<group>"; };
 		A9A0FDEA22A6971900BC80CD /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		A9E5B89522A65A0300ADD793 /* KidsDrawingGame.UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsDrawingGame.UI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,8 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A996059522A7B2EA00C50570 /* KidsDrawingGame.framework in Frameworks */,
-				2FA1831CBD36DE25903DF23E /* Pods_KidsDrawingGame_UI.framework in Frameworks */,
+				A99605A822A7DD4B00C50570 /* KidsDrawingGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				A9A0FDE822A6957800BC80CD /* Freesample.svg */,
+				A996059C22A7D6BA00C50570 /* Flower.svg */,
+				A99605AA22A7E19800C50570 /* Bus.svg */,
+				A99605AE22A7E7B700C50570 /* butterfly.svg */,
 			);
 			path = SVGs;
 			sourceTree = "<group>";
@@ -203,6 +226,7 @@
 		A9E5B8F222A67D4F00ADD793 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A996059E22A7D95A00C50570 /* PocketSVG.framework */,
 				A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */,
 				A996059222A7B25700C50570 /* KidsDrawingGame.framework */,
 				74C6586E92B0B1738C3A873B /* Pods_KidsDrawingGame_UI.framework */,
@@ -222,6 +246,7 @@
 				A9E5B89222A65A0300ADD793 /* Frameworks */,
 				A9E5B89322A65A0300ADD793 /* Resources */,
 				EBB40F7F75F1FB70B5298D4E /* [CP] Embed Pods Frameworks */,
+				A99605A722A7DD4200C50570 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -317,8 +342,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9A0FDE922A6957800BC80CD /* Freesample.svg in Resources */,
+				A996059D22A7D6BA00C50570 /* Flower.svg in Resources */,
 				A9E5B8A622A65A0500ADD793 /* LaunchScreen.storyboard in Resources */,
+				A99605AB22A7E19800C50570 /* Bus.svg in Resources */,
 				A9E5B8A322A65A0500ADD793 /* Assets.xcassets in Resources */,
+				A99605AF22A7E7B700C50570 /* butterfly.svg in Resources */,
 				A9E5B89E22A65A0300ADD793 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
