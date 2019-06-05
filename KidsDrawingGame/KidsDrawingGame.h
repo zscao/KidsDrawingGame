@@ -1,8 +1,4 @@
 //
-//  KidsDrawingGame.h
-//  KidsDrawingGame
-//
-//  Created by matchbyte on 4/6/19.
 //  Copyright © 2019 zscao. All rights reserved.
 //
 

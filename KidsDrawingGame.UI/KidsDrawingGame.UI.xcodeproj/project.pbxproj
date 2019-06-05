@@ -1,0 +1,747 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FA1831CBD36DE25903DF23E /* Pods_KidsDrawingGame_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C6586E92B0B1738C3A873B /* Pods_KidsDrawingGame_UI.framework */; };
+		A996059522A7B2EA00C50570 /* KidsDrawingGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */; };
+		A996059922A7C68E00C50570 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996059822A7C68E00C50570 /* Samples.swift */; };
+		A996059B22A7C6D300C50570 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996059A22A7C6D300C50570 /* Album.swift */; };
+		A9A0FDE922A6957800BC80CD /* Freesample.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9A0FDE822A6957800BC80CD /* Freesample.svg */; };
+		A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0FDEA22A6971900BC80CD /* Shapes.swift */; };
+		A9E5B89922A65A0300ADD793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B89822A65A0300ADD793 /* AppDelegate.swift */; };
+		A9E5B89B22A65A0300ADD793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B89A22A65A0300ADD793 /* ViewController.swift */; };
+		A9E5B89E22A65A0300ADD793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E5B89C22A65A0300ADD793 /* Main.storyboard */; };
+		A9E5B8A122A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B89F22A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodeld */; };
+		A9E5B8A322A65A0500ADD793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9E5B8A222A65A0500ADD793 /* Assets.xcassets */; };
+		A9E5B8A622A65A0500ADD793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E5B8A422A65A0500ADD793 /* LaunchScreen.storyboard */; };
+		A9E5B8B122A65A0500ADD793 /* KidsDrawingGame_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8B022A65A0500ADD793 /* KidsDrawingGame_UITests.swift */; };
+		A9E5B8BC22A65A0500ADD793 /* KidsDrawingGame_UIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8BB22A65A0500ADD793 /* KidsDrawingGame_UIUITests.swift */; };
+		A9E5B8E622A65FF900ADD793 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8E522A65FF900ADD793 /* ColorButton.swift */; };
+		A9E5B8E822A6603000ADD793 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8E722A6603000ADD793 /* ActionButton.swift */; };
+		A9E5B8EA22A6605A00ADD793 /* DrawingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8E922A6605A00ADD793 /* DrawingAction.swift */; };
+		A9E5B8EC22A6608E00ADD793 /* MainPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8EB22A6608E00ADD793 /* MainPanel.swift */; };
+		A9E5B8EE22A660A900ADD793 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8ED22A660A900ADD793 /* CanvasView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A9E5B8AD22A65A0500ADD793 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9E5B88D22A65A0200ADD793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9E5B89422A65A0300ADD793;
+			remoteInfo = KidsDrawingGame.UI;
+		};
+		A9E5B8B822A65A0500ADD793 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9E5B88D22A65A0200ADD793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9E5B89422A65A0300ADD793;
+			remoteInfo = KidsDrawingGame.UI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0B2E8F2B08533249D8ABE543 /* Pods-KidsDrawingGame.UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsDrawingGame.UI.release.xcconfig"; path = "Target Support Files/Pods-KidsDrawingGame.UI/Pods-KidsDrawingGame.UI.release.xcconfig"; sourceTree = "<group>"; };
+		4F287B3D86D21FFB1BDB142C /* Pods-KidsDrawingGame.UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsDrawingGame.UI.debug.xcconfig"; path = "Target Support Files/Pods-KidsDrawingGame.UI/Pods-KidsDrawingGame.UI.debug.xcconfig"; sourceTree = "<group>"; };
+		74C6586E92B0B1738C3A873B /* Pods_KidsDrawingGame_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KidsDrawingGame_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A996059222A7B25700C50570 /* KidsDrawingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KidsDrawingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KidsDrawingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A996059822A7C68E00C50570 /* Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
+		A996059A22A7C6D300C50570 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		A9A0FDE822A6957800BC80CD /* Freesample.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Freesample.svg; sourceTree = "<group>"; };
+		A9A0FDEA22A6971900BC80CD /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		A9E5B89522A65A0300ADD793 /* KidsDrawingGame.UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsDrawingGame.UI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9E5B89822A65A0300ADD793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A9E5B89A22A65A0300ADD793 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A9E5B89D22A65A0300ADD793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A9E5B8A022A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KidsDrawingGame_UI.xcdatamodel; sourceTree = "<group>"; };
+		A9E5B8A222A65A0500ADD793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9E5B8A522A65A0500ADD793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A9E5B8A722A65A0500ADD793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9E5B8AC22A65A0500ADD793 /* KidsDrawingGame.UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KidsDrawingGame.UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9E5B8B022A65A0500ADD793 /* KidsDrawingGame_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsDrawingGame_UITests.swift; sourceTree = "<group>"; };
+		A9E5B8B222A65A0500ADD793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9E5B8B722A65A0500ADD793 /* KidsDrawingGame.UIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KidsDrawingGame.UIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9E5B8BB22A65A0500ADD793 /* KidsDrawingGame_UIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsDrawingGame_UIUITests.swift; sourceTree = "<group>"; };
+		A9E5B8BD22A65A0500ADD793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9E5B8E522A65FF900ADD793 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
+		A9E5B8E722A6603000ADD793 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		A9E5B8E922A6605A00ADD793 /* DrawingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingAction.swift; sourceTree = "<group>"; };
+		A9E5B8EB22A6608E00ADD793 /* MainPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPanel.swift; sourceTree = "<group>"; };
+		A9E5B8ED22A660A900ADD793 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9E5B89222A65A0300ADD793 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A996059522A7B2EA00C50570 /* KidsDrawingGame.framework in Frameworks */,
+				2FA1831CBD36DE25903DF23E /* Pods_KidsDrawingGame_UI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9E5B8A922A65A0500ADD793 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9E5B8B422A65A0500ADD793 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C3833A7CEF92FE1BE73B58B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4F287B3D86D21FFB1BDB142C /* Pods-KidsDrawingGame.UI.debug.xcconfig */,
+				0B2E8F2B08533249D8ABE543 /* Pods-KidsDrawingGame.UI.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		A9A0FDE522A693F500BC80CD /* SVGs */ = {
+			isa = PBXGroup;
+			children = (
+				A9A0FDE822A6957800BC80CD /* Freesample.svg */,
+			);
+			path = SVGs;
+			sourceTree = "<group>";
+		};
+		A9E5B88C22A65A0200ADD793 = {
+			isa = PBXGroup;
+			children = (
+				A9E5B89722A65A0300ADD793 /* KidsDrawingGame.UI */,
+				A9E5B8AF22A65A0500ADD793 /* KidsDrawingGame.UITests */,
+				A9E5B8BA22A65A0500ADD793 /* KidsDrawingGame.UIUITests */,
+				A9E5B89622A65A0300ADD793 /* Products */,
+				A9E5B8F222A67D4F00ADD793 /* Frameworks */,
+				0C3833A7CEF92FE1BE73B58B /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		A9E5B89622A65A0300ADD793 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9E5B89522A65A0300ADD793 /* KidsDrawingGame.UI.app */,
+				A9E5B8AC22A65A0500ADD793 /* KidsDrawingGame.UITests.xctest */,
+				A9E5B8B722A65A0500ADD793 /* KidsDrawingGame.UIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9E5B89722A65A0300ADD793 /* KidsDrawingGame.UI */ = {
+			isa = PBXGroup;
+			children = (
+				A9A0FDE522A693F500BC80CD /* SVGs */,
+				A9E5B8EF22A67C8300ADD793 /* Pictures */,
+				A9E5B8E422A65F5500ADD793 /* Views */,
+				A9E5B89822A65A0300ADD793 /* AppDelegate.swift */,
+				A9E5B89A22A65A0300ADD793 /* ViewController.swift */,
+				A9E5B89C22A65A0300ADD793 /* Main.storyboard */,
+				A9E5B8A222A65A0500ADD793 /* Assets.xcassets */,
+				A9E5B8A422A65A0500ADD793 /* LaunchScreen.storyboard */,
+				A9E5B8A722A65A0500ADD793 /* Info.plist */,
+				A9E5B89F22A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodeld */,
+			);
+			path = KidsDrawingGame.UI;
+			sourceTree = "<group>";
+		};
+		A9E5B8AF22A65A0500ADD793 /* KidsDrawingGame.UITests */ = {
+			isa = PBXGroup;
+			children = (
+				A9E5B8B022A65A0500ADD793 /* KidsDrawingGame_UITests.swift */,
+				A9E5B8B222A65A0500ADD793 /* Info.plist */,
+			);
+			path = KidsDrawingGame.UITests;
+			sourceTree = "<group>";
+		};
+		A9E5B8BA22A65A0500ADD793 /* KidsDrawingGame.UIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A9E5B8BB22A65A0500ADD793 /* KidsDrawingGame_UIUITests.swift */,
+				A9E5B8BD22A65A0500ADD793 /* Info.plist */,
+			);
+			path = KidsDrawingGame.UIUITests;
+			sourceTree = "<group>";
+		};
+		A9E5B8E422A65F5500ADD793 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9E5B8E522A65FF900ADD793 /* ColorButton.swift */,
+				A9E5B8E722A6603000ADD793 /* ActionButton.swift */,
+				A9E5B8E922A6605A00ADD793 /* DrawingAction.swift */,
+				A9E5B8EB22A6608E00ADD793 /* MainPanel.swift */,
+				A9E5B8ED22A660A900ADD793 /* CanvasView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9E5B8EF22A67C8300ADD793 /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				A9A0FDEA22A6971900BC80CD /* Shapes.swift */,
+				A996059822A7C68E00C50570 /* Samples.swift */,
+				A996059A22A7C6D300C50570 /* Album.swift */,
+			);
+			path = Pictures;
+			sourceTree = "<group>";
+		};
+		A9E5B8F222A67D4F00ADD793 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */,
+				A996059222A7B25700C50570 /* KidsDrawingGame.framework */,
+				74C6586E92B0B1738C3A873B /* Pods_KidsDrawingGame_UI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9E5B89422A65A0300ADD793 /* KidsDrawingGame.UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9E5B8C022A65A0500ADD793 /* Build configuration list for PBXNativeTarget "KidsDrawingGame.UI" */;
+			buildPhases = (
+				9DA89E04C37A3C2FE906861C /* [CP] Check Pods Manifest.lock */,
+				A9E5B89122A65A0300ADD793 /* Sources */,
+				A9E5B89222A65A0300ADD793 /* Frameworks */,
+				A9E5B89322A65A0300ADD793 /* Resources */,
+				EBB40F7F75F1FB70B5298D4E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KidsDrawingGame.UI;
+			productName = KidsDrawingGame.UI;
+			productReference = A9E5B89522A65A0300ADD793 /* KidsDrawingGame.UI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A9E5B8AB22A65A0500ADD793 /* KidsDrawingGame.UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9E5B8C322A65A0500ADD793 /* Build configuration list for PBXNativeTarget "KidsDrawingGame.UITests" */;
+			buildPhases = (
+				A9E5B8A822A65A0500ADD793 /* Sources */,
+				A9E5B8A922A65A0500ADD793 /* Frameworks */,
+				A9E5B8AA22A65A0500ADD793 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9E5B8AE22A65A0500ADD793 /* PBXTargetDependency */,
+			);
+			name = KidsDrawingGame.UITests;
+			productName = KidsDrawingGame.UITests;
+			productReference = A9E5B8AC22A65A0500ADD793 /* KidsDrawingGame.UITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A9E5B8B622A65A0500ADD793 /* KidsDrawingGame.UIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9E5B8C622A65A0500ADD793 /* Build configuration list for PBXNativeTarget "KidsDrawingGame.UIUITests" */;
+			buildPhases = (
+				A9E5B8B322A65A0500ADD793 /* Sources */,
+				A9E5B8B422A65A0500ADD793 /* Frameworks */,
+				A9E5B8B522A65A0500ADD793 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9E5B8B922A65A0500ADD793 /* PBXTargetDependency */,
+			);
+			name = KidsDrawingGame.UIUITests;
+			productName = KidsDrawingGame.UIUITests;
+			productReference = A9E5B8B722A65A0500ADD793 /* KidsDrawingGame.UIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9E5B88D22A65A0200ADD793 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = zscao;
+				TargetAttributes = {
+					A9E5B89422A65A0300ADD793 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					A9E5B8AB22A65A0500ADD793 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = A9E5B89422A65A0300ADD793;
+					};
+					A9E5B8B622A65A0500ADD793 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = A9E5B89422A65A0300ADD793;
+					};
+				};
+			};
+			buildConfigurationList = A9E5B89022A65A0200ADD793 /* Build configuration list for PBXProject "KidsDrawingGame.UI" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A9E5B88C22A65A0200ADD793;
+			productRefGroup = A9E5B89622A65A0300ADD793 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9E5B89422A65A0300ADD793 /* KidsDrawingGame.UI */,
+				A9E5B8AB22A65A0500ADD793 /* KidsDrawingGame.UITests */,
+				A9E5B8B622A65A0500ADD793 /* KidsDrawingGame.UIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9E5B89322A65A0300ADD793 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9A0FDE922A6957800BC80CD /* Freesample.svg in Resources */,
+				A9E5B8A622A65A0500ADD793 /* LaunchScreen.storyboard in Resources */,
+				A9E5B8A322A65A0500ADD793 /* Assets.xcassets in Resources */,
+				A9E5B89E22A65A0300ADD793 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9E5B8AA22A65A0500ADD793 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9E5B8B522A65A0500ADD793 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9DA89E04C37A3C2FE906861C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KidsDrawingGame.UI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBB40F7F75F1FB70B5298D4E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KidsDrawingGame.UI/Pods-KidsDrawingGame.UI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KidsDrawingGame.UI/Pods-KidsDrawingGame.UI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KidsDrawingGame.UI/Pods-KidsDrawingGame.UI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9E5B89122A65A0300ADD793 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9E5B8EA22A6605A00ADD793 /* DrawingAction.swift in Sources */,
+				A9E5B8A122A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodeld in Sources */,
+				A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */,
+				A996059922A7C68E00C50570 /* Samples.swift in Sources */,
+				A9E5B8EE22A660A900ADD793 /* CanvasView.swift in Sources */,
+				A9E5B89B22A65A0300ADD793 /* ViewController.swift in Sources */,
+				A9E5B89922A65A0300ADD793 /* AppDelegate.swift in Sources */,
+				A9E5B8EC22A6608E00ADD793 /* MainPanel.swift in Sources */,
+				A996059B22A7C6D300C50570 /* Album.swift in Sources */,
+				A9E5B8E622A65FF900ADD793 /* ColorButton.swift in Sources */,
+				A9E5B8E822A6603000ADD793 /* ActionButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9E5B8A822A65A0500ADD793 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9E5B8B122A65A0500ADD793 /* KidsDrawingGame_UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9E5B8B322A65A0500ADD793 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9E5B8BC22A65A0500ADD793 /* KidsDrawingGame_UIUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A9E5B8AE22A65A0500ADD793 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9E5B89422A65A0300ADD793 /* KidsDrawingGame.UI */;
+			targetProxy = A9E5B8AD22A65A0500ADD793 /* PBXContainerItemProxy */;
+		};
+		A9E5B8B922A65A0500ADD793 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9E5B89422A65A0300ADD793 /* KidsDrawingGame.UI */;
+			targetProxy = A9E5B8B822A65A0500ADD793 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A9E5B89C22A65A0300ADD793 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9E5B89D22A65A0300ADD793 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A9E5B8A422A65A0500ADD793 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9E5B8A522A65A0500ADD793 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A9E5B8BE22A65A0500ADD793 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A9E5B8BF22A65A0500ADD793 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9E5B8C122A65A0500ADD793 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F287B3D86D21FFB1BDB142C /* Pods-KidsDrawingGame.UI.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TD2D8NHC4;
+				INFOPLIST_FILE = KidsDrawingGame.UI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "zscao.KidsDrawingGame-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		A9E5B8C222A65A0500ADD793 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B2E8F2B08533249D8ABE543 /* Pods-KidsDrawingGame.UI.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TD2D8NHC4;
+				INFOPLIST_FILE = KidsDrawingGame.UI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "zscao.KidsDrawingGame-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		A9E5B8C422A65A0500ADD793 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TD2D8NHC4;
+				INFOPLIST_FILE = KidsDrawingGame.UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "zscao.KidsDrawingGame-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KidsDrawingGame.UI.app/KidsDrawingGame.UI";
+			};
+			name = Debug;
+		};
+		A9E5B8C522A65A0500ADD793 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TD2D8NHC4;
+				INFOPLIST_FILE = KidsDrawingGame.UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "zscao.KidsDrawingGame-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KidsDrawingGame.UI.app/KidsDrawingGame.UI";
+			};
+			name = Release;
+		};
+		A9E5B8C722A65A0500ADD793 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TD2D8NHC4;
+				INFOPLIST_FILE = KidsDrawingGame.UIUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "zscao.KidsDrawingGame-UIUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KidsDrawingGame.UI;
+			};
+			name = Debug;
+		};
+		A9E5B8C822A65A0500ADD793 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TD2D8NHC4;
+				INFOPLIST_FILE = KidsDrawingGame.UIUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "zscao.KidsDrawingGame-UIUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KidsDrawingGame.UI;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9E5B89022A65A0200ADD793 /* Build configuration list for PBXProject "KidsDrawingGame.UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9E5B8BE22A65A0500ADD793 /* Debug */,
+				A9E5B8BF22A65A0500ADD793 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9E5B8C022A65A0500ADD793 /* Build configuration list for PBXNativeTarget "KidsDrawingGame.UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9E5B8C122A65A0500ADD793 /* Debug */,
+				A9E5B8C222A65A0500ADD793 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9E5B8C322A65A0500ADD793 /* Build configuration list for PBXNativeTarget "KidsDrawingGame.UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9E5B8C422A65A0500ADD793 /* Debug */,
+				A9E5B8C522A65A0500ADD793 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9E5B8C622A65A0500ADD793 /* Build configuration list for PBXNativeTarget "KidsDrawingGame.UIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9E5B8C722A65A0500ADD793 /* Debug */,
+				A9E5B8C822A65A0500ADD793 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A9E5B89F22A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9E5B8A022A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodel */,
+			);
+			currentVersion = A9E5B8A022A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodel */;
+			path = KidsDrawingGame_UI.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A9E5B88D22A65A0200ADD793 /* Project object */;
+}
