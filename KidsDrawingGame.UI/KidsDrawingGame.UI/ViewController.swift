@@ -8,17 +8,36 @@ class ViewController: UIViewController {
     
     private var canvasView: CanvasView?
     private var mainPanel: MainPanel?
+    private var colorPanel: ColorPenPanel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.canvasView = CanvasView(frame: self.view.frame)
+        let mainframe = self.view.frame
+        
+        self.canvasView = CanvasView(frame: mainframe)
         if let canvas = self.canvasView {
-            canvas.image = UIImage(named: "lake")
             canvas.isUserInteractionEnabled = true
             self.view.addSubview(canvas)
             
             canvas.refreshDrawing()
+        }
+        
+        let colorPanelRect = CGRect(
+            x: 10,
+            y: 10,
+            width: 250,
+            height: mainframe.height - 100)
+        
+        self.colorPanel = ColorPenPanel(frame: colorPanelRect)
+        if let panel = self.colorPanel {
+            panel.hide()
+            self.view.addSubview(panel)
+            
+            panel.onAction = {[unowned self] color in
+                self.colorPanel?.hide()
+                self.canvasView?.setStrokeColor(color: color)
+            }
         }
         
         let mainPanelRect = CGRect(
@@ -37,8 +56,19 @@ class ViewController: UIViewController {
                     self.canvasView?.clear()
                 case .undo:
                     self.canvasView?.undo()
-                case .pickColor(let color):
-                    self.canvasView?.setStrokeColor(color: color)
+                case .pickPen:
+                    //self.canvasView?.setStrokeColor(color: color)
+                    if let colorPanel = self.colorPanel {
+                        UIView.animate(withDuration: 2, animations: { [unowned colorPanel]() in
+                            //let center = CGPoint(x: 200, y: 200)
+                            if colorPanel.isHidden {
+                                colorPanel.show()
+                            }
+                            else {
+                                colorPanel.hide()
+                            }
+                        })
+                    }
                 default:
                     return
                 }

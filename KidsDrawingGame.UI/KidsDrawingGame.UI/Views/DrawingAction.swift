@@ -7,6 +7,6 @@ enum DrawingAction {
     case clear
     case undo
     case redo
-    case pickColor(UIColor)
+    case pickPen
     case save
 }

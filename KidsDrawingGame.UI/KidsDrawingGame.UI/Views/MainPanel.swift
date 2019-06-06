@@ -25,10 +25,11 @@ class MainPanel: UIView {
     private func initButtons() {
         self.addSubview(getActionButton(at: CGPoint(x: 10, y: 10), action: .clear, title: "Clear"))
         self.addSubview(getActionButton(at: CGPoint(x: 110, y: 10), action: .undo, title: "Undo"))
-        self.addSubview(getColorButton(at: CGPoint(x: 210, y: 10), color: .red, title: "Red"))
-        self.addSubview(getColorButton(at: CGPoint(x: 310, y: 10), color: .green, title: "Green"))
-        self.addSubview(getColorButton(at: CGPoint(x: 410, y: 10), color: .blue, title: "Blue"))
-        self.addSubview(getColorButton(at: CGPoint(x: 510, y: 10), color: .white, title: "White"))
+        self.addSubview(getActionButton(at: CGPoint(x: 210, y: 10), action: .pickPen, title: "Color"))
+//        self.addSubview(getColorButton(at: CGPoint(x: 210, y: 10), color: .red, title: "Red"))
+//        self.addSubview(getColorButton(at: CGPoint(x: 310, y: 10), color: .green, title: "Green"))
+//        self.addSubview(getColorButton(at: CGPoint(x: 410, y: 10), color: .blue, title: "Blue"))
+//        self.addSubview(getColorButton(at: CGPoint(x: 510, y: 10), color: .white, title: "White"))
         //self.addSubview(getColorButton(at: CGPoint(x: 610, y: 10), color: .black, title: "Black"))
     }
     
@@ -45,24 +46,9 @@ class MainPanel: UIView {
         return button
     }
     
-    private func getColorButton(at position: CGPoint, color: UIColor, title: String) -> UIButton {
-        let button = ColorButton(frame: CGRect(origin: position, size: CGSize(width: 80, height: 30)))
-        button.color = color
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.setTitle(title, for: .normal)
-        button.backgroundColor = color
-        
-        button.addTarget(self, action: #selector(colorButtonTapped(_:)), for: .touchUpInside)
-        
-        return button
-    }
     
     @objc func actionButtonTapped(_ send: ActionButton!) {
         self.onAction?(send.action)
-    }
-    
-    @objc func colorButtonTapped(_ send: ColorButton!) {
-        self.onAction?(.pickColor(send.color))
     }
     
 }

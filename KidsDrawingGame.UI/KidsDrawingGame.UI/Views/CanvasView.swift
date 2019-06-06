@@ -3,12 +3,11 @@
 import UIKit
 import KidsDrawingGame
 
-class CanvasView: UIImageView {
+class CanvasView: UIView {
     
-    private var _strokeColor: CGColor
+    private var _strokeColor: CGColor = UIColor.black.cgColor
     
-    private var _canvas: Canvas?
-    
+    private var _canvas: Canvas? = nil
     
     /*
      // Only override draw() if you perform custom drawing.
@@ -19,7 +18,16 @@ class CanvasView: UIImageView {
      */
     
     override init(frame: CGRect) {
-        
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
         let album = Album()
         album.addShapes()
         album.addSamples()
@@ -28,18 +36,32 @@ class CanvasView: UIImageView {
             _canvas = Canvas(size: frame.size, baseMap: square)
         }
         _strokeColor = UIColor.red.cgColor
-        super.init(frame: frame)
+        
+        self.layer.backgroundColor = UIColor.black.cgColor
+        
+//        addTestLayer()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    private func addTestLayer() {
+//        let layer = CAShapeLayer()
+//        layer.anchorPoint = CGPoint.zero
+//        layer.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 100, height: 100)).cgPath
+//        layer.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
+//        layer.fillColor = UIColor.red.cgColor
+//
+//        self.layer.addSublayer(layer)
+//    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first, let canvas = _canvas else { return }
         
         let location = touch.location(in: self)
         canvas.startLine(start: location, color: _strokeColor, width: 30)
+        
+        if let layer = self.layer.hitTest(location) as? CAShapeLayer {
+            layer.fillColor = UIColor.green.cgColor
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -85,7 +107,7 @@ class CanvasView: UIImageView {
     
     func refreshDrawing() {
         if let canvas = _canvas, let image = canvas.getImage() {
-            self.image = UIImage(cgImage: image)
+            self.layer.contents = image
         }
     }
 }

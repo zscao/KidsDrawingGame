@@ -12,7 +12,7 @@ class BaseMap {
     private var _maskImage: CGImage?
     private var _maskHistory: [CGImage] = [CGImage]()
     
-    private let _lineWidth: CGFloat = 3
+    private let _lineWidth: CGFloat = 10
     private let _maskColorValue: UInt8 = 0xff
     
     private var _flipVertical: CGAffineTransform!
