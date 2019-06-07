@@ -7,6 +7,7 @@ class ColorPenPanel: UIView {
     var onAction: ((_ color: UIColor) -> Void)? = nil
     
     private var colorButtons: [ColorButton] = [ColorButton]()
+    private var _selectedButton: ColorButton?
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -15,40 +16,7 @@ class ColorPenPanel: UIView {
         // Drawing code
     }
     */
-    
-    func show() {
-        self.isHidden = false
-        
-        for (index, btn) in colorButtons.enumerated() {
-            btn.isHidden = false
-            
-            let from = frame.height - 100
-            let to = CGFloat(index + 1) * (btn.size.height + 3)
-            btn.position = CGPoint(x: btn.size.width / 2, y: to)
-            
-//            let animation = CABasicAnimation(keyPath: "position.y")
-//            animation.duration = 2.0
-//            animation.fromValue = from
-//            animation.toValue = to
-//            btn.add(animation, forKey: "position.y")
-//            btn.animation(forKey: "position.y")
-        }
-    }
-    
-    func hide() {
-        self.isHidden = true
-        
-        for (index, btn) in colorButtons.enumerated() {
-            btn.isHidden = true
-            
-            let from = frame.height - 100
-            let to = CGFloat(index + 1) * btn.size.height
-            btn.position = CGPoint(x: btn.size.width / 2, y: from)
-        }
-        
-    }
-    
-    
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -62,27 +30,12 @@ class ColorPenPanel: UIView {
     
     private func setup() {
         
-        //self.backgroundColor = .darkGray
+        self.isHidden = true
+        //self.backgroundColor = .lightGray
         
         let height = self.frame.height
         let btnHeight = height / 15
         
-//        for r in 0..<3 {
-//            var red = 255 - r * 128
-//            if red < 0 { red = 0 }
-//            for g in 0..<3 {
-//                var green = 255 - g * 128
-//                if green < 0 { green = 0}
-//                for b in 0..<3 {
-//                    var blue = 255 - b * 128
-//                    if blue < 0 { blue  = 0}
-//
-//                    let color = UIColor(displayP3Red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: 1.0)
-//                    let btn = ColorButton(color: color, height: btnHeight)
-//                    colorButtons.append(btn)
-//                }
-//            }
-//        }
         
         colorButtons.append(ColorButton(color: .red, height: btnHeight))
         colorButtons.append(ColorButton(color: .orange, height: btnHeight))
@@ -95,68 +48,170 @@ class ColorPenPanel: UIView {
         colorButtons.append(ColorButton(color: .brown, height: btnHeight))
         colorButtons.append(ColorButton(color: .white, height: btnHeight))
         colorButtons.append(ColorButton(color: .lightGray, height: btnHeight))
-        colorButtons.append(ColorButton(color: .gray, height: btnHeight))
-        colorButtons.append(ColorButton(color: .darkGray, height: btnHeight))
+        //colorButtons.append(ColorButton(color: .gray, height: btnHeight))
+        //colorButtons.append(ColorButton(color: .darkGray, height: btnHeight))
         colorButtons.append(ColorButton(color: .black, height: btnHeight))
         
+        resetButtons()
         
         for btn in colorButtons {
-            btn.isHidden = true
-            btn.position = CGPoint(x: btn.size.width / 2, y: frame.height - 100)
             self.layer.addSublayer(btn)
         }
     }
     
+    private func resetButtons() {
+        _selectedButton = nil
+        
+        for (index, btn) in colorButtons.enumerated() {
+            btn.isHidden = true
+            btn.opacity = 1.0
+            btn.transform = CATransform3DIdentity
+            
+            let x: CGFloat = frame.size.width + btn.size.width / 2
+            let y = CGFloat(index + 1) * (btn.size.height + 10)
+            btn.position = CGPoint(x: x, y: y)
+        }
+    }
+    
+    private func findTouchedButton(at position: CGPoint) -> ColorButton? {
+        let locationInView = self.convert(position, to: nil)
+        
+        return self.layer.hitTest(locationInView) as? ColorButton
+        
+//        if let layers = self.layer.sublayers {
+//            for layer in layers {
+//                guard let btn = layer as? ColorButton else { continue }
+//
+//                if let touched = btn.hitTest(locationInView) as? ColorButton {
+//                    return touched
+//                }
+//            }
+//        }
+//        return nil
+    }
+    
+    private func addScaleToButton(to button: ColorButton, scale: CGFloat) {
+        let scale: CGFloat = 1.2
+        button.transform = CATransform3DMakeScale(scale, scale, 1.0)
+        let deltax: CGFloat = button.size.width * (scale - 1) / 2
+        button.position = CGPoint(x: frame.width / 2 - deltax, y: button.position.y)
+    }
+    
+    private func removeScaleFromButton(from button: ColorButton) {
+        button.transform = CATransform3DIdentity
+        button.position = CGPoint(x: frame.width / 2, y: button.position.y)
+    }
+    
+    func show() {
+        self.isHidden = false
+        
+        for btn in colorButtons {
+            btn.isHidden = false
+            btn.position = CGPoint(x: frame.size.width / 2, y: btn.position.y)
+        }
+    }
+    
+    func hide() {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({
+            self.isHidden = true
+            self.resetButtons()
+        })
+        
+        for btn in colorButtons {
+            let animation = CABasicAnimation(keyPath: "position.x")
+            animation.fromValue = btn.position.x
+            animation.toValue = frame.maxX + btn.size.width / 2
+            animation.duration = 0.25
+            btn.add(animation, forKey: "position")
+            
+        }
+        CATransaction.commit()
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
         let location = touch.location(in: self)
-        let locationInView = self.convert(location, to: nil)
-        
-        if let btn = self.layer.hitTest(locationInView) as? ColorButton {
-            self.onAction?(btn.color)
+        if let selecting = findTouchedButton(at: location) {
+            addScaleToButton(to: selecting, scale: 1.2)
+            _selectedButton = selecting
         }
+        
     }
-}
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        
+        let location = touch.location(in: self)
+        if let selecting = findTouchedButton(at: location) {
+            
+            if let selected = _selectedButton {
+                if selected.color == selecting.color { return }
+                removeScaleFromButton(from: selected)
+            }
 
-fileprivate class ColorButton: CAShapeLayer {
-    private (set) var color: UIColor = .white
-    private var height: CGFloat = 40
-    private var width: CGFloat = 200
-    
-    var size: CGSize {
-        get {
-            return CGSize(width: width, height: height)
+            addScaleToButton(to: selecting, scale: 1.2)
+            _selectedButton = selecting
+        }
+        else if let selected = _selectedButton {
+            removeScaleFromButton(from: selected)
         }
     }
     
-    init(color: UIColor, height: CGFloat) {
-        self.color = color
-        self.height = height
-        super.init()
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
         
-        setup()
-    }
-    
-    override init(layer: Any) {
-        super.init(layer: layer)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    private func setup() {
-        let rect = CGRect(origin: .zero, size: CGSize(width: 200, height: self.height))
-        let path = CGMutablePath()
-        path.addRoundedRect(in: rect, cornerWidth: 5, cornerHeight: 5)
+        let location = touch.location(in: self)
         
-        self.bounds = rect
-        self.path = path
-        self.strokeColor = UIColor.white.cgColor
-        self.lineWidth = 4
-        self.fillColor = color.cgColor
+        if let selected = findTouchedButton(at: location) {
+            self.onAction?(selected.color)
+            
+            let animation = CABasicAnimation(keyPath: "opacity")
+            animation.fromValue = 1.0
+            animation.toValue = 0.0
+            animation.duration = 0.25
+            
+            CATransaction.begin()
+            CATransaction.setCompletionBlock({
+                self.isHidden = true
+                self.resetButtons()
+            })
+            
+            for btn in colorButtons {
+                if btn.color == selected.color { continue }
+                btn.add(animation, forKey: "opacity")
+            }
+            
+            CATransaction.commit()
+            return
+        }
+        
+        self.isHidden = true
+        resetButtons()
     }
     
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.isHidden = true
+        resetButtons()
+    }
+    
+    func showSparkles(at position: CGPoint) -> CAEmitterLayer {
+        let emitterLayer = CAEmitterLayer()
+        emitterLayer.emitterPosition = position
+        
+        let cell = CAEmitterCell()
+        cell.birthRate = 5
+        cell.lifetime = 1.5
+        cell.velocity = 100
+        cell.scale = 0.3
+        
+        cell.emissionRange = CGFloat.pi
+        cell.contents = UIImage(named: "star")!.cgImage
+        
+        emitterLayer.emitterCells = [cell]
+        
+        self.layer.addSublayer(emitterLayer)
+        return emitterLayer
+    }
 }
