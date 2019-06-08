@@ -115,7 +115,7 @@ class BaseMap {
             context.addPath(path)
         }
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(_lineWidth)
+        context.setLineWidth(_lineWidth - 2)
         context.strokePath()
         
         // create an image mask

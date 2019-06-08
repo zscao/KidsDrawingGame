@@ -41,6 +41,12 @@ class ColorPen: CAShapeLayer {
         self.strokeColor = border.cgColor
         self.lineWidth = 1
         self.fillColor = color.cgColor
+        
+        self.shadowOpacity = 1.0
+        self.shadowOffset = CGSize(width: 6, height: 4)
+        self.shadowRadius = 6
+        self.shadowColor = UIColor.gray.cgColor
+        
     }
     
 }

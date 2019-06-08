@@ -118,12 +118,7 @@ class ColorPenPanel: UIView {
         })
         
         for btn in colorButtons {
-            let animation = CABasicAnimation(keyPath: "position.x")
-            animation.fromValue = btn.position.x
-            animation.toValue = frame.maxX + btn.size.width / 2
-            animation.duration = 0.25
-            btn.add(animation, forKey: "position")
-            
+            btn.position = CGPoint(x: frame.width + btn.size.width / 2, y: btn.position.y)
         }
         CATransaction.commit()
     }
@@ -166,11 +161,6 @@ class ColorPenPanel: UIView {
         if let selected = findTouchedButton(at: location) {
             self.onAction?(selected.color)
             
-            let animation = CABasicAnimation(keyPath: "opacity")
-            animation.fromValue = 1.0
-            animation.toValue = 0.0
-            animation.duration = 0.25
-            
             CATransaction.begin()
             CATransaction.setCompletionBlock({
                 self.isHidden = true
@@ -179,7 +169,7 @@ class ColorPenPanel: UIView {
             
             for btn in colorButtons {
                 if btn.color == selected.color { continue }
-                btn.add(animation, forKey: "opacity")
+                btn.opacity = 0.0
             }
             
             CATransaction.commit()
