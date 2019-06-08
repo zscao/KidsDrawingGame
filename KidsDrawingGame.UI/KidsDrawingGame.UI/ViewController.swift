@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import KidsDrawingGame
 
 class ViewController: UIViewController {
     
@@ -10,6 +11,8 @@ class ViewController: UIViewController {
     private var mainPanel: MainPanel?
     private var colorPanel: ColorPenPanel?
 
+    private var viewMode = ViewMode(color: UIColor.black, backgroundColor: UIColor.white)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
         if let canvas = self.canvasView {
             canvas.isUserInteractionEnabled = true
             self.view.addSubview(canvas)
-            
+            canvas.setup(viewMode: viewMode)
             canvas.refreshDrawing()
         }
     }
@@ -41,6 +44,7 @@ class ViewController: UIViewController {
         
         self.colorPanel = ColorPenPanel(frame: colorPanelRect)
         if let panel = self.colorPanel {
+            panel.setup(viewMode: viewMode)
             self.view.addSubview(panel)
             
             panel.onAction = {[unowned self] color in

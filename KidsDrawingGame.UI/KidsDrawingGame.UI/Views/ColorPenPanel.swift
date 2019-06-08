@@ -1,13 +1,14 @@
 //  Copyright © 2019 zscao. All rights reserved.
 
 import UIKit
+import KidsDrawingGame
 
 class ColorPenPanel: UIView {
 
     var onAction: ((_ color: UIColor) -> Void)? = nil
     
-    private var colorButtons: [ColorButton] = [ColorButton]()
-    private var _selectedButton: ColorButton?
+    private var colorButtons: [ColorPen] = [ColorPen]()
+    private var _selectedButton: ColorPen?
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -19,16 +20,14 @@ class ColorPenPanel: UIView {
    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
     
-    private func setup() {
+    func setup(viewMode: ViewMode) {
         
         self.isHidden = true
         //self.backgroundColor = .lightGray
@@ -37,20 +36,20 @@ class ColorPenPanel: UIView {
         let btnHeight = height / 15
         
         
-        colorButtons.append(ColorButton(color: .red, height: btnHeight))
-        colorButtons.append(ColorButton(color: .orange, height: btnHeight))
-        colorButtons.append(ColorButton(color: .yellow, height: btnHeight))
-        colorButtons.append(ColorButton(color: .green, height: btnHeight))
-        colorButtons.append(ColorButton(color: .blue, height: btnHeight))
-        colorButtons.append(ColorButton(color: .cyan, height: btnHeight))
-        colorButtons.append(ColorButton(color: .magenta, height: btnHeight))
-        colorButtons.append(ColorButton(color: .purple, height: btnHeight))
-        colorButtons.append(ColorButton(color: .brown, height: btnHeight))
-        colorButtons.append(ColorButton(color: .white, height: btnHeight))
-        colorButtons.append(ColorButton(color: .lightGray, height: btnHeight))
+        colorButtons.append(ColorPen(color: .red, border: viewMode.color, height: btnHeight))
+        colorButtons.append(ColorPen(color: .orange, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .yellow, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .green, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .blue, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .cyan, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .magenta, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .purple, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .brown, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .white, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .lightGray, border: viewMode.color,height: btnHeight))
         //colorButtons.append(ColorButton(color: .gray, height: btnHeight))
         //colorButtons.append(ColorButton(color: .darkGray, height: btnHeight))
-        colorButtons.append(ColorButton(color: .black, height: btnHeight))
+        colorButtons.append(ColorPen(color: .black, border: viewMode.color,height: btnHeight))
         
         resetButtons()
         
@@ -73,10 +72,10 @@ class ColorPenPanel: UIView {
         }
     }
     
-    private func findTouchedButton(at position: CGPoint) -> ColorButton? {
+    private func findTouchedButton(at position: CGPoint) -> ColorPen? {
         let locationInView = self.convert(position, to: nil)
         
-        return self.layer.hitTest(locationInView) as? ColorButton
+        return self.layer.hitTest(locationInView) as? ColorPen
         
 //        if let layers = self.layer.sublayers {
 //            for layer in layers {
@@ -90,14 +89,14 @@ class ColorPenPanel: UIView {
 //        return nil
     }
     
-    private func addScaleToButton(to button: ColorButton, scale: CGFloat) {
+    private func addScaleToButton(to button: ColorPen, scale: CGFloat) {
         let scale: CGFloat = 1.2
         button.transform = CATransform3DMakeScale(scale, scale, 1.0)
         let deltax: CGFloat = button.size.width * (scale - 1) / 2
         button.position = CGPoint(x: frame.width / 2 - deltax, y: button.position.y)
     }
     
-    private func removeScaleFromButton(from button: ColorButton) {
+    private func removeScaleFromButton(from button: ColorPen) {
         button.transform = CATransform3DIdentity
         button.position = CGPoint(x: frame.width / 2, y: button.position.y)
     }

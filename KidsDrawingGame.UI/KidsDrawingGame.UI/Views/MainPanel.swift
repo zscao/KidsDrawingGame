@@ -10,7 +10,7 @@ class MainPanel: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .darkGray
+        //self.backgroundColor = .darkGray
         
         initButtons()
     }

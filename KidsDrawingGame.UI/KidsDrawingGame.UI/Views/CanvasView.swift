@@ -19,38 +19,22 @@ class CanvasView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
-    private func setup() {
+    func setup(viewMode: ViewMode) {
         let album = Album()
         album.addShapes()
         album.addSamples()
         
         if let square = album["butterfly"] {
-            _canvas = Canvas(size: frame.size, baseMap: square)
+            _canvas = Canvas(size: frame.size, baseMap: square, viewMode: viewMode)
         }
         _strokeColor = UIColor.red.cgColor
-        
-        self.layer.backgroundColor = UIColor.black.cgColor
-        
-//        addTestLayer()
     }
-    
-//    private func addTestLayer() {
-//        let layer = CAShapeLayer()
-//        layer.anchorPoint = CGPoint.zero
-//        layer.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 100, height: 100)).cgPath
-//        layer.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
-//        layer.fillColor = UIColor.red.cgColor
-//
-//        self.layer.addSublayer(layer)
-//    }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

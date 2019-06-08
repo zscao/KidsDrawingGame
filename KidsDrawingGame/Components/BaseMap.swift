@@ -8,6 +8,7 @@ class BaseMap {
     private (set) var imageWidth: Int
     private (set) var imageHeight: Int
     private (set) var image: CGImage?
+    private (set) var viewMode: ViewMode
     
     private var _maskImage: CGImage?
     private var _maskHistory: [CGImage] = [CGImage]()
@@ -17,10 +18,10 @@ class BaseMap {
     
     private var _flipVertical: CGAffineTransform!
     
-    init(size: CGSize, picture: Picture) {
-        imageWidth = Int(size.width)
-        imageHeight = Int(size.height)
-        
+    init(size: CGSize, picture: Picture, viewMode: ViewMode) {
+        self.imageWidth = Int(size.width)
+        self.imageHeight = Int(size.height)
+        self.viewMode = viewMode
         _flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: size.height);
         
         image = createImage(picture: picture)
@@ -59,6 +60,9 @@ class BaseMap {
         
         guard let context = ctx else { return nil }
         
+        context.setFillColor(viewMode.backgroundColor.cgColor)
+        context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
+        
         if picture.isFlipped {
             context.concatenate(_flipVertical)
         }
@@ -71,8 +75,7 @@ class BaseMap {
         for path in picture.paths {
             context.addPath(path)
         }
-        
-        context.setStrokeColor(UIColor.lightGray.cgColor)
+        context.setStrokeColor(viewMode.color.cgColor)
         context.setLineWidth(_lineWidth)
         context.strokePath()
         

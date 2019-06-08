@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A996059622A7B32500C50570 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D122A65CEA00ADD793 /* Picture.swift */; };
+		A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825722ABD5D000DF04EE /* ViewMode.swift */; };
 		A9E5B88622A6587F00ADD793 /* KidsDrawingGame.h in Headers */ = {isa = PBXBuildFile; fileRef = A9E5B88422A6587F00ADD793 /* KidsDrawingGame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9E5B8CB22A65AFE00ADD793 /* IDETemplateMacros.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9E5B8CA22A65AFE00ADD793 /* IDETemplateMacros.plist */; };
 		A9E5B8D022A65C5300ADD793 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8CF22A65C5300ADD793 /* Line.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A9BF825722ABD5D000DF04EE /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
 		A9E5B88122A6587F00ADD793 /* KidsDrawingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KidsDrawingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9E5B88422A6587F00ADD793 /* KidsDrawingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KidsDrawingGame.h; sourceTree = "<group>"; };
 		A9E5B88522A6587F00ADD793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				A9E5B88422A6587F00ADD793 /* KidsDrawingGame.h */,
 				A9E5B88522A6587F00ADD793 /* Info.plist */,
 				A9E5B8D122A65CEA00ADD793 /* Picture.swift */,
+				A9BF825722ABD5D000DF04EE /* ViewMode.swift */,
 			);
 			path = KidsDrawingGame;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */,
 				A996059622A7B32500C50570 /* Picture.swift in Sources */,
 				A9E5B8E122A65E3100ADD793 /* BaseMap.swift in Sources */,
 				A9E5B8DB22A65DB700ADD793 /* Queue.swift in Sources */,

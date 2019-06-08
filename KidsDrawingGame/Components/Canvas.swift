@@ -13,18 +13,18 @@ public class Canvas {
     private var _historyStrokes: [Stroke] = [Stroke]()
     
     // the picture with scratch patterns/lines
-    private var _scratch: BaseMap?
+    private var _baseMap: BaseMap?
     
-    public init(size: CGSize, baseMap picture: Picture) {
+    public init(size: CGSize, baseMap picture: Picture, viewMode: ViewMode) {
         imageSize = size
-        _scratch = BaseMap(size: size, picture: picture)
+        _baseMap = BaseMap(size: size, picture: picture, viewMode: viewMode)
         
         setupCGContext()
     }
     
     public func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat) {
         
-        guard let context = _cgContext, let scratch = _scratch else { return }
+        guard let context = _cgContext, let scratch = _baseMap else { return }
         
         // restart a new stroke
         _currentStroke = nil
@@ -97,7 +97,7 @@ public class Canvas {
         
         let rect = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
         
-        if let scratch = _scratch, let scratchImage = scratch.image {
+        if let scratch = _baseMap, let scratchImage = scratch.image {
             context.draw(scratchImage, in: rect)
         }
         

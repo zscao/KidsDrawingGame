@@ -2,8 +2,9 @@
 
 import UIKit
 
-class ColorButton: CAShapeLayer {
+class ColorPen: CAShapeLayer {
     private (set) var color: UIColor = .white
+    private (set) var border: UIColor = .white
     private var _height: CGFloat = 40
     
     var size: CGSize {
@@ -12,8 +13,9 @@ class ColorButton: CAShapeLayer {
         }
     }
     
-    init(color: UIColor, height: CGFloat) {
+    init(color: UIColor, border: UIColor, height: CGFloat) {
         self.color = color
+        self.border = border
         _height = height
         super.init()
         
@@ -36,8 +38,8 @@ class ColorButton: CAShapeLayer {
         path.addRoundedRect(in: rect, cornerWidth: 5, cornerHeight: 5)
         
         self.path = path
-        self.strokeColor = UIColor.white.cgColor
-        self.lineWidth = 4
+        self.strokeColor = border.cgColor
+        self.lineWidth = 1
         self.fillColor = color.cgColor
     }
     

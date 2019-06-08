@@ -19,8 +19,8 @@ class ColorPenButton: UIButton {
         context.setFillColor(self.color.cgColor)
         context.fillEllipse(in: borderRect)
         
-        context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(2.0)
+        context.setStrokeColor(UIColor.lightGray.cgColor)
+        context.setLineWidth(4.0)
         context.strokeEllipse(in: borderRect)
     }
 }
