@@ -44,6 +44,7 @@ class ViewController: UIViewController {
             self.view.addSubview(panel)
             
             panel.onAction = {[unowned self] color in
+                self.mainPanel?.setColorPen(color: color)
                 self.canvasView?.setStrokeColor(color: color)
             }
         }
@@ -62,18 +63,14 @@ class ViewController: UIViewController {
                     self.canvasView?.clear()
                 case .undo:
                     self.canvasView?.undo()
-                case .pickPen:
-                    //self.canvasView?.setStrokeColor(color: color)
+                case .colorPen:
                     if let colorPanel = self.colorPanel {
-                        UIView.animate(withDuration: 2, animations: { [unowned colorPanel]() in
-                            //let center = CGPoint(x: 200, y: 200)
-                            if colorPanel.isHidden {
-                                colorPanel.show()
-                            }
-                            else {
-                                colorPanel.hide()
-                            }
-                        })
+                        if colorPanel.isHidden {
+                            colorPanel.show()
+                        }
+                        else {
+                            colorPanel.hide()
+                        }
                     }
                 default:
                     return
@@ -85,9 +82,9 @@ class ViewController: UIViewController {
     private func getMainPanelRect(frameSize: CGSize) -> CGRect {
         return CGRect(
             x: 10,
-            y: frameSize.height - 70,
-            width: frameSize.width - 100,
-            height: 60)
+            y: frameSize.height - 90,
+            width: frameSize.width - 20,
+            height: 80)
     }
 }
 

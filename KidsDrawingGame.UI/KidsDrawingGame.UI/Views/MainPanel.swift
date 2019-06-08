@@ -6,6 +6,8 @@ class MainPanel: UIView {
     
     var onAction: ((_ action: DrawingAction) -> Void)? = nil
     
+    private var _colorPenButton: ColorPenButton? = nil
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .darkGray
@@ -17,28 +19,44 @@ class MainPanel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    func setColorPen(color: UIColor) {
+        if let btn = _colorPenButton {
+            btn.setColor(color: color)
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         return
     }
     
     
     private func initButtons() {
-        self.addSubview(getActionButton(at: CGPoint(x: 10, y: 10), action: .clear, title: "Clear"))
-        self.addSubview(getActionButton(at: CGPoint(x: 110, y: 10), action: .undo, title: "Undo"))
-        self.addSubview(getActionButton(at: CGPoint(x: 210, y: 10), action: .pickPen, title: "Color"))
-//        self.addSubview(getColorButton(at: CGPoint(x: 210, y: 10), color: .red, title: "Red"))
-//        self.addSubview(getColorButton(at: CGPoint(x: 310, y: 10), color: .green, title: "Green"))
-//        self.addSubview(getColorButton(at: CGPoint(x: 410, y: 10), color: .blue, title: "Blue"))
-//        self.addSubview(getColorButton(at: CGPoint(x: 510, y: 10), color: .white, title: "White"))
-        //self.addSubview(getColorButton(at: CGPoint(x: 610, y: 10), color: .black, title: "Black"))
+        self.addSubview(getActionButton(at: CGPoint(x: 10, y: 0), action: .clear, image: UIImage(named: "ClearButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 110, y: 0), action: .undo, image: UIImage(named: "UndoButton")))
+        
+        
+        
+        //self.addSubview(getActionButton(at: CGPoint(x: 210, y: 10), action: .pickPen, title: "Color"))
+        let size = CGSize(width: 80, height: 80)
+        
+        let position = CGPoint(x: frame.width - size.width - 10, y: 0)
+        let btn = ColorPenButton(frame: CGRect(origin: position, size: size))
+        btn.setColor(color: UIColor.red)
+        btn.addTarget(self, action: #selector(actionButtonTapped(_:)), for: .touchUpInside)
+        self.addSubview(btn)
+        
+        _colorPenButton = btn
     }
     
     
-    private func getActionButton(at position: CGPoint, action: DrawingAction, title: String) -> UIButton {
-        let button = ActionButton(frame: CGRect(origin: position, size: CGSize(width: 80, height: 30)))
+    private func getActionButton(at position: CGPoint, action: DrawingAction, image: UIImage?) -> UIButton {
+        
+        let size = CGSize(width: 80, height: 80)
+        
+        let button = ActionButton(frame: CGRect(origin: position, size: size))
         button.action = action
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.setTitle(title, for: .normal)
+        button.setImage(image, for: .normal)
         button.backgroundColor = .white
         
         button.addTarget(self, action: #selector(actionButtonTapped(_:)), for: .touchUpInside)
@@ -47,8 +65,13 @@ class MainPanel: UIView {
     }
     
     
-    @objc func actionButtonTapped(_ send: ActionButton!) {
-        self.onAction?(send.action)
+    @objc func actionButtonTapped(_ send: UIButton!) {
+        if let btn = send as? ColorPenButton {
+            self.onAction?(.colorPen)
+        }
+        else if let btn = send as? ActionButton {
+            self.onAction?(btn.action)
+        }
     }
     
 }

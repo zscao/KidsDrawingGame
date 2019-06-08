@@ -16,6 +16,7 @@
 		A99605AF22A7E7B700C50570 /* butterfly.svg in Resources */ = {isa = PBXBuildFile; fileRef = A99605AE22A7E7B700C50570 /* butterfly.svg */; };
 		A9A0FDE922A6957800BC80CD /* Freesample.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9A0FDE822A6957800BC80CD /* Freesample.svg */; };
 		A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0FDEA22A6971900BC80CD /* Shapes.swift */; };
+		A9BF825422ABC3C900DF04EE /* ColorPenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */; };
 		A9D13B9C22A8D95F008DAA2B /* ColorPenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */; };
 		A9D2B24F22AA9EF400D3C140 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D2B24E22AA9EF400D3C140 /* ColorButton.swift */; };
 		A9E5B89922A65A0300ADD793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B89822A65A0300ADD793 /* AppDelegate.swift */; };
@@ -77,6 +78,7 @@
 		A99605AE22A7E7B700C50570 /* butterfly.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = butterfly.svg; sourceTree = "<group>"; };
 		A9A0FDE822A6957800BC80CD /* Freesample.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Freesample.svg; sourceTree = "<group>"; };
 		A9A0FDEA22A6971900BC80CD /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenButton.swift; sourceTree = "<group>"; };
 		A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenPanel.swift; sourceTree = "<group>"; };
 		A9D2B24E22AA9EF400D3C140 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		A9E5B89522A65A0300ADD793 /* KidsDrawingGame.UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsDrawingGame.UI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +214,7 @@
 				A9E5B8ED22A660A900ADD793 /* CanvasView.swift */,
 				A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */,
 				A9D2B24E22AA9EF400D3C140 /* ColorButton.swift */,
+				A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				A9E5B8EE22A660A900ADD793 /* CanvasView.swift in Sources */,
 				A9E5B89B22A65A0300ADD793 /* ViewController.swift in Sources */,
 				A9E5B89922A65A0300ADD793 /* AppDelegate.swift in Sources */,
+				A9BF825422ABC3C900DF04EE /* ColorPenButton.swift in Sources */,
 				A9E5B8EC22A6608E00ADD793 /* MainPanel.swift in Sources */,
 				A996059B22A7C6D300C50570 /* Album.swift in Sources */,
 				A9E5B8E822A6603000ADD793 /* ActionButton.swift in Sources */,
