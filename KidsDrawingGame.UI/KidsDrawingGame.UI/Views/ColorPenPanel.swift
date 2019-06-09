@@ -36,20 +36,20 @@ class ColorPenPanel: UIView {
         let btnHeight = height / 15
         
         
-        colorButtons.append(ColorPen(color: .red, border: viewMode.color, height: btnHeight))
-        colorButtons.append(ColorPen(color: .orange, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .yellow, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .green, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .blue, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .cyan, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .magenta, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .purple, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .brown, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .white, border: viewMode.color,height: btnHeight))
-        colorButtons.append(ColorPen(color: .lightGray, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .red, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .orange, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .yellow, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .green, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .blue, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .cyan, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .magenta, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .purple, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .brown, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .white, height: btnHeight).setup(viewMode: viewMode))
+        colorButtons.append(ColorPen(color: .lightGray, height: btnHeight).setup(viewMode: viewMode))
         //colorButtons.append(ColorButton(color: .gray, height: btnHeight))
         //colorButtons.append(ColorButton(color: .darkGray, height: btnHeight))
-        colorButtons.append(ColorPen(color: .black, border: viewMode.color,height: btnHeight))
+        colorButtons.append(ColorPen(color: .black, height: btnHeight).setup(viewMode: viewMode))
         
         resetButtons()
         
@@ -67,7 +67,7 @@ class ColorPenPanel: UIView {
             btn.transform = CATransform3DIdentity
             
             let x: CGFloat = frame.size.width + btn.size.width / 2
-            let y = CGFloat(index + 1) * (btn.size.height + 10)
+            let y = CGFloat(index + 1) * (btn.size.height + 12)
             btn.position = CGPoint(x: x, y: y)
         }
     }
@@ -75,7 +75,17 @@ class ColorPenPanel: UIView {
     private func findTouchedButton(at position: CGPoint) -> ColorPen? {
         let locationInView = self.convert(position, to: nil)
         
-        return self.layer.hitTest(locationInView) as? ColorPen
+        guard let touched = self.layer.hitTest(locationInView) as? CAShapeLayer else { return nil }
+        
+        if let pen = touched as? ColorPen {
+            return pen
+        }
+        else if let pen = touched.superlayer as? ColorPen {
+            return pen
+        }
+        else {
+            return nil
+        }
         
 //        if let layers = self.layer.sublayers {
 //            for layer in layers {
