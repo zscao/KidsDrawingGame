@@ -21,6 +21,6 @@ extension Album {
         
         let size = CGSize(width: 200, height: 200)
         
-        return Picture(size: size, paths: paths, flipped: false)
+        return Picture(viewBox: CGRect(origin: .zero, size: size), paths: paths, flipped: false)
     }
 }

@@ -3,12 +3,12 @@
 import UIKit
 
 public struct Picture {
-    private (set) var size: CGSize
+    private (set) var viewBox: CGRect
     private (set) var paths: [CGPath]
     private (set) var isFlipped: Bool
     
-    public init(size: CGSize, paths: [CGPath], flipped: Bool) {
-        self.size = size
+    public init(viewBox: CGRect, paths: [CGPath], flipped: Bool) {
+        self.viewBox = viewBox
         self.paths = paths
         self.isFlipped = flipped
     }

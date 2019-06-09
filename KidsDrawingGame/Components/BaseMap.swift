@@ -13,16 +13,13 @@ class BaseMap {
     private var _maskImage: CGImage?
     private var _maskHistory: [CGImage] = [CGImage]()
     
-    private let _lineWidth: CGFloat = 10
+    private let _lineWidth: CGFloat = 6
     private let _maskColorValue: UInt8 = 0xff
-    
-    private var _flipVertical: CGAffineTransform!
     
     init(size: CGSize, picture: Picture, viewMode: ViewMode) {
         self.imageWidth = Int(size.width)
         self.imageHeight = Int(size.height)
         self.viewMode = viewMode
-        _flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: size.height);
         
         image = createImage(picture: picture)
         _maskImage = setupMaskImage(picture: picture)
@@ -63,18 +60,8 @@ class BaseMap {
         context.setFillColor(viewMode.backgroundColor.cgColor)
         context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
         
-        if picture.isFlipped {
-            context.concatenate(_flipVertical)
-        }
+        context.setup(picture: picture)
         
-        let translate = getTranslateForPicture(pictureSize: picture.size)
-        let scale = getScaleForPicture(pictureSize: picture.size)
-        context.translateBy(x: translate.x, y: translate.y)
-        context.scaleBy(x: scale, y: scale)
-        
-        for path in picture.paths {
-            context.addPath(path)
-        }
         context.setStrokeColor(viewMode.color.cgColor)
         context.setLineWidth(_lineWidth)
         context.strokePath()
@@ -94,26 +81,8 @@ class BaseMap {
         
         guard let context = ctx else { return nil }
         
-        if picture.isFlipped {
-            context.concatenate(_flipVertical)
-        }
+        context.setup(picture: picture)
         
-        let translate = getTranslateForPicture(pictureSize: picture.size)
-        let scale = getScaleForPicture(pictureSize: picture.size)
-        
-        context.translateBy(x: translate.x, y: translate.y)
-        context.scaleBy(x: scale, y: scale)
-        
-        //        for path in picture.paths {
-        //            context.addPath(path)
-        //        }
-        //        context.setFillColor(UIColor.white.cgColor)
-        //        context.fillPath(using: .evenOdd)
-        
-        // draw
-        for path in picture.paths {
-            context.addPath(path)
-        }
         context.setStrokeColor(UIColor.white.cgColor)
         context.setLineWidth(_lineWidth - 2)
         context.strokePath()
@@ -121,6 +90,8 @@ class BaseMap {
         // create an image mask
         return context.makeImage()
     }
+    
+
     
     private func findImageMaskAtPointInHistory(at position: CGPoint) -> CGImage? {
         if _maskHistory.isEmpty { return nil }
@@ -243,39 +214,6 @@ class BaseMap {
         return result
     }
     
-    private func getScaleForPicture(pictureSize: CGSize) -> CGFloat {
-        
-        if pictureSize.width == 0 || pictureSize.height == 0 {
-            return 1.0
-        }
-        
-        let scalex = CGFloat(imageWidth) / pictureSize.width
-        let scaley = CGFloat(imageHeight) / pictureSize.height
-        
-        return scalex < scaley ? scalex : scaley
-    }
-    
-    // set the picture in the center of the screen
-    private func getTranslateForPicture(pictureSize: CGSize) -> CGPoint {
-        if pictureSize.width == 0 || pictureSize.height == 0 {
-            return CGPoint(x: 0, y: 0)
-        }
-        
-        let scalex = CGFloat(imageWidth) / pictureSize.width
-        let scaley = CGFloat(imageHeight) / pictureSize.height
-        
-        if scalex < scaley {
-            let height = pictureSize.height * scalex
-            let span = CGFloat(imageHeight) - height
-            return CGPoint(x: 0, y: span / 2)
-        }
-        else {
-            let width = pictureSize.width * scaley
-            let span = CGFloat(imageWidth) - width
-            return CGPoint(x: span / 2, y: 0)
-        }
-    }
-    
     private func allocateUnsafeMutablePointer<T>(width: Int, height: Int, initialValue: T) -> UnsafeMutablePointer<T> {
         
         let data = UnsafeMutablePointer<T>.allocate(capacity: width * height)
@@ -288,5 +226,74 @@ class BaseMap {
             }
         }
         return data
+    }
+}
+
+fileprivate extension CGContext {
+    
+    func setup(picture: Picture) {
+        if picture.isFlipped {
+            let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(self.height))
+            self.concatenate(flipVertical)
+        }
+        
+        let scale = getScaleForPicture(pictureSize: picture.viewBox.size)
+        let translate = getTranslateForPicture(pictureBounds: picture.viewBox)
+        
+        self.scaleBy(x: scale, y: scale)
+        self.translateBy(x: translate.x, y: translate.y)
+        
+        for path in picture.paths {
+            self.addPath(path)
+        }
+    }
+    
+    private func getScaleForPicture(pictureSize: CGSize) -> CGFloat {
+        
+        if pictureSize.width == 0 || pictureSize.height == 0 {
+            return 1.0
+        }
+        
+        let scalex = CGFloat(self.width) / pictureSize.width
+        let scaley = CGFloat(self.height) / pictureSize.height
+        
+        return scalex < scaley ? scalex : scaley
+    }
+    
+    // set the picture in the center of the screen
+    private func getTranslateForPicture(pictureBounds position: CGRect) -> CGPoint {
+        if position.origin == .zero {
+            return position.origin
+        }
+        
+        var deltax = -position.minX
+        var deltay = -position.minY
+        
+        let scale = getScaleForPicture(pictureSize: position.size)
+        let spanx = CGFloat(self.width) - position.width * scale
+        let spany = CGFloat(self.height) - position.height * scale
+
+        if spanx > spany {
+            deltax += spanx / 2
+        }
+        else {
+            deltay += spany / 2
+        }
+        
+        return CGPoint(x: deltax, y: deltay)
+        /*
+        let scalex = CGFloat(self.width) / pictureSize.width
+        let scaley = CGFloat(self.height) / pictureSize.height
+        
+        if scalex < scaley {
+            let height = pictureSize.height * scalex
+            let span = CGFloat(self.height) - height
+            return CGPoint(x: 0, y: span / 2)
+        }
+        else {
+            let width = pictureSize.width * scaley
+            let span = CGFloat(self.width) - width
+            return CGPoint(x: span / 2, y: 0)
+        } */
     }
 }
