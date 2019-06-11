@@ -18,10 +18,11 @@ class ViewController: UIViewController {
     }
     
     private func setupGalleryView() {
-        let galleryView = GalleryView(frame: self.view.frame)
+        var galleryView: GalleryView! = GalleryView(frame: self.view.frame)
         
         galleryView.onSelection = { [unowned self] name in
             galleryView.removeFromSuperview()
+            galleryView = nil
             self.setupDrawingView(pictureName: name)
         }
         
@@ -33,10 +34,12 @@ class ViewController: UIViewController {
         
         if let picture = album[pictureName] {
         
-            let drawingView = DrawingView(frame: self.view.frame)
+            var drawingView: DrawingView! = DrawingView(frame: self.view.frame)
             drawingView.setup(picture: picture)
+            
             drawingView.onHome = { [unowned self] () in
                 drawingView.removeFromSuperview()
+                drawingView = nil
                 self.setupGalleryView()
             }
             
