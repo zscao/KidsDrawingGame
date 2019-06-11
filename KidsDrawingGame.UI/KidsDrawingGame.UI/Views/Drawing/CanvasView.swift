@@ -25,14 +25,8 @@ class CanvasView: UIView {
         super.init(coder: aDecoder)
     }
     
-    func setup(viewMode: ViewMode) {
-        let album = Album()
-        album.addShapes()
-        album.addSamples()
-        
-        if let square = album["butterfly"] {
-            _canvas = Canvas(size: frame.size, baseMap: square, viewMode: viewMode)
-        }
+    func setup(viewMode: ViewMode, picture: Picture) {
+        _canvas = Canvas(size: frame.size, baseMap: picture, viewMode: viewMode)
         _strokeColor = UIColor.red.cgColor
     }
     

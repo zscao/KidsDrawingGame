@@ -9,4 +9,5 @@ enum DrawingAction {
     case redo
     case colorPen
     case save
+    case goBack
 }

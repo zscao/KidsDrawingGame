@@ -5,13 +5,13 @@ import KidsDrawingGame
 
 extension Album {
     func addSamples() {
-        if let sample = loadFromSVG(name: "FreeSample", flipped: true) {
+        if let sample = loadFromSVG(name: "freesample", flipped: true) {
             _collection["sample"] = sample
         }
-        if let flower = loadFromSVG(name: "Flower", flipped: true) {
+        if let flower = loadFromSVG(name: "flower", flipped: true) {
             _collection["flower"] = flower
         }
-        if let bus = loadFromSVG(name: "Bus", flipped: true) {
+        if let bus = loadFromSVG(name: "bus", flipped: true) {
             _collection["bus"] = bus
         }
         if let pic = loadFromSVG(name: "butterfly", flipped: true) {

@@ -32,8 +32,9 @@ class MainPanel: UIView {
     
     
     private func initButtons() {
-        self.addSubview(getActionButton(at: CGPoint(x: 10, y: 0), action: .clear, image: UIImage(named: "ClearButton")))
-        self.addSubview(getActionButton(at: CGPoint(x: 110, y: 0), action: .undo, image: UIImage(named: "UndoButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 10, y: 0), action: .goBack, image: UIImage(named: "BackButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 110, y: 0), action: .clear, image: UIImage(named: "ClearButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 210, y: 0), action: .undo, image: UIImage(named: "UndoButton")))
         
         
         
