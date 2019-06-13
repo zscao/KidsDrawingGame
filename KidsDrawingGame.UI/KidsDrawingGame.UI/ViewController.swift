@@ -3,10 +3,13 @@
 //
 
 import UIKit
+import KidsDrawingGame
 
 class ViewController: UIViewController {
     
     private var album = Album()
+    
+    private var viewMode = ViewMode(color: UIColor.black, backgroundColor: UIColor.white)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +21,9 @@ class ViewController: UIViewController {
     }
     
     private func setupGalleryView() {
+        
         var galleryView: GalleryView! = GalleryView(frame: self.view.frame)
+        galleryView.setup(album: album, viewMode: viewMode)
         
         galleryView.onSelection = { [unowned self] name in
             galleryView.removeFromSuperview()

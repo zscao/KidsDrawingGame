@@ -21,8 +21,9 @@ class BaseMap {
         self.imageHeight = Int(size.height)
         self.viewMode = viewMode
         
-        image = createImage(picture: picture)
-        _maskImage = setupMaskImage(picture: picture)
+        let scratchImage = ScratchImage(size: size, viewMode: viewMode)
+        image = scratchImage.getImage(picture: picture)
+        _maskImage = scratchImage.getMaskImage(picture: picture)
     }
     
     func isPointInBound(at position: CGPoint) -> Bool {
@@ -45,54 +46,7 @@ class BaseMap {
         return findImageMaskAtPoint(at: position)
     }
     
-    
-    private func createImage(picture: Picture) -> CGImage? {
-        let ctx = CGContext(data: nil,
-                            width: imageWidth,
-                            height: imageHeight,
-                            bitsPerComponent: 8,
-                            bytesPerRow: 0,
-                            space: CGColorSpaceCreateDeviceRGB(),
-                            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
-        
-        guard let context = ctx else { return nil }
-        
-        context.setFillColor(viewMode.backgroundColor.cgColor)
-        context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
-        
-        context.setup(picture: picture)
-        
-        context.setStrokeColor(viewMode.color.cgColor)
-        context.setLineWidth(_lineWidth)
-        context.strokePath()
-        
-        // create an image mask
-        return context.makeImage()
-    }
-    
-    private func setupMaskImage(picture: Picture) -> CGImage? {
-        let ctx = CGContext(data: nil,
-                            width: imageWidth,
-                            height: imageHeight,
-                            bitsPerComponent: 8,
-                            bytesPerRow: imageWidth,
-                            space: CGColorSpaceCreateDeviceGray(),
-                            bitmapInfo: CGImageAlphaInfo.none.rawValue)
-        
-        guard let context = ctx else { return nil }
-        
-        context.setup(picture: picture)
-        
-        context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(_lineWidth - 2)
-        context.strokePath()
-        
-        // create an image mask
-        return context.makeImage()
-    }
-    
 
-    
     private func findImageMaskAtPointInHistory(at position: CGPoint) -> CGImage? {
         if _maskHistory.isEmpty { return nil }
         
@@ -229,71 +183,3 @@ class BaseMap {
     }
 }
 
-fileprivate extension CGContext {
-    
-    func setup(picture: Picture) {
-        if picture.isFlipped {
-            let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(self.height))
-            self.concatenate(flipVertical)
-        }
-        
-        let scale = getScaleForPicture(pictureSize: picture.viewBox.size)
-        let translate = getTranslateForPicture(pictureBounds: picture.viewBox)
-        
-        self.scaleBy(x: scale, y: scale)
-        self.translateBy(x: translate.x, y: translate.y)
-        
-        for path in picture.paths {
-            self.addPath(path)
-        }
-    }
-    
-    private func getScaleForPicture(pictureSize: CGSize) -> CGFloat {
-        
-        if pictureSize.width == 0 || pictureSize.height == 0 {
-            return 1.0
-        }
-        
-        let scalex = CGFloat(self.width) / pictureSize.width
-        let scaley = CGFloat(self.height) / pictureSize.height
-        
-        return scalex < scaley ? scalex : scaley
-    }
-    
-    // set the picture in the center of the screen
-    private func getTranslateForPicture(pictureBounds position: CGRect) -> CGPoint {
-        if position.origin == .zero {
-            return position.origin
-        }
-        
-        var deltax = -position.minX
-        var deltay = -position.minY
-        
-        let scale = getScaleForPicture(pictureSize: position.size)
-        let spanx = CGFloat(self.width) - position.width * scale
-        let spany = CGFloat(self.height) - position.height * scale
-
-        if spanx > spany {
-            deltax += spanx / 2
-        }
-        else {
-            deltay += spany / 2
-        }
-        
-        return CGPoint(x: deltax, y: deltay)
-        /*
-        let scalex = CGFloat(self.width) / pictureSize.width
-        let scaley = CGFloat(self.height) / pictureSize.height
-        
-        if scalex < scaley {
-            let height = pictureSize.height * scalex
-            let span = CGFloat(self.height) - height
-            return CGPoint(x: 0, y: span / 2)
-        }
-        else {
-            let width = pictureSize.width * scaley
-            let span = CGFloat(self.width) - width
-            return CGPoint(x: span / 2, y: 0)
-        } */
-    }
-}

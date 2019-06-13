@@ -16,6 +16,7 @@
 		A99605AF22A7E7B700C50570 /* butterfly.svg in Resources */ = {isa = PBXBuildFile; fileRef = A99605AE22A7E7B700C50570 /* butterfly.svg */; };
 		A9A0FDE922A6957800BC80CD /* freesample.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9A0FDE822A6957800BC80CD /* freesample.svg */; };
 		A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0FDEA22A6971900BC80CD /* Shapes.swift */; };
+		A9B1F12422B12862004A1EF6 /* GalleryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */; };
 		A9BF825422ABC3C900DF04EE /* ColorPenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */; };
 		A9D13B9C22A8D95F008DAA2B /* ColorPenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */; };
 		A9D2B24F22AA9EF400D3C140 /* ColorPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D2B24E22AA9EF400D3C140 /* ColorPen.swift */; };
@@ -80,6 +81,7 @@
 		A99605AE22A7E7B700C50570 /* butterfly.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = butterfly.svg; sourceTree = "<group>"; };
 		A9A0FDE822A6957800BC80CD /* freesample.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = freesample.svg; sourceTree = "<group>"; };
 		A9A0FDEA22A6971900BC80CD /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemCell.swift; sourceTree = "<group>"; };
 		A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenButton.swift; sourceTree = "<group>"; };
 		A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenPanel.swift; sourceTree = "<group>"; };
 		A9D2B24E22AA9EF400D3C140 /* ColorPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPen.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A9D4251E22AFC2060056C8A2 /* GalleryView.swift */,
+				A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9B1F12422B12862004A1EF6 /* GalleryItemCell.swift in Sources */,
 				A9E5B8EA22A6605A00ADD793 /* DrawingAction.swift in Sources */,
 				A9E5B8A122A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodeld in Sources */,
 				A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */,

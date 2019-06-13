@@ -6,15 +6,30 @@ import KidsDrawingGame
 
 class Album {
     
-    var _collection: Dictionary<String, Picture>
+    private var _collection = [(name: String, picture: Picture)]()
     
-    init() {
-        _collection = [String: Picture]()
+    var count: Int {
+        get {
+            return _collection.count
+        }
+    }
+    
+    func append(name: String, picture: Picture) {
+        _collection.append((name: name, picture: picture))
+    }
+    
+    subscript(index: Int) -> (name: String, picture: Picture)? {
+        get {
+            if index < 0 || index > self.count - 1 { return nil }
+            return _collection[index]
+        }
     }
     
     subscript(name: String) -> Picture? {
         get {
-            return _collection[name]
+            return _collection.first(where: { (itemName: String, picture: Picture) -> Bool in
+                return name == itemName
+            })?.picture
         }
     }
 }

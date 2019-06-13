@@ -7,7 +7,7 @@ import KidsDrawingGame
 extension Album {
     
     func addShapes() {
-        _collection["square"] = getSquare()
+        append(name: "square", picture: getSquare())
     }
     
     private func getSquare() -> Picture {
@@ -19,7 +19,7 @@ extension Album {
         path.addRect(CGRect(x: 80, y: 80, width: 40, height: 40))
         paths.append(path)
         
-        let size = CGSize(width: 200, height: 200)
+        let size = CGSize(width: 180, height: 180)
         
         return Picture(viewBox: CGRect(origin: .zero, size: size), paths: paths, flipped: false)
     }
