@@ -30,7 +30,7 @@ public class ScratchImage {
         context.setFillColor(viewMode.backgroundColor.cgColor)
         context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
         context.setStrokeColor(viewMode.color.cgColor)
-        context.setLineWidth(4)
+        context.setLineWidth(5)
         
         // create an image mask
         let image = context.drawPicture(picture: picture)
@@ -51,7 +51,7 @@ public class ScratchImage {
         guard let context = ctx else { return nil }
         
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(2)
+        context.setLineWidth(3)
         
         let image = context.drawPicture(picture: picture)
         ctx = nil

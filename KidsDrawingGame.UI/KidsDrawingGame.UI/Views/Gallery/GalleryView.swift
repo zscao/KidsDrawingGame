@@ -7,6 +7,7 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
 
     private let reuseIdentifier = "galleryItem"
     private var images = [(name: String, image: UIImage)]()
+    private var backgroundLayer: BubbleLayer?
     
     var onSelection: ((_ picture: String) -> Void)?
     
@@ -19,10 +20,22 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
     }
     
     
+    override func willMove(toSuperview newSuperview: UIView?) {
+        if newSuperview == nil {
+            backgroundLayer?.stop()
+        }
+        else {
+            backgroundLayer?.start()
+        }
+    }
+    
+    
     func setup(album: Album, viewMode: ViewMode)
     {
-        self.layer.contents = UIImage(named: "sample1")?.cgImage
+        //self.layer.contents = UIImage(named: "sample1")?.cgImage
         //self.backgroundColor = .blue
+        
+        setupBackground()
         
         let length = self.frame.width / 3 - 30
         let imageSize = CGSize(width: length, height: length)
@@ -37,6 +50,14 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
         
         setupCollectionView(imageSize: imageSize)
     }
+    
+    private func setupBackground() {
+        let bgLayer = BubbleLayer(frame: self.frame)
+        self.layer.addSublayer(bgLayer)
+        
+        backgroundLayer = bgLayer
+    }
+    
     
     private func setupCollectionView(imageSize: CGSize) {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()

@@ -33,6 +33,7 @@
 		A9E5B8EA22A6605A00ADD793 /* DrawingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8E922A6605A00ADD793 /* DrawingAction.swift */; };
 		A9E5B8EC22A6608E00ADD793 /* MainPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8EB22A6608E00ADD793 /* MainPanel.swift */; };
 		A9E5B8EE22A660A900ADD793 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8ED22A660A900ADD793 /* CanvasView.swift */; };
+		A9E636A622B37758005DE6B8 /* BubbleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E636A522B37758005DE6B8 /* BubbleLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		A9E5B8E922A6605A00ADD793 /* DrawingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingAction.swift; sourceTree = "<group>"; };
 		A9E5B8EB22A6608E00ADD793 /* MainPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPanel.swift; sourceTree = "<group>"; };
 		A9E5B8ED22A660A900ADD793 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		A9E636A522B37758005DE6B8 /* BubbleLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 			children = (
 				A9D4251E22AFC2060056C8A2 /* GalleryView.swift */,
 				A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */,
+				A9E636A522B37758005DE6B8 /* BubbleLayer.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				A9D4251D22AFB0540056C8A2 /* DrawingView.swift in Sources */,
 				A9E5B89B22A65A0300ADD793 /* ViewController.swift in Sources */,
 				A9E5B89922A65A0300ADD793 /* AppDelegate.swift in Sources */,
+				A9E636A622B37758005DE6B8 /* BubbleLayer.swift in Sources */,
 				A9BF825422ABC3C900DF04EE /* ColorPenButton.swift in Sources */,
 				A9E5B8EC22A6608E00ADD793 /* MainPanel.swift in Sources */,
 				A996059B22A7C6D300C50570 /* Album.swift in Sources */,
