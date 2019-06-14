@@ -21,9 +21,13 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
     
     func setup(album: Album, viewMode: ViewMode)
     {
-        self.backgroundColor = .blue
+        self.layer.contents = UIImage(named: "sample1")?.cgImage
+        //self.backgroundColor = .blue
         
-        let scratchImage = ScratchImage(size: CGSize(width: 200, height: 200), viewMode: viewMode)
+        let length = self.frame.width / 3 - 30
+        let imageSize = CGSize(width: length, height: length)
+        
+        let scratchImage = ScratchImage(size: imageSize, viewMode: viewMode)
         for index in 0 ..< album.count {
             let item = album[index]!
             if let pic = scratchImage.getImage(picture: item.picture) {
@@ -31,16 +35,16 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
             }
         }
         
-        setupCollectionView()
+        setupCollectionView(imageSize: imageSize)
     }
     
-    private func setupCollectionView() {
+    private func setupCollectionView(imageSize: CGSize) {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 200, height: 200)
+        layout.scrollDirection = .vertical
+        layout.itemSize = imageSize
         
-        let frame = CGRect(origin: CGPoint(x: 0, y: 100), size: CGSize(width: self.frame.width, height: 500))
+        let frame = CGRect(origin: CGPoint(x: 0, y: 100), size: CGSize(width: self.frame.width, height: self.frame.height - 200))
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         
         collectionView.backgroundColor = .clear

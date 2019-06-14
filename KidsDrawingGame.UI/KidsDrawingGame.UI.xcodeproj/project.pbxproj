@@ -12,11 +12,10 @@
 		A996059D22A7D6BA00C50570 /* flower.svg in Resources */ = {isa = PBXBuildFile; fileRef = A996059C22A7D6BA00C50570 /* flower.svg */; };
 		A99605A822A7DD4B00C50570 /* KidsDrawingGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */; };
 		A99605A922A7DD4B00C50570 /* KidsDrawingGame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A996059422A7B2EA00C50570 /* KidsDrawingGame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A99605AB22A7E19800C50570 /* bus.svg in Resources */ = {isa = PBXBuildFile; fileRef = A99605AA22A7E19800C50570 /* bus.svg */; };
 		A99605AF22A7E7B700C50570 /* butterfly.svg in Resources */ = {isa = PBXBuildFile; fileRef = A99605AE22A7E7B700C50570 /* butterfly.svg */; };
-		A9A0FDE922A6957800BC80CD /* freesample.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9A0FDE822A6957800BC80CD /* freesample.svg */; };
 		A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0FDEA22A6971900BC80CD /* Shapes.swift */; };
 		A9B1F12422B12862004A1EF6 /* GalleryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */; };
+		A9B51C6822B2617400D0FCD0 /* benz.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9B51C6722B2617400D0FCD0 /* benz.svg */; };
 		A9BF825422ABC3C900DF04EE /* ColorPenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */; };
 		A9D13B9C22A8D95F008DAA2B /* ColorPenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */; };
 		A9D2B24F22AA9EF400D3C140 /* ColorPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D2B24E22AA9EF400D3C140 /* ColorPen.swift */; };
@@ -77,11 +76,10 @@
 		A996059A22A7C6D300C50570 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		A996059C22A7D6BA00C50570 /* flower.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = flower.svg; sourceTree = "<group>"; };
 		A996059E22A7D95A00C50570 /* PocketSVG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PocketSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A99605AA22A7E19800C50570 /* bus.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = bus.svg; sourceTree = "<group>"; };
 		A99605AE22A7E7B700C50570 /* butterfly.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = butterfly.svg; sourceTree = "<group>"; };
-		A9A0FDE822A6957800BC80CD /* freesample.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = freesample.svg; sourceTree = "<group>"; };
 		A9A0FDEA22A6971900BC80CD /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemCell.swift; sourceTree = "<group>"; };
+		A9B51C6722B2617400D0FCD0 /* benz.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = benz.svg; sourceTree = "<group>"; };
 		A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenButton.swift; sourceTree = "<group>"; };
 		A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenPanel.swift; sourceTree = "<group>"; };
 		A9D2B24E22AA9EF400D3C140 /* ColorPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPen.swift; sourceTree = "<group>"; };
@@ -146,9 +144,8 @@
 		A9A0FDE522A693F500BC80CD /* SVGs */ = {
 			isa = PBXGroup;
 			children = (
-				A9A0FDE822A6957800BC80CD /* freesample.svg */,
+				A9B51C6722B2617400D0FCD0 /* benz.svg */,
 				A996059C22A7D6BA00C50570 /* flower.svg */,
-				A99605AA22A7E19800C50570 /* bus.svg */,
 				A99605AE22A7E7B700C50570 /* butterfly.svg */,
 			);
 			path = SVGs;
@@ -388,13 +385,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A0FDE922A6957800BC80CD /* freesample.svg in Resources */,
 				A996059D22A7D6BA00C50570 /* flower.svg in Resources */,
 				A9E5B8A622A65A0500ADD793 /* LaunchScreen.storyboard in Resources */,
-				A99605AB22A7E19800C50570 /* bus.svg in Resources */,
 				A9E5B8A322A65A0500ADD793 /* Assets.xcassets in Resources */,
 				A99605AF22A7E7B700C50570 /* butterfly.svg in Resources */,
 				A9E5B89E22A65A0300ADD793 /* Main.storyboard in Resources */,
+				A9B51C6822B2617400D0FCD0 /* benz.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

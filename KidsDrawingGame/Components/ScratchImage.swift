@@ -29,14 +29,11 @@ public class ScratchImage {
         
         context.setFillColor(viewMode.backgroundColor.cgColor)
         context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
-        
-        context.setup(picture: picture)
-        
         context.setStrokeColor(viewMode.color.cgColor)
-        context.strokePath()
+        context.setLineWidth(4)
         
         // create an image mask
-        let image = context.makeImage()
+        let image = context.drawPicture(picture: picture)
         ctx = nil
         return image
     }
@@ -53,13 +50,10 @@ public class ScratchImage {
         
         guard let context = ctx else { return nil }
         
-        context.setup(picture: picture)
-        
         context.setStrokeColor(UIColor.white.cgColor)
-        context.strokePath()
+        context.setLineWidth(2)
         
-        // create an image mask
-        let image = context.makeImage()
+        let image = context.drawPicture(picture: picture)
         ctx = nil
         return image
     }
@@ -68,7 +62,7 @@ public class ScratchImage {
 
 fileprivate extension CGContext {
     
-    func setup(picture: Picture) {
+    func drawPicture(picture: Picture) -> CGImage? {
         if picture.isFlipped {
             let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(self.height))
             self.concatenate(flipVertical)
@@ -76,14 +70,15 @@ fileprivate extension CGContext {
         
         let scale = getScaleForPicture(pictureSize: picture.viewBox.size)
         let translate = getTranslateForPicture(pictureBounds: picture.viewBox)
-        self.setLineWidth(4)
         self.scaleBy(x: scale, y: scale)
         self.translateBy(x: translate.x, y: translate.y)
-        
         
         for path in picture.paths {
             self.addPath(path)
         }
+        
+        self.strokePath()
+        return self.makeImage()
     }
     
     private func getScaleForPicture(pictureSize: CGSize) -> CGFloat {

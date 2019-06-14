@@ -5,19 +5,17 @@ import KidsDrawingGame
 
 extension Album {
     func addSamples() {
-        if let sample = loadFromSVG(name: "freesample", flipped: true) {
-            append(name: "sample", picture: sample)
-        }
-        if let flower = loadFromSVG(name: "flower", flipped: true) {
-            append(name: "flower", picture: flower)
-        }
-        if let bus = loadFromSVG(name: "bus", flipped: true) {
-            append(name: "bus", picture: bus)
-        }
-        if let pic = loadFromSVG(name: "butterfly", flipped: true) {
-            append(name: "butterfly", picture: pic)
+        addSample("flower", flipped: true)
+        addSample("benz", flipped: true)
+        addSample("butterfly", flipped: true)
+    }
+    
+    func addSample(_ name: String, flipped: Bool) {
+        if let pic = loadFromSVG(name: name, flipped: true) {
+            append(name: name, picture: pic)
         }
     }
+    
     
     private func loadFromSVG(name: String, flipped: Bool) -> Picture? {
         if let url = Bundle.main.url(forResource: name, withExtension: "svg") {
