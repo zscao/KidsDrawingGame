@@ -29,11 +29,17 @@ public class ScratchImage {
         
         context.setFillColor(viewMode.backgroundColor.cgColor)
         context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
-        context.setStrokeColor(viewMode.color.cgColor)
-        context.setLineWidth(5)
         
-        // create an image mask
-        let image = context.drawPicture(picture: picture)
+        context.setup(for: picture)
+        
+        let layer = getImageLayer(picture: picture) { layer in
+            layer.strokeColor = viewMode.color.cgColor
+            layer.lineWidth = 5
+            layer.fillColor = UIColor.clear.cgColor
+        }
+        
+        layer.render(in: context)
+        let image = context.makeImage()
         ctx = nil
         return image
     }
@@ -49,36 +55,48 @@ public class ScratchImage {
                             bitmapInfo: CGImageAlphaInfo.none.rawValue)
         
         guard let context = ctx else { return nil }
+        context.setup(for: picture)
         
-        context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(3)
+        let layer = getImageLayer(picture: picture) { layer in
+            layer.strokeColor = UIColor.white.cgColor
+            layer.lineWidth = 3
+            layer.fillColor = UIColor.clear.cgColor
+        }
         
-        let image = context.drawPicture(picture: picture)
+        layer.render(in: context)
+        let image = context.makeImage()
         ctx = nil
         return image
+    }
+    
+    private func getImageLayer(picture: Picture, _ setupLayer : (_ layer: CAShapeLayer) -> Void) -> CALayer {
+        let rootLayer = CALayer()
+        rootLayer.bounds = picture.viewBox
+        
+        for path in picture.paths {
+            let layer = CAShapeLayer()
+            layer.bounds = rootLayer.bounds
+            layer.path = path
+            
+            setupLayer(layer)
+            
+            rootLayer.addSublayer(layer)
+        }
+        return rootLayer
     }
 }
 
 
 fileprivate extension CGContext {
     
-    func drawPicture(picture: Picture) -> CGImage? {
+    func setup(for picture: Picture) {
         if picture.isFlipped {
             let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(self.height))
             self.concatenate(flipVertical)
         }
-        
         let scale = getScaleForPicture(pictureSize: picture.viewBox.size)
-        let translate = getTranslateForPicture(pictureBounds: picture.viewBox)
+        self.translateBy(x: CGFloat(self.width) / 2, y: CGFloat(self.height) / 2)
         self.scaleBy(x: scale, y: scale)
-        self.translateBy(x: translate.x, y: translate.y)
-        
-        for path in picture.paths {
-            self.addPath(path)
-        }
-        
-        self.strokePath()
-        return self.makeImage()
     }
     
     private func getScaleForPicture(pictureSize: CGSize) -> CGFloat {
@@ -94,25 +112,25 @@ fileprivate extension CGContext {
     }
     
     // set the picture in the center of the screen
-    private func getTranslateForPicture(pictureBounds position: CGRect) -> CGPoint {
-        if position.origin == .zero {
-            return position.origin
-        }
-        
-        var deltax = -position.minX
-        var deltay = -position.minY
-        
-        let scale = getScaleForPicture(pictureSize: position.size)
-        let spanx = CGFloat(self.width) - position.width * scale
-        let spany = CGFloat(self.height) - position.height * scale
-        
-        if spanx > spany {
-            deltax += spanx / 2
-        }
-        else {
-            deltay += spany / 2
-        }
-        
-        return CGPoint(x: deltax, y: deltay)
-    }
+//    private func getTranslateForPicture(pictureBounds position: CGRect) -> CGPoint {
+//        if position.origin == .zero {
+//            return position.origin
+//        }
+//
+//        var deltax = -position.minX
+//        var deltay = -position.minY
+//
+//        let scale = getScaleForPicture(pictureSize: position.size)
+//        let spanx = CGFloat(self.width) - position.width * scale
+//        let spany = CGFloat(self.height) - position.height * scale
+//
+//        if spanx > spany {
+//            deltax += spanx / 2
+//        }
+//        else {
+//            deltay += spany / 2
+//        }
+//
+//        return CGPoint(x: deltax, y: deltay)
+//    }
 }
