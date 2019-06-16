@@ -6,7 +6,7 @@ import KidsDrawingGame
 class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
 
     private let reuseIdentifier = "galleryItem"
-    private var images = [(name: String, image: UIImage)]()
+    private var images = [(name: String, image: CALayer)]()
     private var backgroundLayer: BubbleLayer?
     
     var onSelection: ((_ picture: String) -> Void)?
@@ -40,12 +40,15 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
         let length = self.frame.width / 3 - 30
         let imageSize = CGSize(width: length, height: length)
         
-        let scratchImage = ScratchImage(size: imageSize, viewMode: viewMode)
         for index in 0 ..< album.count {
             let item = album[index]!
-            if let pic = scratchImage.getImage(picture: item.picture) {
-                images.append((name: item.name, image: UIImage(cgImage: pic)))
-            }
+            let sketch = Sketch(picture: item.picture)
+            
+            let scale = sketch.getScale(width: 200, height: 200)
+            let layer = sketch.getSketchLayer(strokeColor: viewMode.color.cgColor, lineWidth: 3)
+            layer.transform = CATransform3DMakeScale(scale, scale, 1)
+            layer.position = CGPoint(x: 100, y: 100)
+            images.append((name: item.name, image: layer))            
         }
         
         setupCollectionView(imageSize: imageSize)
@@ -85,7 +88,7 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! GalleryItemCell
         
         let item = images[indexPath.item]
-        cell.imageView.image = item.image
+        cell.imageView.layer.addSublayer(item.image)
         cell.name = item.name
         
         return cell

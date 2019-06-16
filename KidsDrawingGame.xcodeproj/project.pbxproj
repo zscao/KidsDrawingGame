@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A996059622A7B32500C50570 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D122A65CEA00ADD793 /* Picture.swift */; };
-		A9B51C6622B2346500D0FCD0 /* ScratchImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B51C6522B2346500D0FCD0 /* ScratchImage.swift */; };
 		A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825722ABD5D000DF04EE /* ViewMode.swift */; };
+		A9CB56F922B4ED8100E440B7 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CB56F822B4ED8100E440B7 /* Canvas.swift */; };
+		A9D709E422B67680006E1EAB /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D709E322B67680006E1EAB /* Sketch.swift */; };
 		A9E5B88622A6587F00ADD793 /* KidsDrawingGame.h in Headers */ = {isa = PBXBuildFile; fileRef = A9E5B88422A6587F00ADD793 /* KidsDrawingGame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9E5B8CB22A65AFE00ADD793 /* IDETemplateMacros.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9E5B8CA22A65AFE00ADD793 /* IDETemplateMacros.plist */; };
 		A9E5B8D022A65C5300ADD793 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8CF22A65C5300ADD793 /* Line.swift */; };
@@ -17,13 +18,13 @@
 		A9E5B8D622A65D2000ADD793 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D522A65D2000ADD793 /* Stroke.swift */; };
 		A9E5B8D822A65D3B00ADD793 /* RGBColorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D722A65D3B00ADD793 /* RGBColorData.swift */; };
 		A9E5B8DB22A65DB700ADD793 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8DA22A65DB700ADD793 /* Queue.swift */; };
-		A9E5B8E122A65E3100ADD793 /* BaseMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8E022A65E3100ADD793 /* BaseMap.swift */; };
-		A9E5B8E322A65E9E00ADD793 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8E222A65E9E00ADD793 /* Canvas.swift */; };
+		A9F7C58222B523E900DE0BFC /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F7C58122B523E900DE0BFC /* Mask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A9B51C6522B2346500D0FCD0 /* ScratchImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchImage.swift; sourceTree = "<group>"; };
 		A9BF825722ABD5D000DF04EE /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
+		A9CB56F822B4ED8100E440B7 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		A9D709E322B67680006E1EAB /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		A9E5B88122A6587F00ADD793 /* KidsDrawingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KidsDrawingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9E5B88422A6587F00ADD793 /* KidsDrawingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KidsDrawingGame.h; sourceTree = "<group>"; };
 		A9E5B88522A6587F00ADD793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,8 +35,7 @@
 		A9E5B8D522A65D2000ADD793 /* Stroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stroke.swift; sourceTree = "<group>"; };
 		A9E5B8D722A65D3B00ADD793 /* RGBColorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorData.swift; sourceTree = "<group>"; };
 		A9E5B8DA22A65DB700ADD793 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		A9E5B8E022A65E3100ADD793 /* BaseMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMap.swift; sourceTree = "<group>"; };
-		A9E5B8E222A65E9E00ADD793 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		A9F7C58122B523E900DE0BFC /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +103,9 @@
 		A9E5B8DF22A65E1C00ADD793 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A9E5B8E022A65E3100ADD793 /* BaseMap.swift */,
-				A9E5B8E222A65E9E00ADD793 /* Canvas.swift */,
-				A9B51C6522B2346500D0FCD0 /* ScratchImage.swift */,
+				A9CB56F822B4ED8100E440B7 /* Canvas.swift */,
+				A9F7C58122B523E900DE0BFC /* Mask.swift */,
+				A9D709E322B67680006E1EAB /* Sketch.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -198,12 +198,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */,
+				A9CB56F922B4ED8100E440B7 /* Canvas.swift in Sources */,
 				A996059622A7B32500C50570 /* Picture.swift in Sources */,
-				A9E5B8E122A65E3100ADD793 /* BaseMap.swift in Sources */,
+				A9D709E422B67680006E1EAB /* Sketch.swift in Sources */,
 				A9E5B8DB22A65DB700ADD793 /* Queue.swift in Sources */,
+				A9F7C58222B523E900DE0BFC /* Mask.swift in Sources */,
 				A9E5B8D822A65D3B00ADD793 /* RGBColorData.swift in Sources */,
-				A9E5B8E322A65E9E00ADD793 /* Canvas.swift in Sources */,
-				A9B51C6622B2346500D0FCD0 /* ScratchImage.swift in Sources */,
 				A9E5B8D422A65D0800ADD793 /* PixelPoint.swift in Sources */,
 				A9E5B8D022A65C5300ADD793 /* Line.swift in Sources */,
 				A9E5B8D622A65D2000ADD793 /* Stroke.swift in Sources */,

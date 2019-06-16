@@ -1,51 +1,163 @@
 //  Copyright © 2019 zscao. All rights reserved.
 
-import Foundation
 import UIKit
 
 public class Canvas {
+    public var image: CGImage? {
+        get {
+            return _cgContext?.makeImage()
+        }
+    }
     
-    private (set) var imageSize: CGSize
+    public var sketchLayer: CALayer? {
+        get {
+            return _sketchLayer
+        }
+    }
+    
     
     private var _cgContext: CGContext?
+    private var _picture: Picture
+    private var _viewMode: ViewMode
+    
+    private var _sketchLayer: CALayer?
+    private var _mask: Mask?
     
     private var _currentStroke: Stroke?
     private var _historyStrokes: [Stroke] = [Stroke]()
     
-    // the picture with base patterns/lines
-    private var _baseMap: BaseMap?
+    private var imageWidth: Int = 0
+    private var imageHeight: Int = 0
     
-    public init(size: CGSize, baseMap picture: Picture, viewMode: ViewMode) {
-        imageSize = size
-        _baseMap = BaseMap(size: size, picture: picture, viewMode: viewMode)
+    public init(size: CGSize, picture: Picture, viewMode: ViewMode) {
+        imageWidth = Int(size.width)
+        imageHeight = Int(size.height)
         
-        setupCGContext()
+        _picture = picture
+        _viewMode = viewMode
+        
+        _cgContext = getImageContext()
+        _sketchLayer = getSketchLayer()
+        
+        if let maskImage = getMaskImage() {
+            _mask = Mask(image: maskImage)
+        }
+        
+        reset()
     }
     
-    public func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat) {
+    
+    private func getSketchLayer() -> CALayer {
+        let sketch = Sketch(picture: _picture);
+        let layer = sketch.getSketchLayer(strokeColor: _viewMode.color.cgColor, lineWidth: 5)
         
-        guard let context = _cgContext, let map = _baseMap else { return }
+        let scale = sketch.getScale(width: imageWidth, height: imageHeight)
+        layer.transform = CATransform3DMakeScale(scale, scale, 1)
+
+        return layer
+    }
+    
+    private func getMaskImage() -> CGImage? {
+        if let context = getMaskContext() {
+            setContextTransform(context: context)
+            
+            let sketch = Sketch(picture: _picture)
+            let layer = sketch.getSketchLayer(strokeColor: UIColor.white.cgColor, lineWidth: 3)
+            
+            layer.render(in: context)
+            return context.makeImage()
+        }
+        return nil
+    }
+    
+    private func getImageContext() -> CGContext? {
+        return CGContext(data: nil,
+                         width: imageWidth,
+                         height: imageHeight,
+                         bitsPerComponent: 8,
+                         bytesPerRow: 0,
+                         space: CGColorSpaceCreateDeviceRGB(),
+                         bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+    }
+    
+    private func getMaskContext() -> CGContext? {
+        return CGContext(data: nil,
+                        width: imageWidth,
+                        height: imageHeight,
+                        bitsPerComponent: 8,
+                        bytesPerRow: imageWidth,
+                        space: CGColorSpaceCreateDeviceGray(),
+                        bitmapInfo: CGImageAlphaInfo.none.rawValue)
+    }
+    
+    private func setContextTransform(context: CGContext) {
+        if _picture.isFlipped {
+            let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(context.height))
+            context.concatenate(flipVertical)
+        }
+        let sketch = Sketch(picture: _picture)
+        let scale = sketch.getScale(width: imageWidth, height: imageHeight)
+        
+        // set the picture in the middle of the view
+        var deltax = CGFloat(context.width) - _picture.viewBox.width * scale
+        var deltay = CGFloat(context.height) - _picture.viewBox.height * scale
+        if deltax > deltay {
+            deltax /= 2
+            deltay = 0
+        }
+        else {
+            deltax = 0
+            deltay /= 2
+        }
+        
+        deltax += -_picture.viewBox.minX * scale
+        deltay += -_picture.viewBox.minY * scale
+        
+        context.translateBy(x: deltax, y: deltay)
+        context.scaleBy(x: scale, y: scale)
+    }
+}
+
+
+public extension Canvas {
+
+    func reset() {
+        if let context = _cgContext {
+            let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
+            
+            context.clear(rect)
+            context.setFillColor(_viewMode.backgroundColor.cgColor)
+            context.fill(rect)
+
+            for stroke in _historyStrokes {
+                makeStroke(context: context, rect: rect, stroke: stroke)
+            }
+        }
+    }
+    
+    func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat) {
+        guard let context = _cgContext, let mask = _mask else { return }
         
         // restart a new stroke
         _currentStroke = nil
         
-        if map.isPointInBound(at: start) == false {
+        if mask.isPointInBound(at: start) == false {
             return
         }
         
-        let mask = map.getImageMaskAtPoint(at: start)
-        let rect = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
+        let maskImage = mask.getImageMaskAtPoint(at: start)
+        let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
         
         let startPoint = flipVertical(position: start)
         let line = Line(start: startPoint, color: color, width: lineWidth)
-        _currentStroke = Stroke(line: line, mask: mask, rect: rect)
+        _currentStroke = Stroke(line: line, mask: maskImage, rect: rect)
         
         guard let stroke = _currentStroke else { return }
         _historyStrokes.append(stroke)
         makeStroke(context: context, rect: rect, stroke: stroke)
     }
     
-    public func lineTo(to: CGPoint) {
+    func lineTo(to: CGPoint) {
         guard let context = _cgContext, let stroke = _currentStroke else { return }
         
         let toPoint = flipVertical(position: to)
@@ -55,67 +167,31 @@ public class Canvas {
         context.strokePath()
     }
     
-    public func endLine(at: CGPoint?) {
+    func endLine(at: CGPoint?) {
         if let endPoint = at {
             lineTo(to: endPoint)
         }
         _currentStroke = nil
     }
     
-    public func clear() {
+    func clear() {
         _historyStrokes.removeAll()
-        setupCGContext()
+        reset()
     }
     
-    public func undo() {
+    func undo() {
         if _historyStrokes.isEmpty == false {
             _historyStrokes.removeLast()
-        }
-        setupCGContext()
-    }
-    
-    public func getImage() -> CGImage? {
-        guard let context = _cgContext else { return nil }
-        let image = context.makeImage()
-        
-        return image
-    }
-    
-    private func setupCGContext() {
-        _currentStroke = nil
-        _cgContext = nil
-        
-        _cgContext = CGContext(data: nil,
-                               width: Int(imageSize.width),
-                               height: Int(imageSize.height),
-                               bitsPerComponent: 8,
-                               bytesPerRow: 0,
-                               space: CGColorSpaceCreateDeviceRGB(),
-                               bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
-        
-        guard let context = _cgContext else { return }
-        
-        let rect = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-        
-        if let map = _baseMap, let mapImage = map.image {
-            context.draw(mapImage, in: rect)
-        }
-        
-        for stroke in _historyStrokes {
-            makeStroke(context: context, rect: rect, stroke: stroke)
+            reset()
         }
     }
     
-     //this is to translate the coordinate of UIView to that of Quartz
+
+    
+    //this is to translate the coordinate of UIView to that of Quartz
     private func flipVertical(position: CGPoint) -> CGPoint {
-        return CGPoint(x: position.x, y: self.imageSize.height - position.y)
+        return CGPoint(x: position.x, y: CGFloat(self.imageHeight) - position.y)
     }
-    
-//    private func translateSKScenePoistion(position: CGPoint) -> CGPoint {
-//        return CGPoint(
-//            x: position.x + self.imageSize.width / 2,
-//            y: position.y + self.imageSize.height / 2)
-//    }
     
     private func makeStroke(context: CGContext, rect: CGRect, stroke: Stroke) {
         
@@ -132,4 +208,5 @@ public class Canvas {
         context.addPath(stroke.line.path)
         context.strokePath()
     }
+    
 }

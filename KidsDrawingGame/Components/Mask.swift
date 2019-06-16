@@ -1,36 +1,22 @@
 //  Copyright © 2019 zscao. All rights reserved.
 
-import Foundation
 import UIKit
 
-class BaseMap {
-    
-    private (set) var imageWidth: Int
-    private (set) var imageHeight: Int
-    private (set) var image: CGImage?
-    private (set) var viewMode: ViewMode
-    
-    private var _maskImage: CGImage?
+class Mask {
+    private var _maskImage: CGImage
     private var _maskHistory: [CGImage] = [CGImage]()
     
-    private let _lineWidth: CGFloat = 6
     private let _maskColorValue: UInt8 = 0xff
     
-    init(size: CGSize, picture: Picture, viewMode: ViewMode) {
-        self.imageWidth = Int(size.width)
-        self.imageHeight = Int(size.height)
-        self.viewMode = viewMode
-        
-        let scratchImage = ScratchImage(size: size, viewMode: viewMode)
-        image = scratchImage.getImage(picture: picture)
-        _maskImage = scratchImage.getMaskImage(picture: picture)
+    init(image: CGImage) {
+        _maskImage = image
     }
     
     func isPointInBound(at position: CGPoint) -> Bool {
-        if let pixelData = _maskImage?.dataProvider?.data {
+        if let pixelData = _maskImage.dataProvider?.data {
             let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
             
-            let pixelInfo: Int = imageWidth * Int(position.y) + Int(position.x)
+            let pixelInfo: Int = _maskImage.width * Int(position.y) + Int(position.x)
             let colorData = data[pixelInfo]
             
             return colorData == 0 // the color of the point is black so it must not be on the boundary but within it
@@ -46,7 +32,7 @@ class BaseMap {
         return findImageMaskAtPoint(at: position)
     }
     
-
+    
     private func findImageMaskAtPointInHistory(at position: CGPoint) -> CGImage? {
         if _maskHistory.isEmpty { return nil }
         
@@ -55,7 +41,7 @@ class BaseMap {
             
             let data8: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
             let startPoint = PixelPoint(x: Int(position.x), y: Int(position.y))
-            let startPosition: Int = imageWidth * startPoint.y + startPoint.x
+            let startPosition: Int = _maskImage.width * startPoint.y + startPoint.x
             
             // mask areas are never overlapped, so if a pixel with the mask color can be found in a mask image, then the image must be the right one
             if data8[startPosition] == _maskColorValue {
@@ -68,17 +54,17 @@ class BaseMap {
     
     private func findImageMaskAtPoint(at position: CGPoint) -> CGImage? {
         
-        guard let pixelData = _maskImage?.dataProvider?.data else { return nil }
+        guard let pixelData = _maskImage.dataProvider?.data else { return nil }
         
         let data8: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
         
         // used to save the image data
-        let imageData: UnsafeMutablePointer<UInt8> = allocateUnsafeMutablePointer(width: imageWidth, height: imageHeight, initialValue: 0)
+        let imageData: UnsafeMutablePointer<UInt8> = allocateUnsafeMutablePointer(width: _maskImage.width, height: _maskImage.height, initialValue: 0)
         // used to save the check status of each pixel
-        let checkData: UnsafeMutablePointer<Bool> = allocateUnsafeMutablePointer(width: imageWidth, height: imageHeight, initialValue: false)
+        let checkData: UnsafeMutablePointer<Bool> = allocateUnsafeMutablePointer(width: _maskImage.width, height: _maskImage.height, initialValue: false)
         
         let startPoint = PixelPoint(x: Int(position.x), y: Int(position.y))
-        let startPosition: Int = imageWidth * startPoint.y + startPoint.x
+        let startPosition: Int = _maskImage.width * startPoint.y + startPoint.x
         let originColorData = data8[startPosition]
         //let originColorData: ColorData = ColorData.FromUnsafeUInt8(data: data8, position: startPosition)
         
@@ -87,16 +73,16 @@ class BaseMap {
         checkData[startPosition] = true
         
         while let currentPoint = queue.dequeue() {
-            let currentPosition = currentPoint.y * imageWidth + currentPoint.x
+            let currentPosition = currentPoint.y * _maskImage.width + currentPoint.x
             
             // set image color
             imageData[currentPosition] = _maskColorValue
             
             // check nearby 4 pixels
             // 1. right side
-            if currentPoint.x < imageWidth - 1 {
+            if currentPoint.x < _maskImage.width - 1 {
                 let nextPoint = PixelPoint(x: currentPoint.x + 1, y: currentPoint.y)
-                let nextPosition = nextPoint.y * imageWidth + nextPoint.x
+                let nextPosition = nextPoint.y * _maskImage.width + nextPoint.x
                 
                 if checkData[nextPosition] == false {
                     checkData[nextPosition] = true
@@ -108,9 +94,9 @@ class BaseMap {
                 }
             }
             // down side
-            if currentPoint.y < imageHeight - 1 {
+            if currentPoint.y < _maskImage.height - 1 {
                 let nextPoint = PixelPoint(x: currentPoint.x, y: currentPoint.y + 1)
-                let nextPosition = nextPoint.y * imageWidth + nextPoint.x
+                let nextPosition = nextPoint.y * _maskImage.width + nextPoint.x
                 
                 if checkData[nextPosition] == false {
                     checkData[nextPosition] = true
@@ -123,7 +109,7 @@ class BaseMap {
             // left side
             if currentPoint.x > 0 {
                 let nextPoint = PixelPoint(x: currentPoint.x - 1, y: currentPoint.y)
-                let nextPosition = nextPoint.y * imageWidth + nextPoint.x
+                let nextPosition = nextPoint.y * _maskImage.width + nextPoint.x
                 
                 if checkData[nextPosition] == false {
                     checkData[nextPosition] = true
@@ -136,7 +122,7 @@ class BaseMap {
             // up side
             if currentPoint.y > 0 {
                 let nextPoint = PixelPoint(x: currentPoint.x, y: currentPoint.y - 1)
-                let nextPosition = nextPoint.y * imageWidth + nextPoint.x
+                let nextPosition = nextPoint.y * _maskImage.width + nextPoint.x
                 
                 if checkData[nextPosition] == false {
                     checkData[nextPosition] = true
@@ -149,10 +135,10 @@ class BaseMap {
         }
         
         let bitmapContext = CGContext(data: imageData,
-                                      width: imageWidth,
-                                      height: imageHeight,
+                                      width: _maskImage.width,
+                                      height: _maskImage.height,
                                       bitsPerComponent: 8,
-                                      bytesPerRow: imageWidth,
+                                      bytesPerRow: _maskImage.width,
                                       space: CGColorSpaceCreateDeviceGray(),
                                       bitmapInfo: CGImageAlphaInfo.none.rawValue)
         
@@ -182,4 +168,3 @@ class BaseMap {
         return data
     }
 }
-

@@ -10,6 +10,7 @@ class GalleryItemCell: UICollectionViewCell {
         super.init(frame: frame)
         
         let view = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 200)))
+        view.backgroundColor = UIColor.white
         self.contentView.addSubview(view)
         
         NSLayoutConstraint.activate([
@@ -28,6 +29,8 @@ class GalleryItemCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.imageView.image = nil
+        self.imageView.layer.sublayers?.forEach({ layer in
+            layer.removeFromSuperlayer()
+        })
     }
 }

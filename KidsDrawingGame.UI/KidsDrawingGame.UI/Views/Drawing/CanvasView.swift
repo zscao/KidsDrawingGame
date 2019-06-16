@@ -26,7 +26,12 @@ class CanvasView: UIView {
     }
     
     func setup(viewMode: ViewMode, picture: Picture) {
-        _canvas = Canvas(size: frame.size, baseMap: picture, viewMode: viewMode)
+        _canvas = Canvas(size: frame.size, picture: picture, viewMode: viewMode)
+        
+        if let sketch = _canvas?.sketchLayer {
+            sketch.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+            self.layer.addSublayer(sketch)
+        }
         _strokeColor = UIColor.red.cgColor
     }
     
@@ -36,10 +41,6 @@ class CanvasView: UIView {
         
         let location = touch.location(in: self)
         canvas.startLine(start: location, color: _strokeColor, width: 30)
-        
-        if let layer = self.layer.hitTest(location) as? CAShapeLayer {
-            layer.fillColor = UIColor.green.cgColor
-        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,7 +85,7 @@ class CanvasView: UIView {
     }
     
     func refreshDrawing() {
-        if let canvas = _canvas, let image = canvas.getImage() {
+        if let canvas = _canvas, let image = canvas.image {
             self.layer.contents = image
         }
     }
