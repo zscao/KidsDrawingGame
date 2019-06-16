@@ -45,7 +45,8 @@ class GalleryView: UIView, UICollectionViewDataSource, UICollectionViewDelegate 
             let sketch = Sketch(picture: item.picture)
             
             let scale = sketch.getScale(width: 200, height: 200)
-            let layer = sketch.getSketchLayer(strokeColor: viewMode.color.cgColor, lineWidth: 3)
+            let lineWidth = 3 / scale
+            let layer = sketch.getSketchLayer(strokeColor: viewMode.color.cgColor, lineWidth: lineWidth)
             layer.transform = CATransform3DMakeScale(scale, scale, 1)
             layer.position = CGPoint(x: 100, y: 100)
             images.append((name: item.name, image: layer))            

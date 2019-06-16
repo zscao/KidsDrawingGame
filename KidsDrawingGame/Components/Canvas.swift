@@ -3,25 +3,13 @@
 import UIKit
 
 public class Canvas {
-    public var image: CGImage? {
-        get {
-            return _cgContext?.makeImage()
-        }
-    }
-    
-    public var sketchLayer: CALayer? {
-        get {
-            return _sketchLayer
-        }
-    }
-    
     
     private var _cgContext: CGContext?
     private var _picture: Picture
     private var _viewMode: ViewMode
     
     private var _sketchLayer: CALayer?
-    private var _mask: Mask?
+    private var _mask: Masking?
     
     private var _currentStroke: Stroke?
     private var _historyStrokes: [Stroke] = [Stroke]()
@@ -39,9 +27,7 @@ public class Canvas {
         _cgContext = getImageContext()
         _sketchLayer = getSketchLayer()
         
-        if let maskImage = getMaskImage() {
-            _mask = Mask(image: maskImage)
-        }
+        _mask = Mask(size: size, picture: picture)
         
         reset()
     }
@@ -49,27 +35,16 @@ public class Canvas {
     
     private func getSketchLayer() -> CALayer {
         let sketch = Sketch(picture: _picture);
-        let layer = sketch.getSketchLayer(strokeColor: _viewMode.color.cgColor, lineWidth: 5)
         
         let scale = sketch.getScale(width: imageWidth, height: imageHeight)
+        let lineWidth = SketchLineWidth / scale
+        let layer = sketch.getSketchLayer(strokeColor: _viewMode.color.cgColor, lineWidth: lineWidth)
+        
         layer.transform = CATransform3DMakeScale(scale, scale, 1)
 
         return layer
     }
-    
-    private func getMaskImage() -> CGImage? {
-        if let context = getMaskContext() {
-            setContextTransform(context: context)
-            
-            let sketch = Sketch(picture: _picture)
-            let layer = sketch.getSketchLayer(strokeColor: UIColor.white.cgColor, lineWidth: 3)
-            
-            layer.render(in: context)
-            return context.makeImage()
-        }
-        return nil
-    }
-    
+        
     private func getImageContext() -> CGContext? {
         return CGContext(data: nil,
                          width: imageWidth,
@@ -79,49 +54,24 @@ public class Canvas {
                          space: CGColorSpaceCreateDeviceRGB(),
                          bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
     }
-    
-    private func getMaskContext() -> CGContext? {
-        return CGContext(data: nil,
-                        width: imageWidth,
-                        height: imageHeight,
-                        bitsPerComponent: 8,
-                        bytesPerRow: imageWidth,
-                        space: CGColorSpaceCreateDeviceGray(),
-                        bitmapInfo: CGImageAlphaInfo.none.rawValue)
-    }
-    
-    private func setContextTransform(context: CGContext) {
-        if _picture.isFlipped {
-            let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(context.height))
-            context.concatenate(flipVertical)
-        }
-        let sketch = Sketch(picture: _picture)
-        let scale = sketch.getScale(width: imageWidth, height: imageHeight)
-        
-        // set the picture in the middle of the view
-        var deltax = CGFloat(context.width) - _picture.viewBox.width * scale
-        var deltay = CGFloat(context.height) - _picture.viewBox.height * scale
-        if deltax > deltay {
-            deltax /= 2
-            deltay = 0
-        }
-        else {
-            deltax = 0
-            deltay /= 2
-        }
-        
-        deltax += -_picture.viewBox.minX * scale
-        deltay += -_picture.viewBox.minY * scale
-        
-        context.translateBy(x: deltax, y: deltay)
-        context.scaleBy(x: scale, y: scale)
-    }
 }
 
 
-public extension Canvas {
+extension Canvas: Drawable {
 
-    func reset() {
+    public var image: CGImage? {
+        get {
+            return _cgContext?.makeImage()
+        }
+    }
+    
+    public var sketchLayer: CALayer? {
+        get {
+            return _sketchLayer
+        }
+    }
+    
+    public func reset() {
         if let context = _cgContext {
             let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
             
@@ -135,7 +85,7 @@ public extension Canvas {
         }
     }
     
-    func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat) {
+    public func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat) {
         guard let context = _cgContext, let mask = _mask else { return }
         
         // restart a new stroke
@@ -157,7 +107,7 @@ public extension Canvas {
         makeStroke(context: context, rect: rect, stroke: stroke)
     }
     
-    func lineTo(to: CGPoint) {
+    public func lineTo(to: CGPoint) {
         guard let context = _cgContext, let stroke = _currentStroke else { return }
         
         let toPoint = flipVertical(position: to)
@@ -167,19 +117,19 @@ public extension Canvas {
         context.strokePath()
     }
     
-    func endLine(at: CGPoint?) {
+    public func endLine(at: CGPoint?) {
         if let endPoint = at {
             lineTo(to: endPoint)
         }
         _currentStroke = nil
     }
     
-    func clear() {
+    public func clear() {
         _historyStrokes.removeAll()
         reset()
     }
     
-    func undo() {
+    public func undo() {
         if _historyStrokes.isEmpty == false {
             _historyStrokes.removeLast()
             reset()

@@ -7,7 +7,7 @@ class CanvasView: UIView {
     
     private var _strokeColor: CGColor = UIColor.black.cgColor
     
-    private var _canvas: Canvas? = nil
+    private var _canvas: Drawable? = nil
     
     /*
      // Only override draw() if you perform custom drawing.
