@@ -46,13 +46,21 @@ public class Canvas {
     }
         
     private func getImageContext() -> CGContext? {
-        return CGContext(data: nil,
+        //let scale = UIScreen.main.scale
+        
+        if let context = CGContext(data: nil,
                          width: imageWidth,
                          height: imageHeight,
                          bitsPerComponent: 8,
                          bytesPerRow: 0,
                          space: CGColorSpaceCreateDeviceRGB(),
-                         bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+                         bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue) {
+            context.setShouldAntialias(true)
+            //context.scaleBy(x: scale, y: scale)
+            return context
+        }
+        
+        return nil
     }
 }
 
@@ -73,8 +81,9 @@ extension Canvas: Drawable {
     
     public func reset() {
         if let context = _cgContext {
-            let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
+            context.resetClip()
             
+            let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
             context.clear(rect)
             context.setFillColor(_viewMode.backgroundColor.cgColor)
             context.fill(rect)
@@ -148,7 +157,6 @@ extension Canvas: Drawable {
         context.resetClip()
         if let mask = stroke.mask {
             context.clip(to: rect, mask: mask)
-            //context.draw(mask, in: rect)
         }
         
         context.setStrokeColor(stroke.line.color)

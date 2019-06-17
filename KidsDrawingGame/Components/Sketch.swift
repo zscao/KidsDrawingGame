@@ -35,6 +35,8 @@ public class Sketch {
             let layer = CAShapeLayer()
             layer.strokeColor = strokeColor
             layer.lineWidth = lineWidth
+            layer.lineCap = .round
+            layer.lineJoin = .round
             layer.fillColor = UIColor.clear.cgColor
             
             layer.path = path

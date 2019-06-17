@@ -38,13 +38,17 @@ class Mask {
     }
     
     private func getMaskContext() -> CGContext? {
-        return CGContext(data: nil,
+        if let context = CGContext(data: nil,
                          width: imageWidth,
                          height: imageHeight,
                          bitsPerComponent: 8,
                          bytesPerRow: imageWidth,
                          space: CGColorSpaceCreateDeviceGray(),
-                         bitmapInfo: CGImageAlphaInfo.none.rawValue)
+                         bitmapInfo: CGImageAlphaInfo.none.rawValue) {
+            context.setShouldAntialias(true)
+            return context
+        }
+        return nil
     }
     
     private func setContextTransform(context: CGContext) {
