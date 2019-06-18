@@ -3,7 +3,7 @@
 import UIKit
 import KidsDrawingGame
 
-class CanvasView: UIView {
+class CanvasView: UIImageView {
     
     private var _strokeColor: CGColor = UIColor.black.cgColor
     
@@ -18,13 +18,16 @@ class CanvasView: UIView {
     }
     
     func setup(viewMode: ViewMode, picture: Picture) {
-        _canvas = Canvas(size: frame.size, picture: picture, viewMode: viewMode)
         
-        if let sketch = _canvas?.sketchLayer {
-            sketch.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-            self.layer.addSublayer(sketch)
-        }
+        _canvas = Canvas(size: self.frame.size.toScreenScalePixel(), picture: picture, viewMode: viewMode)
         _strokeColor = UIColor.red.cgColor
+        
+        let sketch = Sketch(picture: picture)
+        let scale = sketch.getScale(size: self.frame.size)
+        let layer = sketch.getSketchLayer(strokeColor: viewMode.color.cgColor, lineWidth: 6 / scale)
+        layer.transform = CATransform3DMakeScale(scale, scale, 1)
+        layer.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        self.layer.addSublayer(layer)
     }
     
     
@@ -32,14 +35,14 @@ class CanvasView: UIView {
         guard let touch = touches.first, let canvas = _canvas else { return }
         
         let location = touch.location(in: self)
-        canvas.startLine(start: location, color: _strokeColor, width: 30)
+        canvas.startLine(start: location.toScreenScalePixel(), color: _strokeColor, width: 30 * UIScreen.main.scale)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first, let canvas = _canvas else { return }
         
         let location = touch.location(in: self)
-        canvas.lineTo(to: location)
+        canvas.lineTo(to: location.toScreenScalePixel())
         
         refreshDrawing()
     }
@@ -48,7 +51,7 @@ class CanvasView: UIView {
         guard let touch = touches.first, let canvas = _canvas else { return }
         
         let location = touch.location(in: self)
-        canvas.endLine(at: location)
+        canvas.endLine(at: location.toScreenScalePixel())
         
         refreshDrawing()
     }
@@ -59,7 +62,7 @@ class CanvasView: UIView {
         
         
         let location = touches.first?.location(in: self)
-        canvas.endLine(at: location)
+        canvas.endLine(at: location?.toScreenScalePixel())
     }
     
     func setStrokeColor(color: UIColor) {
@@ -78,8 +81,24 @@ class CanvasView: UIView {
     
     func refreshDrawing() {
         if let canvas = _canvas, let image = canvas.image {
-            self.layer.contents = image
+            //self.layer.contents = image
+            let uiImage = UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .up)
+            self.image = uiImage
         }
+    }
+}
+
+extension CGSize {
+    func toScreenScalePixel() -> CGSize {
+        let scale = UIScreen.main.scale
+        return CGSize(width: self.width * scale, height: self.height * scale)
+    }
+}
+
+extension CGPoint {
+    func toScreenScalePixel() -> CGPoint {
+        let scale = UIScreen.main.scale
+        return CGPoint(x: self.x * scale, y: self.y * scale)
     }
 }
 

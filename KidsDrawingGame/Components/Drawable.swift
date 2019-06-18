@@ -6,8 +6,6 @@ public protocol Drawable {
     
     var image: CGImage? { get }
     
-    var sketchLayer: CALayer? { get }
-    
     func reset()
     
     func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat)

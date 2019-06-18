@@ -8,7 +8,7 @@ public class Canvas {
     private var _picture: Picture
     private var _viewMode: ViewMode
     
-    private var _sketchLayer: CALayer?
+    //private var _sketchLayer: CALayer?
     private var _mask: Masking?
     
     private var _currentStroke: Stroke?
@@ -25,24 +25,10 @@ public class Canvas {
         _viewMode = viewMode
         
         _cgContext = getImageContext()
-        _sketchLayer = getSketchLayer()
         
         _mask = Mask(size: size, picture: picture)
         
         reset()
-    }
-    
-    
-    private func getSketchLayer() -> CALayer {
-        let sketch = Sketch(picture: _picture);
-        
-        let scale = sketch.getScale(width: imageWidth, height: imageHeight)
-        let lineWidth = SketchLineWidth / scale
-        let layer = sketch.getSketchLayer(strokeColor: _viewMode.color.cgColor, lineWidth: lineWidth)
-        
-        layer.transform = CATransform3DMakeScale(scale, scale, 1)
-
-        return layer
     }
         
     private func getImageContext() -> CGContext? {
@@ -70,12 +56,6 @@ extension Canvas: Drawable {
     public var image: CGImage? {
         get {
             return _cgContext?.makeImage()
-        }
-    }
-    
-    public var sketchLayer: CALayer? {
-        get {
-            return _sketchLayer
         }
     }
     
