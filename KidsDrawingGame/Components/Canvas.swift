@@ -26,7 +26,7 @@ public class Canvas {
         
         _cgContext = getImageContext()
         
-        _mask = Mask(size: size, picture: picture)
+        _mask = MaskImage(size: size, picture: picture)
         
         reset()
     }
@@ -84,7 +84,7 @@ extension Canvas: Drawable {
             return
         }
         
-        let maskImage = mask.getImageMaskAtPoint(at: start)
+        let maskImage = mask.getMaskImageAtPoint(at: start)
         let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
         
         let startPoint = flipVertical(position: start)

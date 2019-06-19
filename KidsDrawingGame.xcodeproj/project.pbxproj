@@ -12,6 +12,10 @@
 		A900BA9D22B7029900EF14C7 /* Masking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900BA9C22B7029900EF14C7 /* Masking.swift */; };
 		A996059622A7B32500C50570 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D122A65CEA00ADD793 /* Picture.swift */; };
 		A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825722ABD5D000DF04EE /* ViewMode.swift */; };
+		A9C458EC22B9042700088F05 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C458EB22B9042700088F05 /* Stack.swift */; };
+		A9C60A8A22B9BDD6001C4915 /* MaskImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8922B9BDD6001C4915 /* MaskImage.swift */; };
+		A9C60A8E22B9E7CD001C4915 /* MaskFinderLinearFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */; };
+		A9C60A9022B9F752001C4915 /* MaskFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8F22B9F752001C4915 /* MaskFinder.swift */; };
 		A9CB56F922B4ED8100E440B7 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CB56F822B4ED8100E440B7 /* Canvas.swift */; };
 		A9D709E422B67680006E1EAB /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D709E322B67680006E1EAB /* Sketch.swift */; };
 		A9E5B88622A6587F00ADD793 /* KidsDrawingGame.h in Headers */ = {isa = PBXBuildFile; fileRef = A9E5B88422A6587F00ADD793 /* KidsDrawingGame.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,7 +25,7 @@
 		A9E5B8D622A65D2000ADD793 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D522A65D2000ADD793 /* Stroke.swift */; };
 		A9E5B8D822A65D3B00ADD793 /* RGBColorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D722A65D3B00ADD793 /* RGBColorData.swift */; };
 		A9E5B8DB22A65DB700ADD793 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8DA22A65DB700ADD793 /* Queue.swift */; };
-		A9F7C58222B523E900DE0BFC /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F7C58122B523E900DE0BFC /* Mask.swift */; };
+		A9F7C58222B523E900DE0BFC /* MaskFinderFourwayFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F7C58122B523E900DE0BFC /* MaskFinderFourwayFill.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		A900BA9A22B7012100EF14C7 /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
 		A900BA9C22B7029900EF14C7 /* Masking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Masking.swift; sourceTree = "<group>"; };
 		A9BF825722ABD5D000DF04EE /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
+		A9C458EB22B9042700088F05 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		A9C60A8922B9BDD6001C4915 /* MaskImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskImage.swift; sourceTree = "<group>"; };
+		A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinderLinearFill.swift; sourceTree = "<group>"; };
+		A9C60A8F22B9F752001C4915 /* MaskFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinder.swift; sourceTree = "<group>"; };
 		A9CB56F822B4ED8100E440B7 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		A9D709E322B67680006E1EAB /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		A9E5B88122A6587F00ADD793 /* KidsDrawingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KidsDrawingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,7 +49,7 @@
 		A9E5B8D522A65D2000ADD793 /* Stroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stroke.swift; sourceTree = "<group>"; };
 		A9E5B8D722A65D3B00ADD793 /* RGBColorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorData.swift; sourceTree = "<group>"; };
 		A9E5B8DA22A65DB700ADD793 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		A9F7C58122B523E900DE0BFC /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
+		A9F7C58122B523E900DE0BFC /* MaskFinderFourwayFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinderFourwayFill.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				A9E5B8DA22A65DB700ADD793 /* Queue.swift */,
+				A9C458EB22B9042700088F05 /* Stack.swift */,
 			);
 			path = DataStructures;
 			sourceTree = "<group>";
@@ -111,10 +120,13 @@
 			isa = PBXGroup;
 			children = (
 				A9CB56F822B4ED8100E440B7 /* Canvas.swift */,
-				A9F7C58122B523E900DE0BFC /* Mask.swift */,
 				A9D709E322B67680006E1EAB /* Sketch.swift */,
 				A900BA9A22B7012100EF14C7 /* Drawable.swift */,
 				A900BA9C22B7029900EF14C7 /* Masking.swift */,
+				A9C60A8922B9BDD6001C4915 /* MaskImage.swift */,
+				A9F7C58122B523E900DE0BFC /* MaskFinderFourwayFill.swift */,
+				A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */,
+				A9C60A8F22B9F752001C4915 /* MaskFinder.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -208,14 +220,18 @@
 			files = (
 				A900BA9D22B7029900EF14C7 /* Masking.swift in Sources */,
 				A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */,
+				A9C458EC22B9042700088F05 /* Stack.swift in Sources */,
+				A9C60A8A22B9BDD6001C4915 /* MaskImage.swift in Sources */,
 				A9CB56F922B4ED8100E440B7 /* Canvas.swift in Sources */,
 				A996059622A7B32500C50570 /* Picture.swift in Sources */,
 				A900BA9B22B7012100EF14C7 /* Drawable.swift in Sources */,
+				A9C60A9022B9F752001C4915 /* MaskFinder.swift in Sources */,
 				A9D709E422B67680006E1EAB /* Sketch.swift in Sources */,
 				A9E5B8DB22A65DB700ADD793 /* Queue.swift in Sources */,
-				A9F7C58222B523E900DE0BFC /* Mask.swift in Sources */,
+				A9F7C58222B523E900DE0BFC /* MaskFinderFourwayFill.swift in Sources */,
 				A9E5B8D822A65D3B00ADD793 /* RGBColorData.swift in Sources */,
 				A9E5B8D422A65D0800ADD793 /* PixelPoint.swift in Sources */,
+				A9C60A8E22B9E7CD001C4915 /* MaskFinderLinearFill.swift in Sources */,
 				A9E5B8D022A65C5300ADD793 /* Line.swift in Sources */,
 				A900BA9922B6FEF700EF14C7 /* Settings.swift in Sources */,
 				A9E5B8D622A65D2000ADD793 /* Stroke.swift in Sources */,

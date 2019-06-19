@@ -5,5 +5,5 @@ import Foundation
 protocol Masking {
     func isPointInBound(at position: CGPoint) -> Bool
     
-    func getImageMaskAtPoint(at position: CGPoint) -> CGImage?
+    func getMaskImageAtPoint(at position: CGPoint) -> CGImage?
 }
