@@ -16,6 +16,7 @@
 		A9C60A8A22B9BDD6001C4915 /* MaskImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8922B9BDD6001C4915 /* MaskImage.swift */; };
 		A9C60A8E22B9E7CD001C4915 /* MaskFinderLinearFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */; };
 		A9C60A9022B9F752001C4915 /* MaskFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8F22B9F752001C4915 /* MaskFinder.swift */; };
+		A9C60A9222BA019D001C4915 /* MaskFinderQuickFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */; };
 		A9CB56F922B4ED8100E440B7 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CB56F822B4ED8100E440B7 /* Canvas.swift */; };
 		A9D709E422B67680006E1EAB /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D709E322B67680006E1EAB /* Sketch.swift */; };
 		A9E5B88622A6587F00ADD793 /* KidsDrawingGame.h in Headers */ = {isa = PBXBuildFile; fileRef = A9E5B88422A6587F00ADD793 /* KidsDrawingGame.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +38,7 @@
 		A9C60A8922B9BDD6001C4915 /* MaskImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskImage.swift; sourceTree = "<group>"; };
 		A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinderLinearFill.swift; sourceTree = "<group>"; };
 		A9C60A8F22B9F752001C4915 /* MaskFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinder.swift; sourceTree = "<group>"; };
+		A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskFinderQuickFill.swift; sourceTree = "<group>"; };
 		A9CB56F822B4ED8100E440B7 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		A9D709E322B67680006E1EAB /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		A9E5B88122A6587F00ADD793 /* KidsDrawingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KidsDrawingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 				A9C60A8922B9BDD6001C4915 /* MaskImage.swift */,
 				A9F7C58122B523E900DE0BFC /* MaskFinderFourwayFill.swift */,
 				A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */,
+				A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */,
 				A9C60A8F22B9F752001C4915 /* MaskFinder.swift */,
 			);
 			path = Components;
@@ -228,6 +231,7 @@
 				A9C60A9022B9F752001C4915 /* MaskFinder.swift in Sources */,
 				A9D709E422B67680006E1EAB /* Sketch.swift in Sources */,
 				A9E5B8DB22A65DB700ADD793 /* Queue.swift in Sources */,
+				A9C60A9222BA019D001C4915 /* MaskFinderQuickFill.swift in Sources */,
 				A9F7C58222B523E900DE0BFC /* MaskFinderFourwayFill.swift in Sources */,
 				A9E5B8D822A65D3B00ADD793 /* RGBColorData.swift in Sources */,
 				A9E5B8D422A65D0800ADD793 /* PixelPoint.swift in Sources */,

@@ -24,9 +24,7 @@ class MaskImage {
             
             let sketch = Sketch(picture: picture)
             let scale = sketch.getScale(width: imageWidth, height: imageHeight)
-            var lineWidth = SketchLineWidth
-            if lineWidth > 3 { lineWidth = (lineWidth - 2) / scale }
-            let layer = sketch.getSketchLayer(strokeColor: UIColor.white.cgColor, lineWidth: lineWidth)
+            let layer = sketch.getSketchLayer(strokeColor: UIColor.white.cgColor, lineWidth: SketchLineWidth / scale)
             
             layer.render(in: context)
             return context.makeImage()
@@ -98,7 +96,8 @@ extension MaskImage: Masking {
             
             let start = DispatchTime.now()
             
-            let finder = MaskFinderLinearFill(image: image, maskColor: maskColor)
+            let finder = MaskFinderQuickFill(image: image, maskColor: maskColor)
+            //let finder = MaskFinderLinearFill(image: image, maskColor: maskColor)
             //let finder = MaskFinderFourwayFill(image: image, maskColor: maskColor)
             
             if let mask = finder.findMaskImage(at: position) {

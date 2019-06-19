@@ -2,4 +2,4 @@
 
 import Foundation
 
-let SketchLineWidth: CGFloat = 5
+public let SketchLineWidth: CGFloat = 4

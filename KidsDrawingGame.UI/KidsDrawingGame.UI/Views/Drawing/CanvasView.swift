@@ -24,7 +24,7 @@ class CanvasView: UIImageView {
         
         let sketch = Sketch(picture: picture)
         let scale = sketch.getScale(size: self.frame.size)
-        let layer = sketch.getSketchLayer(strokeColor: viewMode.color.cgColor, lineWidth: 6 / scale)
+        let layer = sketch.getSketchLayer(strokeColor: viewMode.color.cgColor, lineWidth: SketchLineWidth / scale)
         layer.transform = CATransform3DMakeScale(scale, scale, 1)
         layer.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.layer.addSublayer(layer)
