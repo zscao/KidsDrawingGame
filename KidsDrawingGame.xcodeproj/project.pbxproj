@@ -65,6 +65,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9AEB58822BA71A900D85036 /* MaskFinders */ = {
+			isa = PBXGroup;
+			children = (
+				A9F7C58122B523E900DE0BFC /* MaskFinderFourwayFill.swift */,
+				A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */,
+				A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */,
+				A9C60A8F22B9F752001C4915 /* MaskFinder.swift */,
+			);
+			path = MaskFinders;
+			sourceTree = "<group>";
+		};
 		A9E5B87722A6587F00ADD793 = {
 			isa = PBXGroup;
 			children = (
@@ -121,15 +132,12 @@
 		A9E5B8DF22A65E1C00ADD793 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A9AEB58822BA71A900D85036 /* MaskFinders */,
 				A9CB56F822B4ED8100E440B7 /* Canvas.swift */,
 				A9D709E322B67680006E1EAB /* Sketch.swift */,
+				A9C60A8922B9BDD6001C4915 /* MaskImage.swift */,
 				A900BA9A22B7012100EF14C7 /* Drawable.swift */,
 				A900BA9C22B7029900EF14C7 /* Masking.swift */,
-				A9C60A8922B9BDD6001C4915 /* MaskImage.swift */,
-				A9F7C58122B523E900DE0BFC /* MaskFinderFourwayFill.swift */,
-				A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */,
-				A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */,
-				A9C60A8F22B9F752001C4915 /* MaskFinder.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
