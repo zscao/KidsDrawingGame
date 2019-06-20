@@ -23,27 +23,16 @@ class MaskFinderQuickFill: MaskFinder {
         guard let data = _image.dataProvider?.data else { return imageData }
         let pixelData: UnsafePointer<UInt8> = CFDataGetBytePtr(data)
         
-        #if DEBUG
-        let end02 = DispatchTime.now()
-        let elapse02 = (end02.uptimeNanoseconds - end01.uptimeNanoseconds) / 1_000_000
-        print("get image data: \(elapse02)")
-        #endif
-        
         var x = Int(point.x),
         y = Int(point.y)
         
         let originalColor = getPixelColor(x: x, y: y, from: pixelData)
-
         
         let stack = Stack<LineData>()
         stack.push(data: LineData(x1: x, x2: x, y: y-1, dy: 1))
         
         
         #if DEBUG
-        let end0 = DispatchTime.now()
-        let elapsed0 = (end0.uptimeNanoseconds - start0.uptimeNanoseconds) / 1_000_000
-        print("end preparation. time: \(elapsed0)")
-        
         var minX: Int = _image.width,
         minY: Int = _image.height,
         maxX: Int = 0,
@@ -99,7 +88,9 @@ class MaskFinderQuickFill: MaskFinder {
                     }
                     else if x == _image.width - 1 {
                         stack.push(data: LineData(x1: left, x2: x, y: line.y, dy: line.dy))
-                        if left < line.x1 || x > line.x2 {
+                        
+                        // need to across at least 2 pixels to reach another block
+                        if left < line.x1 - 1 || x > line.x2 + 1 {
                             stack.push(data: LineData(x1: left, x2: x, y: line.y, dy: -line.dy))
                         }
                     }
@@ -108,7 +99,8 @@ class MaskFinderQuickFill: MaskFinder {
                     if left >= 0 {
                         stack.push(data: LineData(x1: left, x2: x, y: line.y, dy: line.dy))
                         
-                        if left < line.x1 || x > line.x2 {
+                        // need to cross at least 2 pixels to reach another block
+                        if left < line.x1 - 1 || x > line.x2 + 1 {
                             stack.push(data: LineData(x1: left, x2: x, y: line.y, dy: -line.dy))
                         }
                         
