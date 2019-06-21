@@ -47,6 +47,7 @@ class MaskFinderQuickFill: MaskFinder {
             loopCount += 1
             
             line.y += line.dy
+            if line.y < 0 || line.y >= _image.height { continue }
             
             #if DEBUG
             if line.x1 < minX { minX = line.x1 }
@@ -55,17 +56,17 @@ class MaskFinderQuickFill: MaskFinder {
             if line.y > maxY { maxY = line.y}
             #endif
             
-            if line.y < 0 || line.y >= _image.height { continue }
+            let rowIndex = line.y * _image.width
             
             x = line.x1
             while x >= 0 {
-                let imageColor = imageData.getPixelColor(x: x, y: line.y)
+                let imageColor = imageData.getPixelColor(index: rowIndex + x)
                 if imageColor == _maskColor { break }
                 
-                let pixelColor = getPixelColor(x: x, y: line.y, from: pixelData)
+                let pixelColor = getPixelColor(index: rowIndex + x, from: pixelData)
                 if pixelColor != originalColor { break }
                 
-                imageData.setPixelColor(x: x, y: line.y, color: _maskColor)
+                //imageData.setPixelColor(x: x, y: line.y, color: _maskColor)
                 
                 x -= 1
             }
@@ -74,20 +75,21 @@ class MaskFinderQuickFill: MaskFinder {
             
             x = line.x1 + 1
             while x < _image.width {
-                if imageData.getPixelColor(x: x, y: line.y) == _maskColor {
-                    while x <= line.x2 && imageData.getPixelColor(x: x, y: line.y) == _maskColor {
+                if imageData.getPixelColor(index: rowIndex + x) == _maskColor {
+                    while x <= line.x2 && imageData.getPixelColor(index: rowIndex + x) == _maskColor {
                         x += 1
                     }
                     if x >= _image.width { break }
                 }
                 
-                let pixelColor = getPixelColor(x: x, y: line.y, from: pixelData)
+                let pixelColor = getPixelColor(index: rowIndex + x, from: pixelData)
                 if pixelColor == originalColor {
-                    imageData.setPixelColor(x: x, y: line.y, color: _maskColor)
+                    //imageData.setPixelColor(x: x, y: line.y, color: _maskColor)
                     if left < 0 {
                         left = x
                     }
                     else if x == _image.width - 1 {
+                        imageData.setPixelColor(x1: left, x2: x, y: line.y, color: _maskColor)
                         stack.push(data: LineData(x1: left, x2: x, y: line.y, dy: line.dy))
                         
                         // need to across at least 2 pixels to reach another block
@@ -98,6 +100,7 @@ class MaskFinderQuickFill: MaskFinder {
                 }
                 else {
                     if left >= 0 {
+                        imageData.setPixelColor(x1: left, x2: x, y: line.y, color: _maskColor)
                         stack.push(data: LineData(x1: left, x2: x, y: line.y, dy: line.dy))
                         
                         // need to cross at least 2 pixels to reach another block

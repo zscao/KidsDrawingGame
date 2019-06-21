@@ -11,6 +11,7 @@
 		A900BA9B22B7012100EF14C7 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900BA9A22B7012100EF14C7 /* Drawable.swift */; };
 		A900BA9D22B7029900EF14C7 /* Masking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900BA9C22B7029900EF14C7 /* Masking.swift */; };
 		A996059622A7B32500C50570 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D122A65CEA00ADD793 /* Picture.swift */; };
+		A9B6F58722BD1AE400C79EEF /* Performance.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6F58622BD1AE400C79EEF /* Performance.rtf */; };
 		A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825722ABD5D000DF04EE /* ViewMode.swift */; };
 		A9C458EC22B9042700088F05 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C458EB22B9042700088F05 /* Stack.swift */; };
 		A9C60A8A22B9BDD6001C4915 /* ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8922B9BDD6001C4915 /* ImageMask.swift */; };
@@ -34,6 +35,7 @@
 		A900BA9822B6FEF700EF14C7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A900BA9A22B7012100EF14C7 /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
 		A900BA9C22B7029900EF14C7 /* Masking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Masking.swift; sourceTree = "<group>"; };
+		A9B6F58622BD1AE400C79EEF /* Performance.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Performance.rtf; sourceTree = "<group>"; };
 		A9BF825722ABD5D000DF04EE /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
 		A9C458EB22B9042700088F05 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		A9C60A8922B9BDD6001C4915 /* ImageMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */,
 				A9C60A8F22B9F752001C4915 /* MaskFinder.swift */,
 				A9C9B53B22BB2157003BC7D5 /* ImageData.swift */,
+				A9B6F58622BD1AE400C79EEF /* Performance.rtf */,
 			);
 			path = MaskFinders;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9E5B8CB22A65AFE00ADD793 /* IDETemplateMacros.plist in Resources */,
+				A9B6F58722BD1AE400C79EEF /* Performance.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

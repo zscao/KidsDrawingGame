@@ -32,6 +32,10 @@ class MaskFinder {
         return data[index]
     }
     
+    func getPixelColor(index: Int, from data: UnsafePointer<UInt8>) -> UInt8 {
+        return data[index]
+    }
+    
     func setPixelColor(x: Int, y: Int, color: UInt8, to data: UnsafeMutablePointer<UInt8>) {
         let index = y * _image.width + x
         data[index] = color
