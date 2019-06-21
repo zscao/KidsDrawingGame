@@ -12,7 +12,7 @@ class MaskFinderQuickFill: MaskFinder {
         let start0 = DispatchTime.now()
         #endif
         
-        let imageData: UnsafeMutablePointer<UInt8> = allocateImageData()
+        let imageData = ImageData(width: _image.width, height: _image.height)
         
         #if DEBUG
         let end01 = DispatchTime.now()
@@ -20,7 +20,7 @@ class MaskFinderQuickFill: MaskFinder {
         print("allocate image data: \(elapse01)")
         #endif
         
-        guard let data = _image.dataProvider?.data else { return imageData }
+        guard let data = _image.dataProvider?.data else { return imageData.getData() }
         let pixelData: UnsafePointer<UInt8> = CFDataGetBytePtr(data)
         
         var x = Int(point.x),
@@ -59,13 +59,13 @@ class MaskFinderQuickFill: MaskFinder {
             
             x = line.x1
             while x >= 0 {
-                let imageColor = getPixelColor(x: x, y: line.y, from: imageData)
+                let imageColor = imageData.getPixelColor(x: x, y: line.y)
                 if imageColor == _maskColor { break }
                 
                 let pixelColor = getPixelColor(x: x, y: line.y, from: pixelData)
                 if pixelColor != originalColor { break }
                 
-                setPixelColor(x: x, y: line.y, color: _maskColor, to: imageData)
+                imageData.setPixelColor(x: x, y: line.y, color: _maskColor)
                 
                 x -= 1
             }
@@ -74,15 +74,15 @@ class MaskFinderQuickFill: MaskFinder {
             
             x = line.x1 + 1
             while x < _image.width {
-                if getPixelColor(x: x, y: line.y, from: imageData) == _maskColor {
-                    while x <= line.x2 && getPixelColor(x: x, y: line.y, from: imageData) == _maskColor {
+                if imageData.getPixelColor(x: x, y: line.y) == _maskColor {
+                    while x <= line.x2 && imageData.getPixelColor(x: x, y: line.y) == _maskColor {
                         x += 1
                     }
                 }
                 
                 let pixelColor = getPixelColor(x: x, y: line.y, from: pixelData)
                 if pixelColor == originalColor {
-                    setPixelColor(x: x, y: line.y, color: _maskColor, to: imageData)
+                    imageData.setPixelColor(x: x, y: line.y, color: _maskColor)
                     if left < 0 {
                         left = x
                     }
@@ -132,7 +132,7 @@ class MaskFinderQuickFill: MaskFinder {
         print("")
         #endif
         
-        return imageData
+        return imageData.getData()
     }
 }
 

@@ -15,18 +15,7 @@ class MaskFinder {
     func findMaskImage(at point: CGPoint) -> CGImage? {
         
         guard let imageData = getMaskImageData(at: point) else { return nil }
-        
-        #if DEBUG
-        let start = DispatchTime.now()
-        #endif
-        
         let image = createImage(data: imageData)
-        
-        #if DEBUG
-        let end = DispatchTime.now()
-        let elapsed = (end.uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000
-        print("generate image: \(elapsed)")
-        #endif
         
         imageData.deallocate()
         
