@@ -24,7 +24,9 @@ class ImageData {
     }
     
     func setPixelColor(x: Int, y: Int, color: UInt8) {
-        if x < 0 || y < 0 || x >= self.width || y >= self.height { return }
+        // the range is guranteed by the caller
+        // the check below slows down the process
+        //if x < 0 || y < 0 || x >= self.width || y >= self.height { return }
         
         if x < minX { minX = x }
         if x > maxX { maxX = x }
@@ -36,7 +38,9 @@ class ImageData {
     }
     
     func getPixelColor(x: Int, y: Int) -> UInt8 {
-        if x < 0 || y < 0 || x >= self.width || y >= self.height { return 0}
+        // the range is guranteed by the caller
+        // the check below slows down the process
+        //if x < 0 || y < 0 || x >= self.width || y >= self.height { return 0}
         
         let index = y * width + x
         return _data[index]

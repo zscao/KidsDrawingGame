@@ -2,7 +2,7 @@
 
 import UIKit
 
-class ImageMask {
+class ImageMask: Masking {
 
     private let maskColor: UInt8 = 0xff
     
@@ -17,6 +17,10 @@ class ImageMask {
         imageHeight = Int(size.height)
         
         _image = getMaskImage(picture: picture)
+        
+        // the mask containing background (the most area) take much more time to generate
+        // initialise it here to improve the performance
+        initBackgroundMask()
     }
     
     private func getMaskImage(picture: Picture) -> CGImage? {
@@ -70,9 +74,16 @@ class ImageMask {
         }
         return nil
     }
-}
-
-extension ImageMask: Masking {
+    
+    private func initBackgroundMask() {
+        if let image = _image {
+            getMaskImageAtPoint(at: CGPoint(x: 0, y: 0))
+            getMaskImageAtPoint(at: CGPoint(x: 0, y: image.height - 1))
+            getMaskImageAtPoint(at: CGPoint(x: image.width - 1, y: 0))
+            getMaskImageAtPoint(at: CGPoint(x: image.width - 1, y: image.height - 1))
+        }
+    }
+    
     func isPointInBound(at position: CGPoint) -> Bool {
         guard let maskImage = _image else { return false }
         

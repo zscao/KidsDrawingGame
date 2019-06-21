@@ -78,6 +78,7 @@ class MaskFinderQuickFill: MaskFinder {
                     while x <= line.x2 && imageData.getPixelColor(x: x, y: line.y) == _maskColor {
                         x += 1
                     }
+                    if x >= _image.width { break }
                 }
                 
                 let pixelColor = getPixelColor(x: x, y: line.y, from: pixelData)

@@ -27,7 +27,7 @@ public class Canvas {
         _cgContext = getImageContext()
         
         _mask = ImageMask(size: size, picture: picture)
-        
+    
         reset()
     }
         

@@ -75,7 +75,7 @@ class MaskImageData {
     
     deinit {
         #if DEBUG
-        print("dealloate... mask image data")
+        print("dealloating mask image data")
         #endif
         
         data.deallocate()
