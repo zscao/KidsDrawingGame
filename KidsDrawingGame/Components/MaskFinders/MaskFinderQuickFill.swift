@@ -4,7 +4,7 @@ import UIKit
 
 class MaskFinderQuickFill: MaskFinder {
     
-    override func getMaskImageData(at point: CGPoint) -> UnsafeMutablePointer<UInt8> {
+    override func getMaskImageData(at point: CGPoint) -> MaskImageData? {
         
         #if DEBUG
         print("")
@@ -20,7 +20,7 @@ class MaskFinderQuickFill: MaskFinder {
         print("allocate image data: \(elapse01)")
         #endif
         
-        guard let data = _image.dataProvider?.data else { return imageData.getData() }
+        guard let data = _image.dataProvider?.data else { return nil }
         let pixelData: UnsafePointer<UInt8> = CFDataGetBytePtr(data)
         
         var x = Int(point.x),

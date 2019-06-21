@@ -5,8 +5,8 @@ import UIKit
 
 struct Stroke {
     var line: Line
-    var mask: CGImage?
+    var mask: MaskImage?
     
     // the rect for image mask
-    var rect: CGRect
+    //var rect: CGRect
 }

@@ -2,7 +2,7 @@
 
 import UIKit
 
-class MaskImage {
+class ImageMask {
 
     private let maskColor: UInt8 = 0xff
     
@@ -10,7 +10,7 @@ class MaskImage {
     private let imageHeight: Int
     
     private var _image: CGImage?
-    private var _masks: [CGImage] = [CGImage]()
+    private var _masks = [MaskImage]()
     
     init(size: CGSize, picture: Picture) {
         imageWidth = Int(size.width)
@@ -72,7 +72,7 @@ class MaskImage {
     }
 }
 
-extension MaskImage: Masking {
+extension ImageMask: Masking {
     func isPointInBound(at position: CGPoint) -> Bool {
         guard let maskImage = _image else { return false }
         
@@ -87,7 +87,7 @@ extension MaskImage: Masking {
         return false
     }
     
-    func getMaskImageAtPoint(at position: CGPoint) -> CGImage? {
+    func getMaskImageAtPoint(at position: CGPoint) -> MaskImage? {
         if let mask = findMaskImageAtPointInHistory(at: position) {
             return mask
         }
@@ -101,7 +101,6 @@ extension MaskImage: Masking {
             //let finder = MaskFinderFourwayFill(image: image, maskColor: maskColor)
             
             if let mask = finder.findMaskImage(at: position) {
-                
                 let end = DispatchTime.now()
                 let elapsed = (end.uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000 // elapsed time in million seconds
                 print("Elapsed time: " + String(elapsed))
@@ -113,15 +112,22 @@ extension MaskImage: Masking {
         return nil
     }
     
-    private func findMaskImageAtPointInHistory(at position: CGPoint) -> CGImage? {
+    private func findMaskImageAtPointInHistory(at position: CGPoint) -> MaskImage? {
         if _masks.isEmpty { return nil }
         
+        let x = position.x
+        let y = position.y
+        
         for mask in _masks {
-            guard let pixelData = mask.dataProvider?.data else { continue }
+            if x < mask.rect.minX || x > mask.rect.maxX || y < mask.rect.minY || y > mask.rect.maxY { continue }
             
+            guard let pixelData = mask.image.dataProvider?.data else { continue }
             let data8: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-            let startPoint = PixelPoint(x: Int(position.x), y: Int(position.y))
-            let startPosition: Int = imageWidth * startPoint.y + startPoint.x
+            
+            let rx = Int(x - mask.rect.minX)
+            let ry = Int(y - mask.rect.minY)
+            
+            let startPosition: Int = Int(mask.rect.width) * ry + rx
             
             // mask areas are never overlapped, so if a pixel with the mask color can be found in a mask image, then the image must be the right one
             if data8[startPosition] == maskColor {

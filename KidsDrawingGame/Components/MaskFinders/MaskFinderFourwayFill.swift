@@ -2,6 +2,7 @@
 
 import UIKit
 
+/*
 class MaskFinderFourwayFill: MaskFinder {
     
     override func getMaskImageData(at point: CGPoint) -> UnsafeMutablePointer<UInt8> {
@@ -103,3 +104,5 @@ class MaskFinderFourwayFill: MaskFinder {
         return data
     }
 }
+
+ */

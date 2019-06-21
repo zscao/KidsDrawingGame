@@ -26,14 +26,13 @@ public class Canvas {
         
         _cgContext = getImageContext()
         
-        _mask = MaskImage(size: size, picture: picture)
+        _mask = ImageMask(size: size, picture: picture)
         
         reset()
     }
         
     private func getImageContext() -> CGContext? {
-        //let scale = UIScreen.main.scale
-        
+
         if let context = CGContext(data: nil,
                          width: imageWidth,
                          height: imageHeight,
@@ -42,10 +41,8 @@ public class Canvas {
                          space: CGColorSpaceCreateDeviceRGB(),
                          bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue) {
             context.setShouldAntialias(true)
-            //context.scaleBy(x: scale, y: scale)
             return context
-        }
-        
+        }        
         return nil
     }
 }
@@ -69,7 +66,7 @@ extension Canvas: Drawable {
             context.fill(rect)
 
             for stroke in _historyStrokes {
-                makeStroke(context: context, rect: rect, stroke: stroke)
+                makeStroke(context: context, stroke: stroke)
             }
         }
     }
@@ -85,15 +82,15 @@ extension Canvas: Drawable {
         }
         
         let maskImage = mask.getMaskImageAtPoint(at: start)
-        let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
         
         let startPoint = flipVertical(position: start)
         let line = Line(start: startPoint, color: color, width: lineWidth)
-        _currentStroke = Stroke(line: line, mask: maskImage, rect: rect)
+        _currentStroke = Stroke(line: line, mask: maskImage)
         
         guard let stroke = _currentStroke else { return }
         _historyStrokes.append(stroke)
-        makeStroke(context: context, rect: rect, stroke: stroke)
+        
+        makeStroke(context: context, stroke: stroke)
     }
     
     public func lineTo(to: CGPoint) {
@@ -132,11 +129,13 @@ extension Canvas: Drawable {
         return CGPoint(x: position.x, y: CGFloat(self.imageHeight) - position.y)
     }
     
-    private func makeStroke(context: CGContext, rect: CGRect, stroke: Stroke) {
+    private func makeStroke(context: CGContext, stroke: Stroke) {
         
         context.resetClip()
         if let mask = stroke.mask {
-            context.clip(to: rect, mask: mask)
+            // why?
+            let rect = CGRect(origin: CGPoint(x: mask.rect.origin.x, y: CGFloat(imageHeight) - mask.rect.origin.y - mask.rect.height), size: mask.rect.size)
+            context.clip(to: rect, mask: mask.image)
         }
         
         context.setStrokeColor(stroke.line.color)

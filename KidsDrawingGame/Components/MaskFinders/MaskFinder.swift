@@ -12,18 +12,19 @@ class MaskFinder {
         _maskColor = maskColor
     }
     
-    func findMaskImage(at point: CGPoint) -> CGImage? {
+    func findMaskImage(at point: CGPoint) -> MaskImage? {
         
         guard let imageData = getMaskImageData(at: point) else { return nil }
-        let image = createImage(data: imageData)
         
-        imageData.deallocate()
-        
-        return image
+        if let image = createImage(data: imageData.data, size: imageData.rect.size) {
+            return MaskImage(image: image, rect: imageData.rect)
+        }
+        return nil
     }
     
-    func getMaskImageData(at point: CGPoint) -> UnsafeMutablePointer<UInt8>? {
-        return nil
+    func getMaskImageData(at point: CGPoint) -> MaskImageData? {
+        let data = UnsafeMutablePointer<UInt8>.allocate(capacity: 0)
+        return MaskImageData(data: data, rect: .zero)
     }
     
     func getPixelColor(x: Int, y: Int, from data: UnsafePointer<UInt8>) -> UInt8 {
@@ -46,12 +47,12 @@ class MaskFinder {
         return data
     }
     
-    private func createImage(data: UnsafeMutableRawPointer) -> CGImage? {
+    private func createImage(data: UnsafeMutableRawPointer, size: CGSize) -> CGImage? {
         if let context = CGContext(data: data,
-                                   width: _image.width,
-                                   height: _image.height,
+                                   width: Int(size.width),
+                                   height: Int(size.height),
                                    bitsPerComponent: 8,
-                                   bytesPerRow: _image.width,
+                                   bytesPerRow: Int(size.width),
                                    space: CGColorSpaceCreateDeviceGray(),
                                    bitmapInfo: CGImageAlphaInfo.none.rawValue) {
             return context.makeImage()
@@ -63,3 +64,25 @@ class MaskFinder {
 }
 
 
+class MaskImageData {
+    var data: UnsafeMutablePointer<UInt8>
+    var rect: CGRect
+    
+    init(data: UnsafeMutablePointer<UInt8>, rect: CGRect) {
+        self.data = data
+        self.rect = rect
+    }
+    
+    deinit {
+        #if DEBUG
+        print("dealloate... mask image data")
+        #endif
+        
+        data.deallocate()
+    }
+}
+
+struct MaskImage {
+    var image: CGImage
+    var rect: CGRect
+}

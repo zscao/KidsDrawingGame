@@ -1,7 +1,7 @@
 //  Copyright © 2019 zscao. All rights reserved.
 
 import UIKit
-
+/*
 class MaskFinderLinearFill: MaskFinder {
     
     override func getMaskImageData(at point: CGPoint) -> UnsafeMutablePointer<UInt8> {
@@ -135,7 +135,7 @@ class MaskFinderLinearFill: MaskFinder {
         return imageData
     }
 }
-
+*/
 struct LineData {
     var x1: Int
     var x2: Int

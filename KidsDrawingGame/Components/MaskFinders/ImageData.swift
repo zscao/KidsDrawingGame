@@ -5,17 +5,18 @@ class ImageData {
     let width: Int
     let height: Int
     
-    private var _data: UnsafeMutablePointer<UInt8>
+    private var minX: Int, minY: Int, maxX: Int, maxY: Int
     
-    var data: UnsafeMutablePointer<UInt8>? {
-        get {
-            return _data
-        }
-    }
+    private var _data: UnsafeMutablePointer<UInt8>
     
     init(width: Int, height: Int) {
         self.width = width
         self.height = height
+        
+        self.minX = width - 1
+        self.minY = height - 1
+        self.maxX = 0
+        self.maxY = 0
         
         let capacity = width * height
         _data = UnsafeMutablePointer.allocate(capacity: capacity)
@@ -23,21 +24,53 @@ class ImageData {
     }
     
     func setPixelColor(x: Int, y: Int, color: UInt8) {
+        if x < 0 || y < 0 || x >= self.width || y >= self.height { return }
+        
+        if x < minX { minX = x }
+        if x > maxX { maxX = x }
+        if y < minY { minY = y }
+        if y > maxY { maxY = y }
+        
         let index = y * width + x
         _data[index] = color
     }
     
     func getPixelColor(x: Int, y: Int) -> UInt8 {
+        if x < 0 || y < 0 || x >= self.width || y >= self.height { return 0}
+        
         let index = y * width + x
         return _data[index]
     }
     
-    func getData() -> UnsafeMutablePointer<UInt8> {
-        let capacity = self.width * self.height
-        let data = UnsafeMutablePointer<UInt8>.allocate(capacity: capacity)
-        data.initialize(from: _data, count: capacity)
+    func getData() -> MaskImageData {
         
-        return data
+        let w = maxX >= minX ? maxX - minX + 1 : 0
+        let h = maxY >= minY ? maxY - minY + 1 : 0
+        let rect = w * h > 0 ? CGRect(x: minX, y: minY, width: w, height: h) : CGRect.zero
+        
+        let capacity = w * h
+        let data = UnsafeMutablePointer<UInt8>.allocate(capacity: capacity)
+        
+        let start = DispatchTime.now()
+        // copy the mask image
+        if w == self.width && h == self.height {
+            data.initialize(from: _data, count: capacity)
+        }
+        else {
+            for y in 0 ..< h {
+                let oIndex = (y + minY) * width +  minX
+                let cIndex = y * w
+                for x in 0 ..< w {
+                    data[cIndex + x] = _data[oIndex + x]
+                }
+            }
+        }
+        let end = DispatchTime.now()
+        let elapsed = (end.uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000
+        
+        print("copy data elapsed: \(elapsed)")
+        
+        return MaskImageData(data: data, rect: rect)
     }
     
     deinit {

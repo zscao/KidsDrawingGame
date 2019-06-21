@@ -13,7 +13,7 @@
 		A996059622A7B32500C50570 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D122A65CEA00ADD793 /* Picture.swift */; };
 		A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825722ABD5D000DF04EE /* ViewMode.swift */; };
 		A9C458EC22B9042700088F05 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C458EB22B9042700088F05 /* Stack.swift */; };
-		A9C60A8A22B9BDD6001C4915 /* MaskImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8922B9BDD6001C4915 /* MaskImage.swift */; };
+		A9C60A8A22B9BDD6001C4915 /* ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8922B9BDD6001C4915 /* ImageMask.swift */; };
 		A9C60A8E22B9E7CD001C4915 /* MaskFinderLinearFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */; };
 		A9C60A9022B9F752001C4915 /* MaskFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8F22B9F752001C4915 /* MaskFinder.swift */; };
 		A9C60A9222BA019D001C4915 /* MaskFinderQuickFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */; };
@@ -36,7 +36,7 @@
 		A900BA9C22B7029900EF14C7 /* Masking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Masking.swift; sourceTree = "<group>"; };
 		A9BF825722ABD5D000DF04EE /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
 		A9C458EB22B9042700088F05 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		A9C60A8922B9BDD6001C4915 /* MaskImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskImage.swift; sourceTree = "<group>"; };
+		A9C60A8922B9BDD6001C4915 /* ImageMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
 		A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinderLinearFill.swift; sourceTree = "<group>"; };
 		A9C60A8F22B9F752001C4915 /* MaskFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinder.swift; sourceTree = "<group>"; };
 		A9C60A9122BA019D001C4915 /* MaskFinderQuickFill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskFinderQuickFill.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				A9AEB58822BA71A900D85036 /* MaskFinders */,
 				A9CB56F822B4ED8100E440B7 /* Canvas.swift */,
 				A9D709E322B67680006E1EAB /* Sketch.swift */,
-				A9C60A8922B9BDD6001C4915 /* MaskImage.swift */,
+				A9C60A8922B9BDD6001C4915 /* ImageMask.swift */,
 				A900BA9A22B7012100EF14C7 /* Drawable.swift */,
 				A900BA9C22B7029900EF14C7 /* Masking.swift */,
 			);
@@ -236,7 +236,7 @@
 				A900BA9D22B7029900EF14C7 /* Masking.swift in Sources */,
 				A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */,
 				A9C458EC22B9042700088F05 /* Stack.swift in Sources */,
-				A9C60A8A22B9BDD6001C4915 /* MaskImage.swift in Sources */,
+				A9C60A8A22B9BDD6001C4915 /* ImageMask.swift in Sources */,
 				A9CB56F922B4ED8100E440B7 /* Canvas.swift in Sources */,
 				A996059622A7B32500C50570 /* Picture.swift in Sources */,
 				A900BA9B22B7012100EF14C7 /* Drawable.swift in Sources */,
