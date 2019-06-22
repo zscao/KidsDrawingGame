@@ -22,15 +22,14 @@ class ViewController: UIViewController {
     
     private func setupGalleryView() {
         
-        var galleryView: GalleryView! = GalleryView(frame: self.view.frame)
+        let galleryView = GalleryView(frame: self.view.frame)
         galleryView.setup(album: album, viewMode: viewMode)
         
-        galleryView.onSelection = { [unowned self] name in
-            galleryView.removeFromSuperview()
-            galleryView = nil
+        galleryView.onSelection = { [unowned self, weak galleryView] name in
+            galleryView?.removeFromSuperview()
             self.setupDrawingView(pictureName: name)
         }
-        
+
         self.view.addSubview(galleryView)
     }
     
@@ -39,16 +38,19 @@ class ViewController: UIViewController {
         
         if let picture = album[pictureName] {
         
-            var drawingView: DrawingView! = DrawingView(frame: self.view.frame)
+            let drawingView = DrawingView(frame: self.view.frame)
             drawingView.setup(picture: picture)
             
-            drawingView.onHome = { [unowned self] () in
-                drawingView.removeFromSuperview()
-                drawingView = nil
+            drawingView.onHome = { [unowned self, weak drawingView] in
+                drawingView?.removeFromSuperview()
                 self.setupGalleryView()
             }
             
+            drawingView.alpha = 0
             self.view.addSubview(drawingView)
+            UIView.animate(withDuration: 1.0) { [weak drawingView] in
+                drawingView?.alpha = 1.0
+            }
         }
     }
 }

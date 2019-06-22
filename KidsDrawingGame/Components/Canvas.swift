@@ -26,7 +26,11 @@ public class Canvas {
         
         _cgContext = getImageContext()
         
-        _mask = ImageMask(size: size, picture: picture)
+        let mask = ImageMask(size: size, picture: picture)
+        _mask = mask
+        DispatchQueue.global(qos: .userInitiated).async { [weak mask] in
+            mask?.preloadMasks()
+        }
     
         reset()
     }
