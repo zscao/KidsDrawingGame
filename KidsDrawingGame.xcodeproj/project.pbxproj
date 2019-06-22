@@ -13,6 +13,7 @@
 		A996059622A7B32500C50570 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D122A65CEA00ADD793 /* Picture.swift */; };
 		A9B6F58722BD1AE400C79EEF /* Performance.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6F58622BD1AE400C79EEF /* Performance.rtf */; };
 		A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825722ABD5D000DF04EE /* ViewMode.swift */; };
+		A9C31E6222BDFD59008EAB88 /* MaskImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C31E6122BDFD59008EAB88 /* MaskImageStore.swift */; };
 		A9C458EC22B9042700088F05 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C458EB22B9042700088F05 /* Stack.swift */; };
 		A9C60A8A22B9BDD6001C4915 /* ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8922B9BDD6001C4915 /* ImageMask.swift */; };
 		A9C60A8E22B9E7CD001C4915 /* MaskFinderLinearFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */; };
@@ -37,6 +38,7 @@
 		A900BA9C22B7029900EF14C7 /* Masking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Masking.swift; sourceTree = "<group>"; };
 		A9B6F58622BD1AE400C79EEF /* Performance.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Performance.rtf; sourceTree = "<group>"; };
 		A9BF825722ABD5D000DF04EE /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
+		A9C31E6122BDFD59008EAB88 /* MaskImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskImageStore.swift; sourceTree = "<group>"; };
 		A9C458EB22B9042700088F05 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		A9C60A8922B9BDD6001C4915 /* ImageMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
 		A9C60A8D22B9E7CD001C4915 /* MaskFinderLinearFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskFinderLinearFill.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				A9C60A8922B9BDD6001C4915 /* ImageMask.swift */,
 				A900BA9A22B7012100EF14C7 /* Drawable.swift */,
 				A900BA9C22B7029900EF14C7 /* Masking.swift */,
+				A9C31E6122BDFD59008EAB88 /* MaskImageStore.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				A9C60A9022B9F752001C4915 /* MaskFinder.swift in Sources */,
 				A9D709E422B67680006E1EAB /* Sketch.swift in Sources */,
 				A9E5B8DB22A65DB700ADD793 /* Queue.swift in Sources */,
+				A9C31E6222BDFD59008EAB88 /* MaskImageStore.swift in Sources */,
 				A9C60A9222BA019D001C4915 /* MaskFinderQuickFill.swift in Sources */,
 				A9F7C58222B523E900DE0BFC /* MaskFinderFourwayFill.swift in Sources */,
 				A9E5B8D822A65D3B00ADD793 /* RGBColorData.swift in Sources */,

@@ -26,7 +26,7 @@ extension Album {
             for (_, path) in svgPaths.enumerated() {
                 paths.append(path.cgPath)
             }
-            return Picture(viewBox: svgRect, paths: paths, flipped: flipped)
+            return Picture(name: name, viewBox: svgRect, paths: paths, flipped: flipped)
         }
         return nil
     }

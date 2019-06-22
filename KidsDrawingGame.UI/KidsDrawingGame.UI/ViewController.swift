@@ -48,7 +48,7 @@ class ViewController: UIViewController {
             
             drawingView.alpha = 0
             self.view.addSubview(drawingView)
-            UIView.animate(withDuration: 1.0) { [weak drawingView] in
+            UIView.animate(withDuration: 0.5) { [weak drawingView] in
                 drawingView?.alpha = 1.0
             }
         }

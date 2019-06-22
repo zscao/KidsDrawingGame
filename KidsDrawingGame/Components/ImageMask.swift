@@ -8,6 +8,7 @@ class ImageMask {
     
     private let imageWidth: Int
     private let imageHeight: Int
+    private let _picture: Picture
     
     private var _image: CGImage?
     private var _masks = [MaskImage]()
@@ -15,14 +16,15 @@ class ImageMask {
     init(size: CGSize, picture: Picture) {
         imageWidth = Int(size.width)
         imageHeight = Int(size.height)
+        _picture = picture
         
-        _image = getMaskImage(picture: picture)
+        _image = getMaskImage()
     }
     
-    private func getMaskImage(picture: Picture) -> CGImage? {
-        if let context = getMaskContext(picture: picture) {
+    private func getMaskImage() -> CGImage? {
+        if let context = getMaskContext() {
             
-            let sketch = Sketch(picture: picture)
+            let sketch = Sketch(picture: _picture)
             let scale = sketch.getScale(width: imageWidth, height: imageHeight)
             let layer = sketch.getSketchLayer(strokeColor: UIColor.white.cgColor, lineWidth: SketchLineWidth / scale)
             
@@ -32,7 +34,7 @@ class ImageMask {
         return nil
     }
     
-    private func getMaskContext(picture: Picture) -> CGContext? {
+    private func getMaskContext() -> CGContext? {
         if let context = CGContext(data: nil,
                                    width: imageWidth,
                                    height: imageHeight,
@@ -41,16 +43,16 @@ class ImageMask {
                                    space: CGColorSpaceCreateDeviceGray(),
                                    bitmapInfo: CGImageAlphaInfo.none.rawValue) {
             
-            if picture.isFlipped {
+            if _picture.isFlipped {
                 let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(context.height))
                 context.concatenate(flipVertical)
             }
-            let sketch = Sketch(picture: picture)
+            let sketch = Sketch(picture: _picture)
             let scale = sketch.getScale(width: imageWidth, height: imageHeight)
             
             // set the picture in the middle of the view
-            var deltax = CGFloat(context.width) - picture.viewBox.width * scale
-            var deltay = CGFloat(context.height) - picture.viewBox.height * scale
+            var deltax = CGFloat(context.width) - _picture.viewBox.width * scale
+            var deltay = CGFloat(context.height) - _picture.viewBox.height * scale
             if deltax > deltay {
                 deltax /= 2
                 deltay = 0
@@ -60,8 +62,8 @@ class ImageMask {
                 deltay /= 2
             }
             
-            deltax += -picture.viewBox.minX * scale
-            deltay += -picture.viewBox.minY * scale
+            deltax += -_picture.viewBox.minX * scale
+            deltay += -_picture.viewBox.minY * scale
             
             context.translateBy(x: deltax, y: deltay)
             context.scaleBy(x: scale, y: scale)
@@ -76,11 +78,18 @@ class ImageMask {
 
 extension ImageMask: Masking {
     func preloadMasks() {
+        //let store = MaskImageStore(id: "test")
+        let masks = MaskImageStore(id: _picture.name).loadMaskImages()
+        for mask in masks {
+            _masks.append(mask)
+        }
+        
+        // prefill the mask with the background area as it usually take more time to generate
         if let image = _image {
-            getMaskImageAtPoint(at: CGPoint(x: 0, y: 0))
-            getMaskImageAtPoint(at: CGPoint(x: 0, y: image.height - 1))
-            getMaskImageAtPoint(at: CGPoint(x: image.width - 1, y: 0))
-            getMaskImageAtPoint(at: CGPoint(x: image.width - 1, y: image.height - 1))
+            let _ = getMaskImageAtPoint(at: CGPoint(x: 0, y: 0))
+            let _ = getMaskImageAtPoint(at: CGPoint(x: 0, y: image.height - 1))
+            let _ = getMaskImageAtPoint(at: CGPoint(x: image.width - 1, y: 0))
+            let _ = getMaskImageAtPoint(at: CGPoint(x: image.width - 1, y: image.height - 1))
         }
     }
     
@@ -117,6 +126,14 @@ extension ImageMask: Masking {
                 print("Elapsed time: " + String(elapsed))
                 
                 _masks.append(mask)
+                
+                // save the mask image
+                let storeName = _picture.name
+                DispatchQueue.global(qos: .background).async {
+                    let store = MaskImageStore(id: storeName)
+                    store.saveMaskImage(mask: mask)
+                }
+                
                 return mask
             }
         }
