@@ -43,7 +43,7 @@ public class Canvas {
                          bitsPerComponent: 8,
                          bytesPerRow: 0,
                          space: CGColorSpaceCreateDeviceRGB(),
-                         bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue) {
+                         bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
             context.setShouldAntialias(true)
             return context
         }        
@@ -66,8 +66,8 @@ extension Canvas: Drawable {
             
             let rect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
             context.clear(rect)
-            context.setFillColor(_viewMode.backgroundColor.cgColor)
-            context.fill(rect)
+            //context.setFillColor(_viewMode.backgroundColor.cgColor)
+            //context.fill(rect)
 
             for stroke in _historyStrokes {
                 makeStroke(context: context, stroke: stroke)
@@ -133,15 +133,24 @@ extension Canvas: Drawable {
         return CGPoint(x: position.x, y: CGFloat(self.imageHeight) - position.y)
     }
     
+    private func flipVertical(rect: CGRect) -> CGRect {
+        return CGRect(origin: CGPoint(x: rect.origin.x, y: CGFloat(imageHeight) - rect.origin.y - rect.height), size: rect.size)
+    }
+    
     private func makeStroke(context: CGContext, stroke: Stroke) {
         
         context.resetClip()
         if let mask = stroke.mask {
-            // why?
-            let rect = CGRect(origin: CGPoint(x: mask.rect.origin.x, y: CGFloat(imageHeight) - mask.rect.origin.y - mask.rect.height), size: mask.rect.size)
+            let rect = flipVertical(rect: mask.rect)
             context.clip(to: rect, mask: mask.image)
         }
         
+        if stroke.line.color == UIColor.clear.cgColor {
+            context.setBlendMode(.clear)
+        }
+        else {
+            context.setBlendMode(.color)
+        }
         context.setStrokeColor(stroke.line.color)
         context.setLineWidth(stroke.line.width)
         context.setLineJoin(.round)

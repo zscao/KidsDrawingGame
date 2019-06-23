@@ -72,6 +72,8 @@ class DrawingView: UIView {
                 switch action {
                 case .clear:
                     self.canvasView?.clear()
+                case .erase:
+                    self.canvasView?.setStrokeColor(color: UIColor.clear)
                 case .undo:
                     self.canvasView?.undo()
                 case .colorPen:

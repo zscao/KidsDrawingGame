@@ -35,8 +35,7 @@ class MainPanel: UIView {
         self.addSubview(getActionButton(at: CGPoint(x: 10, y: 0), action: .goBack, image: UIImage(named: "BackButton")))
         self.addSubview(getActionButton(at: CGPoint(x: 110, y: 0), action: .clear, image: UIImage(named: "ClearButton")))
         self.addSubview(getActionButton(at: CGPoint(x: 210, y: 0), action: .undo, image: UIImage(named: "UndoButton")))
-        
-        
+        self.addSubview(getActionButton(at: CGPoint(x: 310, y: 0), action: .erase, image: UIImage(named: "EraseButton")))        
         
         //self.addSubview(getActionButton(at: CGPoint(x: 210, y: 10), action: .pickPen, title: "Color"))
         let size = CGSize(width: 80, height: 80)

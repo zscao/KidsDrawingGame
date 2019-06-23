@@ -5,6 +5,7 @@ import UIKit
 enum DrawingAction {
     case drawing
     case clear
+    case erase
     case undo
     case redo
     case colorPen

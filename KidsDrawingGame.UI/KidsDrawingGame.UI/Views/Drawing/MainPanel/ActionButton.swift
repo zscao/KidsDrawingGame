@@ -5,7 +5,7 @@ import UIKit
 class ActionButton: UIButton {
     var action: DrawingAction = .drawing
 }
-
+/*
 class ActionButton1: CAShapeLayer {
     private (set) var action: DrawingAction = .drawing
     private (set) var size: CGSize = .zero
@@ -47,3 +47,4 @@ class ActionButton1: CAShapeLayer {
     }
     
 }
+*/
