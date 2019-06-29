@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KidsDrawingGame.UI/KidsDrawingGame.UI/Views/Drawing/CanvasView.swift"
-            timestampString = "582971543.41509"
+            timestampString = "583504720.365136"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "refreshDrawing()"
             landmarkType = "7">
          </BreakpointContent>

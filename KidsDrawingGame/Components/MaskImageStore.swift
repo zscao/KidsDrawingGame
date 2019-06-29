@@ -9,10 +9,10 @@ public class MaskImageStore {
     }
     
     func saveMaskImage(mask: MaskImage) {
-        let fileName = "mask-" + mask.rect.toString() + ".png"
+        let fileName = "mask-" + mask.rect.toString()
         guard let baseUrl = getBaseFolder() else { return }
         
-        let url = baseUrl.appendingPathComponent(fileName)
+        let url = baseUrl.appendingPathComponent(fileName).appendingPathExtension("png");
         
         #if DEBUG
         print("saving mask image to device...")
@@ -74,7 +74,7 @@ public class MaskImageStore {
         
         let fileManager = FileManager.default
         let dir = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let url = dir?.appendingPathComponent(folderName).appendingPathComponent(self.id) {
+        if let url = dir?.appendingPathComponent(self.id).appendingPathComponent(folderName) {
             if !fileManager.fileExists(atPath: url.path) {
                 do {
                     try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)

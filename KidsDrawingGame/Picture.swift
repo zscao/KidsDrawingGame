@@ -3,7 +3,7 @@
 import UIKit
 
 public struct Picture {
-    private (set) var name: String
+    public private (set) var name: String
     private (set) var viewBox: CGRect
     private (set) var paths: [CGPath]
     private (set) var isFlipped: Bool

@@ -12,26 +12,33 @@ public class Canvas {
     private var _mask: Masking?
     
     private var _currentStroke: Stroke?
-    private var _historyStrokes: [Stroke] = [Stroke]()
+    private var _historyStrokes: [Stroke]
     
     private var imageWidth: Int = 0
     private var imageHeight: Int = 0
     
-    public init(size: CGSize, picture: Picture, viewMode: ViewMode) {
+    public init(size: CGSize, picture: Picture, viewMode: ViewMode, lines: [Line]) {
         imageWidth = Int(size.width)
         imageHeight = Int(size.height)
         
         _picture = picture
         _viewMode = viewMode
         
-        _cgContext = getImageContext()
-        
+        _historyStrokes = [Stroke]()
+                
         let mask = ImageMask(size: size, picture: picture)
-        _mask = mask
         DispatchQueue.global(qos: .userInitiated).async { [weak mask] in
             mask?.preloadMasks()
         }
-    
+        _mask = mask
+
+        for line in lines {
+            let maskImage = mask.getMaskImageAtPoint(at: flipVertical(position: line.startPoint))
+            let stroke = Stroke(line: line, mask: maskImage)
+            _historyStrokes.append(stroke)
+        }
+        
+        _cgContext = getImageContext()
         reset()
     }
         
@@ -57,6 +64,16 @@ extension Canvas: Drawable {
     public var image: CGImage? {
         get {
             return _cgContext?.makeImage()
+        }
+    }
+    
+    public var lines: [Line] {
+        get {
+            var result = [Line]()
+            for stroke in _historyStrokes {
+                result.append(stroke.line)
+            }
+            return result
         }
     }
     
@@ -159,4 +176,13 @@ extension Canvas: Drawable {
         context.strokePath()
     }
     
+}
+
+
+struct Stroke {
+    var line: Line
+    var mask: MaskImage?
+    
+    // the rect for image mask
+    //var rect: CGRect
 }

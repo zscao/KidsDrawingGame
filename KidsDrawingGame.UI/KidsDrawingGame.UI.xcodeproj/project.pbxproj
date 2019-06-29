@@ -17,6 +17,8 @@
 		A9B1F12422B12862004A1EF6 /* GalleryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */; };
 		A9B51C6822B2617400D0FCD0 /* benz.svg in Resources */ = {isa = PBXBuildFile; fileRef = A9B51C6722B2617400D0FCD0 /* benz.svg */; };
 		A9BF825422ABC3C900DF04EE /* ColorPenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */; };
+		A9C168FD22C76F2300FB1805 /* DrawingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C168FC22C76F2300FB1805 /* DrawingStore.swift */; };
+		A9C168FF22C779FB00FB1805 /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C168FE22C779FB00FB1805 /* LineWrapper.swift */; };
 		A9D13B9C22A8D95F008DAA2B /* ColorPenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */; };
 		A9D2B24F22AA9EF400D3C140 /* ColorPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D2B24E22AA9EF400D3C140 /* ColorPen.swift */; };
 		A9D4251D22AFB0540056C8A2 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4251C22AFB0540056C8A2 /* DrawingView.swift */; };
@@ -82,6 +84,8 @@
 		A9B1F12322B12862004A1EF6 /* GalleryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemCell.swift; sourceTree = "<group>"; };
 		A9B51C6722B2617400D0FCD0 /* benz.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = benz.svg; sourceTree = "<group>"; };
 		A9BF825322ABC3C900DF04EE /* ColorPenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenButton.swift; sourceTree = "<group>"; };
+		A9C168FC22C76F2300FB1805 /* DrawingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingStore.swift; sourceTree = "<group>"; };
+		A9C168FE22C779FB00FB1805 /* LineWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineWrapper.swift; sourceTree = "<group>"; };
 		A9D13B9B22A8D95F008DAA2B /* ColorPenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPenPanel.swift; sourceTree = "<group>"; };
 		A9D2B24E22AA9EF400D3C140 /* ColorPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPen.swift; sourceTree = "<group>"; };
 		A9D4251C22AFB0540056C8A2 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
@@ -153,6 +157,15 @@
 			path = SVGs;
 			sourceTree = "<group>";
 		};
+		A9C168FB22C76F0200FB1805 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				A9C168FC22C76F2300FB1805 /* DrawingStore.swift */,
+				A9C168FE22C779FB00FB1805 /* LineWrapper.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
 		A9D4251822AFAECA0056C8A2 /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +232,7 @@
 		A9E5B89722A65A0300ADD793 /* KidsDrawingGame.UI */ = {
 			isa = PBXGroup;
 			children = (
+				A9C168FB22C76F0200FB1805 /* Stores */,
 				A9A0FDE522A693F500BC80CD /* SVGs */,
 				A9E5B8EF22A67C8300ADD793 /* Pictures */,
 				A9E5B8E422A65F5500ADD793 /* Views */,
@@ -461,11 +475,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9B1F12422B12862004A1EF6 /* GalleryItemCell.swift in Sources */,
+				A9C168FF22C779FB00FB1805 /* LineWrapper.swift in Sources */,
 				A9E5B8EA22A6605A00ADD793 /* DrawingAction.swift in Sources */,
 				A9E5B8A122A65A0300ADD793 /* KidsDrawingGame_UI.xcdatamodeld in Sources */,
 				A9A0FDEB22A6971900BC80CD /* Shapes.swift in Sources */,
 				A9D2B24F22AA9EF400D3C140 /* ColorPen.swift in Sources */,
 				A9D4251F22AFC2060056C8A2 /* GalleryView.swift in Sources */,
+				A9C168FD22C76F2300FB1805 /* DrawingStore.swift in Sources */,
 				A996059922A7C68E00C50570 /* Samples.swift in Sources */,
 				A9D13B9C22A8D95F008DAA2B /* ColorPenPanel.swift in Sources */,
 				A9E5B8EE22A660A900ADD793 /* CanvasView.swift in Sources */,

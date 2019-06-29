@@ -6,6 +6,8 @@ public protocol Drawable {
     
     var image: CGImage? { get }
     
+    var lines: [Line] { get }
+    
     func reset()
     
     func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat)
@@ -17,4 +19,5 @@ public protocol Drawable {
     func clear()
     
     func undo()
+
 }

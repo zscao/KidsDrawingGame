@@ -8,7 +8,9 @@ class CanvasView: UIImageView {
     private var _strokeColor: CGColor = UIColor.black.cgColor
     
     private var _canvas: Drawable?
+    private var _store: DrawingStore?
     private var _drawingLayer: CALayer!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,8 +21,13 @@ class CanvasView: UIImageView {
     }
     
     func setup(viewMode: ViewMode, picture: Picture) {
-        _canvas = Canvas(size: self.frame.size.toScreenScalePixel(), picture: picture, viewMode: viewMode)
+        let store = DrawingStore(id: picture.name)
+        let lines = store.loadLines()
+        _store = store
+        
+        _canvas = Canvas(size: self.frame.size.toScreenScalePixel(), picture: picture, viewMode: viewMode, lines: lines)
         _strokeColor = UIColor.red.cgColor
+        
         
         // setup background
         if let texture = UIImage(named: "CanvasTexture") {
@@ -95,6 +102,13 @@ class CanvasView: UIImageView {
             _drawingLayer.contents = image
             //let uiImage = UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .up)
             //self.image = uiImage
+        }
+    }
+    
+    func save() {
+        if let canvas = _canvas, let store = _store {
+            let lines = canvas.lines
+            store.saveLines(lines: lines)
         }
     }
 }

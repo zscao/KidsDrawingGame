@@ -4,14 +4,14 @@
 
 import UIKit
 
-class Line {
-    private (set) var color: CGColor
-    private (set) var width: CGFloat
-    private (set) var path: CGMutablePath
+public class Line {
+    public private (set) var color: CGColor
+    public private (set) var width: CGFloat
+    public private (set) var path: CGMutablePath
+    public private (set) var startPoint: CGPoint
     
     private var _lastPoint: CGPoint
     private var _currentPoint: CGPoint
-    private var _startPoint: CGPoint
     
     var lastSegment: CGPath {
         get {
@@ -26,14 +26,27 @@ class Line {
         self.path = CGMutablePath()
         self.path.move(to: startPoint)
         self.path.addLine(to: startPoint)
+        self.startPoint = startPoint
         
         self.color = color
         self.width = width
         
-        _startPoint = startPoint
         _lastPoint = startPoint
         _currentPoint = startPoint
     }
+    
+    public init(start startPoint: CGPoint, color: CGColor, width: CGFloat, path: CGPath) {
+        self.path = CGMutablePath()
+        self.path.addPath(path)
+        self.startPoint = startPoint
+        
+        self.color = color
+        self.width = width
+        
+        _lastPoint = self.path.currentPoint
+        _currentPoint = self.path.currentPoint
+    }
+    
     
     func lineTo(to toPoint: CGPoint) {
         path.addLine(to: toPoint)
@@ -46,6 +59,6 @@ class Line {
         path.closeSubpath()
         
         _lastPoint = _currentPoint
-        _currentPoint = _startPoint
+        _currentPoint = self.startPoint
     }
 }
