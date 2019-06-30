@@ -59,6 +59,10 @@ public class Canvas {
                          space: CGColorSpaceCreateDeviceRGB(),
                          bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
             context.setShouldAntialias(true)
+            
+            let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(context.height))
+            context.concatenate(flipVertical)
+            
             return context
         }        
         return nil
@@ -115,10 +119,9 @@ extension Canvas: Drawable {
             return
         }
         
-        let maskImage = mask.getMaskImageAtPoint(at: start)
+        let maskImage = mask.getMaskImageAtPoint(at: flipVertical(position: start))
         
-        let startPoint = flipVertical(position: start)
-        let line = Line(start: startPoint, color: color, width: lineWidth)
+        let line = Line(start: start, color: color, width: lineWidth)
         _currentStroke = Stroke(line: line, mask: maskImage)
         
         guard let stroke = _currentStroke else { return }
@@ -132,8 +135,7 @@ extension Canvas: Drawable {
     public func lineTo(to: CGPoint) {
         guard let context = _cgContext, let stroke = _currentStroke else { return }
         
-        let toPoint = flipVertical(position: to)
-        stroke.line.lineTo(to: toPoint)
+        stroke.line.lineTo(to: to)
         
         context.addPath(stroke.line.lastSegment)
         context.strokePath()

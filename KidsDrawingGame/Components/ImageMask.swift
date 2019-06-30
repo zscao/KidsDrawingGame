@@ -43,10 +43,10 @@ class ImageMask {
                                    space: CGColorSpaceCreateDeviceGray(),
                                    bitmapInfo: CGImageAlphaInfo.none.rawValue) {
             
-            if _picture.isFlipped {
-                let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(context.height))
-                context.concatenate(flipVertical)
-            }
+//            if _picture.isFlipped {
+//                let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(context.height))
+//                context.concatenate(flipVertical)
+//            }
             let sketch = Sketch(picture: _picture)
             let scale = sketch.getScale(width: imageWidth, height: imageHeight)
             

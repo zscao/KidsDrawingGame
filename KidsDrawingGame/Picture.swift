@@ -6,12 +6,12 @@ public struct Picture {
     public private (set) var name: String
     private (set) var viewBox: CGRect
     private (set) var paths: [CGPath]
-    private (set) var isFlipped: Bool
+    //private (set) var isFlipped: Bool
     
-    public init(name: String, viewBox: CGRect, paths: [CGPath], flipped: Bool) {
+    public init(name: String, viewBox: CGRect, paths: [CGPath]) {
         self.name = name
         self.viewBox = viewBox
         self.paths = paths
-        self.isFlipped = flipped
+        //self.isFlipped = flipped
     }
 }

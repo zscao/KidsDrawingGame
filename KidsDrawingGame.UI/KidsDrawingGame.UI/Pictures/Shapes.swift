@@ -22,7 +22,7 @@ extension Album {
         
         let size = CGSize(width: 600, height: 600)
         
-        return Picture(name: "square", viewBox: CGRect(origin: .zero, size: size), paths: paths, flipped: true)
+        return Picture(name: "square", viewBox: CGRect(origin: .zero, size: size), paths: paths)
     }
     
     private func getCircle() -> Picture {
@@ -36,6 +36,6 @@ extension Album {
         
         let size = CGSize(width: 200, height: 200)
         
-        return Picture(name: "circle", viewBox: CGRect(origin: .zero, size: size), paths: paths, flipped: true)
+        return Picture(name: "circle", viewBox: CGRect(origin: .zero, size: size), paths: paths)
     }
 }
