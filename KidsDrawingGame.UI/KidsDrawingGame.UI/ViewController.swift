@@ -29,8 +29,11 @@ class ViewController: UIViewController {
             galleryView?.removeFromSuperview()
             self.setupDrawingView(pictureName: name)
         }
-
         self.view.addSubview(galleryView)
+//        galleryView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 10)
+//        galleryView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 10)
+//        galleryView.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor, constant: 10)
+//        galleryView.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: 10)
     }
     
     

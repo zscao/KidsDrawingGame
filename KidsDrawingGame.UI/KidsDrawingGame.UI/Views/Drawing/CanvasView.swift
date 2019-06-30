@@ -3,7 +3,7 @@
 import UIKit
 import KidsDrawingGame
 
-class CanvasView: UIImageView {
+class CanvasView: UIView {
     
     private var _strokeColor: CGColor = UIColor.black.cgColor
     
@@ -106,7 +106,7 @@ class CanvasView: UIImageView {
     }
     
     func save() {
-        if let canvas = _canvas, let store = _store {
+        if let canvas = _canvas, canvas.changed, let store = _store {
             let lines = canvas.lines
             store.saveLines(lines: lines)
         }

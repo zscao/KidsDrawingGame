@@ -12,13 +12,13 @@ class GalleryItemCell: UICollectionViewCell {
         let view = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 200)))
         view.backgroundColor = UIColor.white
         self.contentView.addSubview(view)
-        
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            view.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            view.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-        ])
+//
+//        NSLayoutConstraint.activate([
+//            view.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+//            view.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+//            view.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+//            view.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+//        ])
         
         self.imageView = view
     }

@@ -17,6 +17,8 @@ public class Canvas {
     private var imageWidth: Int = 0
     private var imageHeight: Int = 0
     
+    private var _changed: Bool = false
+    
     public init(size: CGSize, picture: Picture, viewMode: ViewMode, lines: [Line]) {
         imageWidth = Int(size.width)
         imageHeight = Int(size.height)
@@ -27,17 +29,22 @@ public class Canvas {
         _historyStrokes = [Stroke]()
                 
         let mask = ImageMask(size: size, picture: picture)
-        DispatchQueue.global(qos: .userInitiated).async { [weak mask] in
-            mask?.preloadMasks()
+        
+        if lines.count > 0 {
+            mask.preloadMasks()
+            for line in lines {
+                let maskImage = mask.getMaskImageAtPoint(at: flipVertical(position: line.startPoint))
+                let stroke = Stroke(line: line, mask: maskImage)
+                _historyStrokes.append(stroke)
+            }
         }
-        _mask = mask
-
-        for line in lines {
-            let maskImage = mask.getMaskImageAtPoint(at: flipVertical(position: line.startPoint))
-            let stroke = Stroke(line: line, mask: maskImage)
-            _historyStrokes.append(stroke)
+        else {
+            DispatchQueue.global(qos: .userInitiated).async { [weak mask] in
+                mask?.preloadMasks()
+            }
         }
         
+        _mask = mask
         _cgContext = getImageContext()
         reset()
     }
@@ -77,6 +84,12 @@ extension Canvas: Drawable {
         }
     }
     
+    public var changed: Bool {
+        get {
+            return self._changed
+        }
+    }
+    
     public func reset() {
         if let context = _cgContext {
             context.resetClip()
@@ -112,6 +125,8 @@ extension Canvas: Drawable {
         _historyStrokes.append(stroke)
         
         makeStroke(context: context, stroke: stroke)
+        
+        _changed = true
     }
     
     public func lineTo(to: CGPoint) {
@@ -122,6 +137,8 @@ extension Canvas: Drawable {
         
         context.addPath(stroke.line.lastSegment)
         context.strokePath()
+        
+        _changed = true
     }
     
     public func endLine(at: CGPoint?) {
@@ -134,12 +151,16 @@ extension Canvas: Drawable {
     public func clear() {
         _historyStrokes.removeAll()
         reset()
+        
+        _changed = true
     }
     
     public func undo() {
         if _historyStrokes.isEmpty == false {
             _historyStrokes.removeLast()
             reset()
+            
+            _changed = true
         }
     }
     

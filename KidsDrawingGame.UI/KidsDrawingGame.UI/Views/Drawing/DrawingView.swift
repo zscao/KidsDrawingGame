@@ -88,6 +88,7 @@ class DrawingView: UIView {
                         }
                     }
                 case .goBack:
+                    self.canvasView?.save()
                     self.onHome?()
                 default:
                     return

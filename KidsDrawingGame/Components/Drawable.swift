@@ -8,6 +8,8 @@ public protocol Drawable {
     
     var lines: [Line] { get }
     
+    var changed: Bool { get }
+    
     func reset()
     
     func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat)

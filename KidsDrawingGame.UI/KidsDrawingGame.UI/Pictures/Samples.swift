@@ -11,7 +11,7 @@ extension Album {
     }
     
     func addSample(_ name: String, flipped: Bool) {
-        if let pic = loadFromSVG(name: name, flipped: true) {
+        if let pic = loadFromSVG(name: name, flipped: flipped) {
             append(name: name, picture: pic)
         }
     }
