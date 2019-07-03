@@ -7,50 +7,44 @@ class LineWrapper: NSObject, NSCoding {
     
     var color: UIColor
     var width: CGFloat
-    var path: UIBezierPath
-    var startPoint: CGPoint
+    var points: [CGPoint]
     
     var line: Line {
         get {
-            return Line(start: self.startPoint, color: self.color.cgColor, width: self.width, path: self.path.cgPath)
+            return Line(points: self.points, color: self.color.cgColor, width: self.width)
         }
     }
     
     init(line: Line) {
         self.color = UIColor(cgColor: line.color)
         self.width = line.width
-        self.path = UIBezierPath.init(cgPath: line.path)
-        self.startPoint = line.startPoint
+        self.points = line.points
     }
     
-    init(start startPoint: CGPoint, color: UIColor, width: CGFloat, path: UIBezierPath)
+    init(points: [CGPoint], color: UIColor, width: CGFloat)
     {
         self.color = color
         self.width = width
-        self.path = path
-        self.startPoint = startPoint
+        self.points = points
     }
     
     // coding support
     private enum CodingKeys: String {
         case color = "color"
         case width = "width"
-        case path = "path"
-        case startPoint = "startPoint"
+        case points = "points"
     }
     
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.color, forKey: CodingKeys.color.rawValue)
         aCoder.encode(self.width, forKey: CodingKeys.width.rawValue)
-        aCoder.encode(self.path, forKey: CodingKeys.path.rawValue)
-        aCoder.encode(self.startPoint, forKey: CodingKeys.startPoint.rawValue)
+        aCoder.encode(self.points, forKey: CodingKeys.points.rawValue)
     }
     
     public required convenience init?(coder aDecoder: NSCoder) {
         let color = aDecoder.decodeObject(forKey: CodingKeys.color.rawValue) as! UIColor
         let width = aDecoder.decodeObject(forKey: CodingKeys.width.rawValue) as! CGFloat
-        let path = aDecoder.decodeObject(forKey: CodingKeys.path.rawValue) as! UIBezierPath
-        let startPoint = aDecoder.decodeCGPoint(forKey: CodingKeys.startPoint.rawValue)
-        self.init(start: startPoint, color: color, width: width, path: path)
+        let points = aDecoder.decodeObject(forKey: CodingKeys.points.rawValue) as! [CGPoint]
+        self.init(points: points, color: color, width: width)
     }
 }

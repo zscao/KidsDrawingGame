@@ -205,7 +205,4 @@ extension Canvas: Drawable {
 struct Stroke {
     var line: Line
     var mask: MaskImage?
-    
-    // the rect for image mask
-    //var rect: CGRect
 }

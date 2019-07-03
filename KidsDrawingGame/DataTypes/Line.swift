@@ -7,58 +7,55 @@ import UIKit
 public class Line {
     public private (set) var color: CGColor
     public private (set) var width: CGFloat
-    public private (set) var path: CGMutablePath
-    public private (set) var startPoint: CGPoint
+    //public private (set) var startPoint: CGPoint
+    public private (set) var points: [CGPoint]
     
-    private var _lastPoint: CGPoint
-    private var _currentPoint: CGPoint
+    //private var _lastPoint: CGPoint
+    //private var _currentPoint: CGPoint
     
-    var lastSegment: CGPath {
+    public var path: CGMutablePath {
         get {
             let p = CGMutablePath()
-            p.move(to: _lastPoint)
-            p.addLine(to: _currentPoint)
+            p.addLines(between: self.points)
             return p
         }
     }
     
+    public var startPoint: CGPoint {
+        get {
+            return points[0]
+        }
+    }
+    
+    var lastSegment: CGPath {
+        get {
+            let path = CGMutablePath()
+            
+            let lastIndex = points.count - 1
+            let last2Index = points.count > 1 ? points.count - 2 : 0
+            path.move(to: points[last2Index])
+            path.addLine(to: points[lastIndex])
+            
+            return path
+        }
+    }
+    
     init(start startPoint: CGPoint, color: CGColor, width: CGFloat) {
-        self.path = CGMutablePath()
-        self.path.move(to: startPoint)
-        self.path.addLine(to: startPoint)
-        self.startPoint = startPoint
+        self.points = [CGPoint]()
+        self.points.append(startPoint)
         
         self.color = color
         self.width = width
-        
-        _lastPoint = startPoint
-        _currentPoint = startPoint
     }
     
-    public init(start startPoint: CGPoint, color: CGColor, width: CGFloat, path: CGPath) {
-        self.path = CGMutablePath()
-        self.path.addPath(path)
-        self.startPoint = startPoint
-        
+    public init(points: [CGPoint], color: CGColor, width: CGFloat) {
+        self.points = points
         self.color = color
         self.width = width
-        
-        _lastPoint = self.path.currentPoint
-        _currentPoint = self.path.currentPoint
     }
-    
     
     func lineTo(to toPoint: CGPoint) {
-        path.addLine(to: toPoint)
-        
-        _lastPoint = _currentPoint
-        _currentPoint = toPoint
+        points.append(toPoint)
     }
-    
-    func closePath() {
-        path.closeSubpath()
-        
-        _lastPoint = _currentPoint
-        _currentPoint = self.startPoint
-    }
+
 }
