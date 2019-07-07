@@ -10,7 +10,7 @@ public protocol Drawable {
     
     var changed: Bool { get }
     
-    func reset()
+    func setup(lines: [Line])
     
     func startLine(start: CGPoint, color: CGColor, width lineWidth: CGFloat)
     

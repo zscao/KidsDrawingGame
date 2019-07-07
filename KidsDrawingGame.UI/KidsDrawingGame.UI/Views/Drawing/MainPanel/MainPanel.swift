@@ -33,10 +33,10 @@ class MainPanel: UIView {
     
     private func initButtons() {
         self.addSubview(getActionButton(at: CGPoint(x: 10, y: 0), action: .goBack, image: UIImage(named: "BackButton")))
-        //self.addSubview(getActionButton(at: CGPoint(x: 110, y: 0), action: .save, image: UIImage(named: "SaveButton")))
-        self.addSubview(getActionButton(at: CGPoint(x: 110, y: 0), action: .clear, image: UIImage(named: "ClearButton")))
-        self.addSubview(getActionButton(at: CGPoint(x: 210, y: 0), action: .undo, image: UIImage(named: "UndoButton")))
-        self.addSubview(getActionButton(at: CGPoint(x: 310, y: 0), action: .erase, image: UIImage(named: "EraseButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 110, y: 0), action: .play, image: UIImage(named: "PlayButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 210, y: 0), action: .clear, image: UIImage(named: "ClearButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 310, y: 0), action: .undo, image: UIImage(named: "UndoButton")))
+        self.addSubview(getActionButton(at: CGPoint(x: 410, y: 0), action: .erase, image: UIImage(named: "EraseButton")))
         
         //self.addSubview(getActionButton(at: CGPoint(x: 210, y: 10), action: .pickPen, title: "Color"))
         let size = CGSize(width: 80, height: 80)

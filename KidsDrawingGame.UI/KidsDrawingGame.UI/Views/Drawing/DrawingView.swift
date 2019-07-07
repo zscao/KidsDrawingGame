@@ -70,8 +70,8 @@ class DrawingView: UIView {
             
             panel.onAction = { [unowned self] action in
                 switch action {
-                case .save:
-                    self.canvasView?.save()
+                case .play:
+                    self.canvasView?.replay()
                 case .clear:
                     self.canvasView?.clear()
                 case .erase:

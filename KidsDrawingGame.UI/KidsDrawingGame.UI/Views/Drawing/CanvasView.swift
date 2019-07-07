@@ -21,13 +21,6 @@ class CanvasView: UIView {
     }
     
     func setup(viewMode: ViewMode, picture: Picture) {
-        let store = DrawingStore(id: picture.name)
-        let lines = store.loadLines()
-        _store = store
-        
-        _canvas = Canvas(size: self.frame.size.toScreenScalePixel(), picture: picture, viewMode: viewMode, lines: lines)
-        _strokeColor = UIColor.red.cgColor
-        
         
         // setup background
         if let texture = UIImage(named: "CanvasTexture") {
@@ -47,6 +40,19 @@ class CanvasView: UIView {
         layer.transform = CATransform3DMakeScale(scale, scale, 1)
         layer.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.layer.addSublayer(layer)
+        
+        _store = DrawingStore(id: picture.name)
+        _canvas = Canvas(size: self.frame.size.toScreenScalePixel(), picture: picture, viewMode: viewMode)
+        _strokeColor = UIColor.red.cgColor
+
+        reset()
+    }
+    
+    func reset() {
+        if let store = _store, let canvas = _canvas {
+            let lines = store.loadLines()
+            canvas.setup(lines: lines)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -111,6 +117,46 @@ class CanvasView: UIView {
             store.saveLines(lines: lines)
         }
     }
+    
+    func replay() {
+        
+        guard let canvas = _canvas else { return }
+        
+        let lines = canvas.lines
+        if lines.count == 0 { return }
+        
+        canvas.clear()
+        
+        var lineIndex: Int = 0
+        var strokeIndex: Int = 0
+        
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [unowned self] timer in
+            
+            let line = lines[lineIndex]
+            if strokeIndex == 0 {
+                canvas.startLine(start: line.startPoint, color: line.color, width: line.width)
+                self.refreshDrawing()
+            }
+            else {
+                canvas.lineTo(to: line.points[strokeIndex])
+                self.refreshDrawing()
+            }
+            
+            strokeIndex += 1
+            if strokeIndex >= line.points.count {
+                strokeIndex = 0
+                lineIndex += 1
+            }
+            
+            if lineIndex >= lines.count {
+                timer.invalidate()
+                print("done")
+            }
+            
+        }
+    }
+    
+
 }
 
 extension CGSize {

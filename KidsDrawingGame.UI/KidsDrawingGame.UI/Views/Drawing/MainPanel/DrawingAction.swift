@@ -9,6 +9,6 @@ enum DrawingAction {
     case undo
     case redo
     case colorPen
-    case save
+    case play
     case goBack
 }
