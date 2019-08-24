@@ -113,8 +113,8 @@ class CanvasView: UIView {
     
     func save() {
         if let canvas = _canvas, canvas.changed, let store = _store {
-            let lines = canvas.lines
-            store.saveLines(lines: lines)
+            //let lines = canvas.lines
+            //store.saveLines(lines: lines)
         }
     }
     
@@ -122,41 +122,45 @@ class CanvasView: UIView {
         
         guard let canvas = _canvas else { return }
         
-        let lines = canvas.lines
-        if lines.count == 0 { return }
+        let strokes = canvas.strokes
+        if strokes.count == 0 { return }
         
         canvas.clear()
         
-        var lineIndex: Int = 0
         var strokeIndex: Int = 0
+        var pointIndex: Int = 0
         
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [unowned self] timer in
             
-            let line = lines[lineIndex]
-            if strokeIndex == 0 {
-                canvas.startLine(start: line.startPoint, color: line.color, width: line.width)
-                self.refreshDrawing()
+            let stroke = strokes[strokeIndex]
+            if stroke is LineStroke {
+                let line = (stroke as! LineStroke).line
+                
+                if pointIndex == 0 {
+                    canvas.startLine(start: line.startPoint, color: line.color, width: line.width)
+                    self.refreshDrawing()
+                }
+                else {
+                    canvas.lineTo(to: line.points[pointIndex])
+                    self.refreshDrawing()
+                }
+                
+                pointIndex += 1
+                if pointIndex >= line.points.count {
+                    pointIndex = 0
+                    strokeIndex += 1
+                }
             }
             else {
-                canvas.lineTo(to: line.points[strokeIndex])
-                self.refreshDrawing()
+                strokeIndex += 1
             }
             
-            strokeIndex += 1
-            if strokeIndex >= line.points.count {
-                strokeIndex = 0
-                lineIndex += 1
-            }
-            
-            if lineIndex >= lines.count {
+            if strokeIndex >= strokes.count {
                 timer.invalidate()
                 print("done")
             }
-            
         }
     }
-    
-
 }
 
 extension CGSize {

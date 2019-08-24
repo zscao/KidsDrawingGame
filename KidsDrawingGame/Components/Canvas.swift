@@ -81,13 +81,12 @@ extension Canvas: Drawable {
         }
     }
     
-    public var lines: [Line] {
+    public var strokes: [Stroke] {
         get {
-            var result = [Line]()
-            for stroke in _historyStrokes {
-                result.append(stroke.line)
-            }
-            return result
+            // make a copy of the history
+            return _historyStrokes.map({ (stroke) -> Stroke in
+                return stroke
+            })
         }
     }
     
@@ -105,7 +104,7 @@ extension Canvas: Drawable {
             mask.preloadMasks()
             for line in lines {
                 let maskImage = mask.getMaskImageAtPoint(at: flipVertical(position: line.startPoint))
-                let stroke = Stroke(line: line, mask: maskImage)
+                let stroke = LineStroke(line: line, mask: maskImage)
                 _historyStrokes.append(stroke)
             }
         }
@@ -131,9 +130,9 @@ extension Canvas: Drawable {
         let maskImage = mask.getMaskImageAtPoint(at: flipVertical(position: start))
         
         let line = Line(start: start, color: color, width: lineWidth)
-        _currentStroke = Stroke(line: line, mask: maskImage)
+        _currentStroke = LineStroke(line: line, mask: maskImage)
         
-        guard let stroke = _currentStroke else { return }
+        guard let stroke = _currentStroke as? LineStroke else { return }
         _historyStrokes.append(stroke)
         
         context.makeStroke(stroke: stroke)
@@ -142,7 +141,7 @@ extension Canvas: Drawable {
     }
     
     public func lineTo(to: CGPoint) {
-        guard let context = _cgContext, let stroke = _currentStroke else { return }
+        guard let context = _cgContext, let stroke = _currentStroke as? LineStroke else { return }
         
         stroke.line.lineTo(to: to)
         
@@ -196,18 +195,23 @@ fileprivate extension CGContext {
             clip(to: rect, mask: mask.image)
         }
         
-        if stroke.line.color == UIColor.clear.cgColor {
-            setBlendMode(.clear)
+        if stroke is LineStroke {
+            let lineStroke = stroke as! LineStroke
+            let line = lineStroke.line
+            
+            if line.color == UIColor.clear.cgColor {
+                setBlendMode(.clear)
+            }
+            else {
+                setBlendMode(.color)
+            }
+            setStrokeColor(line.color)
+            setLineWidth(line.width)
+            setLineJoin(.round)
+            setLineCap(.round)
+            addPath(line.path)
+            strokePath()
         }
-        else {
-            setBlendMode(.color)
-        }
-        setStrokeColor(stroke.line.color)
-        setLineWidth(stroke.line.width)
-        setLineJoin(.round)
-        setLineCap(.round)
-        addPath(stroke.line.path)
-        strokePath()
     }
     
     func fillMask(mask: MaskImage?, color: CGColor) {
@@ -227,7 +231,4 @@ fileprivate extension CGContext {
 }
 
 
-struct Stroke {
-    var line: Line
-    var mask: MaskImage?
-}
+

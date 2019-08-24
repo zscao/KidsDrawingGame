@@ -11,6 +11,7 @@
 		A900BA9B22B7012100EF14C7 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900BA9A22B7012100EF14C7 /* Drawable.swift */; };
 		A900BA9D22B7029900EF14C7 /* Masking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A900BA9C22B7029900EF14C7 /* Masking.swift */; };
 		A996059622A7B32500C50570 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5B8D122A65CEA00ADD793 /* Picture.swift */; };
+		A9A74896231119FF00FA015B /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A74895231119FF00FA015B /* Stroke.swift */; };
 		A9B6F58722BD1AE400C79EEF /* Performance.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A9B6F58622BD1AE400C79EEF /* Performance.rtf */; };
 		A9BF825822ABD5D000DF04EE /* ViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BF825722ABD5D000DF04EE /* ViewMode.swift */; };
 		A9C31E6222BDFD59008EAB88 /* MaskImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C31E6122BDFD59008EAB88 /* MaskImageStore.swift */; };
@@ -35,6 +36,7 @@
 		A900BA9822B6FEF700EF14C7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A900BA9A22B7012100EF14C7 /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
 		A900BA9C22B7029900EF14C7 /* Masking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Masking.swift; sourceTree = "<group>"; };
+		A9A74895231119FF00FA015B /* Stroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stroke.swift; sourceTree = "<group>"; };
 		A9B6F58622BD1AE400C79EEF /* Performance.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Performance.rtf; sourceTree = "<group>"; };
 		A9BF825722ABD5D000DF04EE /* ViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMode.swift; sourceTree = "<group>"; };
 		A9C31E6122BDFD59008EAB88 /* MaskImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskImageStore.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		A9E5B8CE22A65C1900ADD793 /* DataTypes */ = {
 			isa = PBXGroup;
 			children = (
+				A9A74895231119FF00FA015B /* Stroke.swift */,
 				A9E5B8CF22A65C5300ADD793 /* Line.swift */,
 				A9E5B8D322A65D0800ADD793 /* PixelPoint.swift */,
 				A9E5B8D722A65D3B00ADD793 /* RGBColorData.swift */,
@@ -252,6 +255,7 @@
 				A9F7C58222B523E900DE0BFC /* MaskFinderFourwayFill.swift in Sources */,
 				A9E5B8D822A65D3B00ADD793 /* RGBColorData.swift in Sources */,
 				A9E5B8D422A65D0800ADD793 /* PixelPoint.swift in Sources */,
+				A9A74896231119FF00FA015B /* Stroke.swift in Sources */,
 				A9C60A8E22B9E7CD001C4915 /* MaskFinderLinearFill.swift in Sources */,
 				A9E5B8D022A65C5300ADD793 /* Line.swift in Sources */,
 				A900BA9922B6FEF700EF14C7 /* Settings.swift in Sources */,

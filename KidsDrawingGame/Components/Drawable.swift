@@ -6,7 +6,7 @@ public protocol Drawable {
     
     var image: CGImage? { get }
     
-    var lines: [Line] { get }
+    var strokes: [Stroke] { get }
     
     var changed: Bool { get }
     
