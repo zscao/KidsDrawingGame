@@ -159,6 +159,17 @@ extension Canvas: Drawable {
         _currentStroke = nil
     }
     
+    public func fill(at: CGPoint, color: CGColor) {
+        guard let context = _cgContext, let mask = _mask else { return }
+        
+        _currentStroke = nil
+        
+        if mask.isPointInBound(at: at) == false { return }
+        
+        let maskImage = mask.getMaskImageAtPoint(at: flipVertical(position: at))
+        context.fillMask(mask: maskImage, color: color)
+    }
+    
     public func clear() {
         _historyStrokes.removeAll()
         reset()
@@ -197,6 +208,17 @@ fileprivate extension CGContext {
         setLineCap(.round)
         addPath(stroke.line.path)
         strokePath()
+    }
+    
+    func fillMask(mask: MaskImage?, color: CGColor) {
+        resetClip()
+        if let mask = mask {
+            let rect = flipVertical(rect: mask.rect)
+            clip(to: rect, mask: mask.image)
+            
+            setFillColor(color)
+            fill(rect)
+        }
     }
     
     private func flipVertical(rect: CGRect) -> CGRect {

@@ -18,6 +18,8 @@ public protocol Drawable {
     
     func endLine(at: CGPoint?)
     
+    func fill(at: CGPoint, color: CGColor)
+    
     func clear()
     
     func undo()
