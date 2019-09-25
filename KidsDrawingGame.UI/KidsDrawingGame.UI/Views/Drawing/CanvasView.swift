@@ -83,8 +83,6 @@ class CanvasView: UIView {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let canvas = _canvas else { return }
         
-        
-        
         let location = touches.first?.location(in: self)
         canvas.endLine(at: location?.toScreenScalePixel())
     }
@@ -126,6 +124,7 @@ class CanvasView: UIView {
         if strokes.count == 0 { return }
         
         canvas.clear()
+        self.refreshDrawing()
         
         var strokeIndex: Int = 0
         var pointIndex: Int = 0
